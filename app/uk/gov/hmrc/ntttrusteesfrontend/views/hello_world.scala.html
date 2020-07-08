@@ -1,0 +1,9 @@
+@import uk.gov.hmrc.ntttrusteesfrontend.config.AppConfig
+
+@this(main_template: main_template)
+
+@()(implicit request: Request[_], messages: Messages, appConfig: AppConfig)
+
+@main_template(title = "Hello from ntt-trustees-frontend", bodyClasses = None) {
+    <h1>Hello from ntt-trustees-frontend !</h1>
+}
