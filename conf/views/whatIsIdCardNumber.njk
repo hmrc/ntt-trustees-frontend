@@ -27,7 +27,7 @@
           }) }}
         {% endif %}
 
-        <form action="{{ routes.controllers.WhatIsIdCardNumberController.onSubmit(mode).url }}" method="post">
+        <form action="{{ routes.controllers.individual.lead.WhatIsIdCardNumberController.onSubmit(mode).url }}" method="post">
 
           {{ csrf() | safe }}
 

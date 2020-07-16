@@ -6,11 +6,11 @@ echo "Applying migration IsTheirResidenceInTheUk"
 echo "Adding routes to conf/app.routes"
 
 echo "" >> ../conf/app.routes
-echo "GET        /isTheirResidenceInTheUk                        controllers.IsTheirResidenceInTheUkController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
-echo "POST       /isTheirResidenceInTheUk                        controllers.IsTheirResidenceInTheUkController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "GET        /isTheirResidenceInTheUk                        controllers.individual.lead.IsTheirResidenceInTheUkController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "POST       /isTheirResidenceInTheUk                        controllers.individual.lead.IsTheirResidenceInTheUkController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
 
-echo "GET        /changeIsTheirResidenceInTheUk                  controllers.IsTheirResidenceInTheUkController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
-echo "POST       /changeIsTheirResidenceInTheUk                  controllers.IsTheirResidenceInTheUkController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "GET        /changeIsTheirResidenceInTheUk                  controllers.individual.lead.IsTheirResidenceInTheUkController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "POST       /changeIsTheirResidenceInTheUk                  controllers.individual.lead.IsTheirResidenceInTheUkController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
 
 echo "Adding messages to conf.messages"
 echo "" >> ../conf/messages.en

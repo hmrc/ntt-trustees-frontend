@@ -6,11 +6,11 @@ echo "Applying migration WhatIsTheirEmailAddress"
 echo "Adding routes to conf/app.routes"
 
 echo "" >> ../conf/app.routes
-echo "GET        /whatIsTheirEmailAddress                        controllers.WhatIsTheirEmailAddressController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
-echo "POST       /whatIsTheirEmailAddress                        controllers.WhatIsTheirEmailAddressController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "GET        /whatIsTheirEmailAddress                        controllers.individual.lead.WhatIsTheirEmailAddressController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "POST       /whatIsTheirEmailAddress                        controllers.individual.lead.WhatIsTheirEmailAddressController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
 
-echo "GET        /changeWhatIsTheirEmailAddress                  controllers.WhatIsTheirEmailAddressController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
-echo "POST       /changeWhatIsTheirEmailAddress                  controllers.WhatIsTheirEmailAddressController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "GET        /changeWhatIsTheirEmailAddress                  controllers.individual.lead.WhatIsTheirEmailAddressController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "POST       /changeWhatIsTheirEmailAddress                  controllers.individual.lead.WhatIsTheirEmailAddressController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
 
 echo "Adding messages to conf.messages"
 echo "" >> ../conf/messages.en

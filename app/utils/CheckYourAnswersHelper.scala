@@ -19,6 +19,8 @@ package utils
 import java.time.format.DateTimeFormatter
 
 import controllers.routes
+import controllers.individual.lead.{routes => indLeadRoutes}
+import controllers.company.lead.{routes =>    companyLeadRoutes}
 import models.{CheckMode, UserAnswers}
 import pages._
 import play.api.i18n.Messages
@@ -29,6 +31,111 @@ import uk.gov.hmrc.viewmodels.Text.Literal
 
 class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messages) {
 
+  def whatIsTheUtr: Option[Row] = userAnswers.get(WhatIsTheUtrPage) map {
+    answer =>
+      Row(
+        key     = Key(msg"whatIsTheUtr.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
+        value   = Value(lit"$answer"),
+        actions = List(
+          Action(
+            content            = msg"site.edit",
+            href               = companyLeadRoutes.WhatIsTheUtrController.onPageLoad(CheckMode).url,
+            visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsTheUtr.checkYourAnswersLabel"))
+          )
+        )
+      )
+  }
+
+  def whatIsTheLeadTrusteesRegisteredName: Option[Row] = userAnswers.get(WhatIsTheLeadTrusteesRegisteredNamePage) map {
+    answer =>
+      Row(
+        key     = Key(msg"whatIsTheLeadTrusteesRegisteredName.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
+        value   = Value(lit"$answer"),
+        actions = List(
+          Action(
+            content            = msg"site.edit",
+            href               = companyLeadRoutes.WhatIsTheLeadTrusteesRegisteredNameController.onPageLoad(CheckMode).url,
+            visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsTheLeadTrusteesRegisteredName.checkYourAnswersLabel"))
+          )
+        )
+      )
+  }
+
+  def whatIsTheBusinessName: Option[Row] = userAnswers.get(WhatIsTheBusinessNamePage) map {
+    answer =>
+      Row(
+        key     = Key(msg"whatIsTheBusinessName.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
+        value   = Value(lit"$answer"),
+        actions = List(
+          Action(
+            content            = msg"site.edit",
+            href               = companyLeadRoutes.WhatIsTheBusinessNameController.onPageLoad(CheckMode).url,
+            visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsTheBusinessName.checkYourAnswersLabel"))
+          )
+        )
+      )
+  }
+
+  def whatIsHeadOfficeAddressUk: Option[Row] = userAnswers.get(WhatIsHeadOfficeAddressUkPage) map {
+    answer =>
+      Row(
+        key     = Key(msg"whatIsHeadOfficeAddressUk.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
+        value   = Value(lit"$answer"),
+        actions = List(
+          Action(
+            content            = msg"site.edit",
+            href               = companyLeadRoutes.WhatIsHeadOfficeAddressUkController.onPageLoad(CheckMode).url,
+            visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsHeadOfficeAddressUk.checkYourAnswersLabel"))
+          )
+        )
+      )
+  }
+
+  def whatIsHeadOfficeAddressNonUk: Option[Row] = userAnswers.get(WhatIsHeadOfficeAddressNonUkPage) map {
+    answer =>
+      Row(
+        key     = Key(msg"whatIsHeadOfficeAddressNonUk.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
+        value   = Value(lit"$answer"),
+        actions = List(
+          Action(
+            content            = msg"site.edit",
+            href               = companyLeadRoutes.WhatIsHeadOfficeAddressNonUkController.onPageLoad(CheckMode).url,
+            visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsHeadOfficeAddressNonUk.checkYourAnswersLabel"))
+          )
+        )
+      )
+  }
+
+  def isTrusteeAUkRegisteredBusiness: Option[Row] = userAnswers.get(IsTrusteeAUkRegisteredBusinessPage) map {
+    answer =>
+      Row(
+        key     = Key(msg"isTrusteeAUkRegisteredBusiness.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
+        value   = Value(yesOrNo(answer)),
+        actions = List(
+          Action(
+            content            = msg"site.edit",
+            href               = companyLeadRoutes.IsTrusteeAUkRegisteredBusinessController.onPageLoad(CheckMode).url,
+            visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"isTrusteeAUkRegisteredBusiness.checkYourAnswersLabel"))
+          )
+        )
+      )
+  }
+
+  def isHeadOfficeInUk: Option[Row] = userAnswers.get(IsHeadOfficeInUkPage) map {
+    answer =>
+      Row(
+        key     = Key(msg"isHeadOfficeInUk.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
+        value   = Value(yesOrNo(answer)),
+        actions = List(
+          Action(
+            content            = msg"site.edit",
+            href               = companyLeadRoutes.IsHeadOfficeInUkController.onPageLoad(CheckMode).url,
+            visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"isHeadOfficeInUk.checkYourAnswersLabel"))
+          )
+        )
+      )
+  }
+
   def whatIsPassportNumber: Option[Row] = userAnswers.get(WhatIsPassportNumberPage) map {
     answer =>
       Row(
@@ -37,7 +144,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.WhatIsPassportNumberController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.WhatIsPassportNumberController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsPassportNumber.checkYourAnswersLabel"))
           )
         )
@@ -52,7 +159,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.WhatIsPassportCountryOfIssueController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.WhatIsPassportCountryOfIssueController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsPassportCountryOfIssue.checkYourAnswersLabel"))
           )
         )
@@ -67,7 +174,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.WhatIsIdCardNumberController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.WhatIsIdCardNumberController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsIdCardNumber.checkYourAnswersLabel"))
           )
         )
@@ -82,7 +189,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.WhatIsIdCardExpiryDateController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.WhatIsIdCardExpiryDateController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsIdCardExpiryDate.checkYourAnswersLabel"))
           )
         )
@@ -97,7 +204,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.WhatIsIdCardCountryOfIssueController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.WhatIsIdCardCountryOfIssueController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsIdCardCountryOfIssue.checkYourAnswersLabel"))
           )
         )
@@ -112,7 +219,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.WhatIsExpiryDateController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.WhatIsExpiryDateController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsExpiryDate.checkYourAnswersLabel"))
           )
         )
@@ -127,7 +234,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.WhatIsTheirNationalityController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.WhatIsTheirNationalityController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsTheirNationality.checkYourAnswersLabel"))
           )
         )
@@ -142,7 +249,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.WhatIsTheirNameController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.WhatIsTheirNameController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsTheirName.checkYourAnswersLabel"))
           )
         )
@@ -157,7 +264,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.WhichDetailsCanYouProvideController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.WhichDetailsCanYouProvideController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whichDetailsCanYouProvide.checkYourAnswersLabel"))
           )
         )
@@ -172,7 +279,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.WhatIsTheirTelephoneNumberController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.WhatIsTheirTelephoneNumberController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsTheirTelephoneNumber.checkYourAnswersLabel"))
           )
         )
@@ -187,7 +294,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.WhatIsTheirNationalInsuranceNumberController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.WhatIsTheirNationalInsuranceNumberController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsTheirNationalInsuranceNumber.checkYourAnswersLabel"))
           )
         )
@@ -202,7 +309,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.WhatIsTheirEmailAddressController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.WhatIsTheirEmailAddressController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsTheirEmailAddress.checkYourAnswersLabel"))
           )
         )
@@ -217,7 +324,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.WhatIsTheirDateOfBirthController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.WhatIsTheirDateOfBirthController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsTheirDateOfBirth.checkYourAnswersLabel"))
           )
         )
@@ -232,7 +339,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.WhatIsTheirCountryOfNationalityController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.WhatIsTheirCountryOfNationalityController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsTheirCountryOfNationality.checkYourAnswersLabel"))
           )
         )
@@ -247,7 +354,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.WhatIsTheirAddressUkController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.WhatIsTheirAddressUkController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsTheirAddressUk.checkYourAnswersLabel"))
           )
         )
@@ -262,7 +369,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.WhatIsTheirAddressNonUkController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.WhatIsTheirAddressNonUkController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsTheirAddressNonUk.checkYourAnswersLabel"))
           )
         )
@@ -278,7 +385,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.IsTheirResidenceInTheUkController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.IsTheirResidenceInTheUkController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"isTheirResidenceInTheUk.checkYourAnswersLabel"))
           )
         )
@@ -293,7 +400,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.DoYouKnowTheirEmailAddressController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.DoYouKnowTheirEmailAddressController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"doYouKnowTheirEmailAddress.checkYourAnswersLabel"))
           )
         )
@@ -308,7 +415,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
         actions = List(
           Action(
             content            = msg"site.edit",
-            href               = routes.DoTheyHaveANationalInsuranceNumberController.onPageLoad(CheckMode).url,
+            href               = indLeadRoutes.DoTheyHaveANationalInsuranceNumberController.onPageLoad(CheckMode).url,
             visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"doTheyHaveANationalInsuranceNumber.checkYourAnswersLabel"))
           )
         )

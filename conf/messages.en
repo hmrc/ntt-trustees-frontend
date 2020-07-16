@@ -25,7 +25,7 @@ footer.links.privacy = Privacy policy
 footer.links.terms = Terms and conditions
 
 language.cymraeg = Cymraeg
-language.change.cymraeg = Newid yr iaith i'r Gymraeg
+language.change.cymraeg = Newid yr iaith i’r Gymraeg
 language.english = English
 language.change.english = Change the language to English
 language.switcher = Language switcher
@@ -212,7 +212,7 @@ whatIsTheirEmailAddress.error.length = Their email address must be 100 character
 whatIsTheirNationalInsuranceNumber.title = What is their National Insurance number?
 whatIsTheirNationalInsuranceNumber.heading = What is their National Insurance number?
 whatIsTheirNationalInsuranceNumber.info = Providing this information will help verify the trust and help correspondence.
-whatIsTheirNationalInsuranceNumber.hint = It is on their National Insurance card, benefit letter, payslip or P60. For example, 'QQ 12 34 56 C'.
+whatIsTheirNationalInsuranceNumber.hint = It is on their National Insurance card, benefit letter, payslip or P60. For example, ’QQ 12 34 56 C’.
 whatIsTheirNationalInsuranceNumber.checkYourAnswersLabel = What is their National Insurance number?
 whatIsTheirNationalInsuranceNumber.error.required = Enter their National Insurance number
 whatIsTheirNationalInsuranceNumber.error.length = Their National Insurance number must be 100 characters or less
@@ -252,31 +252,31 @@ whatIsTheirName.lastName.error.length = Last name must be 100 characters or less
 
 toRemove.startJourney = Start journey
 
-whatIsTheirNationality.title = What is their nationality?
-whatIsTheirNationality.heading = What is their nationality?
-whatIsTheirNationality.checkYourAnswersLabel = What is their nationality?
-whatIsTheirNationality.error.required = Enter their nationality
-whatIsTheirNationality.error.length = Their nationality must be 100 characters or less
+whatIsTheirNationality.title = What is their country of nationality?
+whatIsTheirNationality.heading = What is their country of nationality?
+whatIsTheirNationality.checkYourAnswersLabel = What is their country of nationality?
+whatIsTheirNationality.error.required = Enter their country of nationality
+whatIsTheirNationality.error.length = Their country of nationality must be 100 characters or less
 
-whatIsExpiryDate.title = What is their passport's expiry date?
-whatIsExpiryDate.heading = What is their passport's expiry date?
+whatIsExpiryDate.title = What is their passport’s expiry date?
+whatIsExpiryDate.heading = What is their passport’s expiry date?
 whatIsExpiryDate.hint = For example, 12 11 2007
-whatIsExpiryDate.checkYourAnswersLabel = What is their passport's expiry date?
+whatIsExpiryDate.checkYourAnswersLabel = What is their passport’s expiry date?
 whatIsExpiryDate.error.required.all = Enter the expiry date
 whatIsExpiryDate.error.required.two = The expiry date must include {0} and {1}
 whatIsExpiryDate.error.required = The expiry date must include {0}
 whatIsExpiryDate.error.invalid = Enter a real expiry date
 
-whatIsIdCardCountryOfIssue.title = What is their ID card's country of issue?
-whatIsIdCardCountryOfIssue.heading = What is their ID card's country of issue?
-whatIsIdCardCountryOfIssue.checkYourAnswersLabel = What is their ID card's country of issue?
+whatIsIdCardCountryOfIssue.title = What is their ID card’s country of issue?
+whatIsIdCardCountryOfIssue.heading = What is their ID card’s country of issue?
+whatIsIdCardCountryOfIssue.checkYourAnswersLabel = What is their ID card’s country of issue?
 whatIsIdCardCountryOfIssue.error.required = Enter the country of issue
 whatIsIdCardCountryOfIssue.error.length = Country of issue must be 100 characters or less
 
-whatIsIdCardExpiryDate.title = What is their ID card's expiry date?
-whatIsIdCardExpiryDate.heading = What is their ID card's expiry date?
+whatIsIdCardExpiryDate.title = What is their ID card’s expiry date?
+whatIsIdCardExpiryDate.heading = What is their ID card’s expiry date?
 whatIsIdCardExpiryDate.hint = For example, 12 11 2007
-whatIsIdCardExpiryDate.checkYourAnswersLabel = What is their ID card's expiry date?
+whatIsIdCardExpiryDate.checkYourAnswersLabel = What is their ID card’s expiry date?
 whatIsIdCardExpiryDate.error.required.all = Enter the expiry date
 whatIsIdCardExpiryDate.error.required.two = The expiry date must include {0} and {1}
 whatIsIdCardExpiryDate.error.required = The expiry date must include {0}
@@ -288,9 +288,9 @@ whatIsIdCardNumber.checkYourAnswersLabel = What is their ID card number?
 whatIsIdCardNumber.error.required = Enter ID card number
 whatIsIdCardNumber.error.length = ID card number must be 100 characters or less
 
-whatIsPassportCountryOfIssue.title = What is their passport's country of issue?
-whatIsPassportCountryOfIssue.heading = What is their passport's country of issue?
-whatIsPassportCountryOfIssue.checkYourAnswersLabel = What is their passport's country of issue?
+whatIsPassportCountryOfIssue.title = What is their passport’s country of issue?
+whatIsPassportCountryOfIssue.heading = What is their passport’s country of issue?
+whatIsPassportCountryOfIssue.checkYourAnswersLabel = What is their passport’s country of issue?
 whatIsPassportCountryOfIssue.error.required = Enter the country of issue
 whatIsPassportCountryOfIssue.error.length = Country of issue must be 100 characters or less
 
@@ -299,3 +299,66 @@ whatIsPassportNumber.heading = What is their passport number?
 whatIsPassportNumber.checkYourAnswersLabel = What is their passport number?
 whatIsPassportNumber.error.required = Enter their passport number
 whatIsPassportNumber.error.length =  Passport number must be 100 characters or less
+
+isHeadOfficeInUk.title = Is the head office in the UK?
+isHeadOfficeInUk.heading = Is the head office in the UK?
+isHeadOfficeInUk.checkYourAnswersLabel = Is the head office in the UK?
+isHeadOfficeInUk.error.required = Select yes the head office in the UK
+
+isTrusteeAUkRegisteredBusiness.title = Is the lead trustee a UK registered business?
+isTrusteeAUkRegisteredBusiness.heading = Is the lead trustee a UK registered business?
+isTrusteeAUkRegisteredBusiness.checkYourAnswersLabel = Is the lead trustee a UK registered business?
+isTrusteeAUkRegisteredBusiness.error.required = Select yes if the lead trustee a UK registered business
+
+whatIsHeadOfficeAddressNonUk.title = What is the head office’s address?
+whatIsHeadOfficeAddressNonUk.heading = What is the head office’s address?
+whatIsHeadOfficeAddressNonUk.line1 = Address line 1
+whatIsHeadOfficeAddressNonUk.error.line1.required = Please enter address line 1
+whatIsHeadOfficeAddressNonUk.error.line1.length = Address line 1 must be 100 characters or less
+whatIsHeadOfficeAddressNonUk.line2 = Address line 2
+whatIsHeadOfficeAddressNonUk.error.line2.required = Please enter address line 2
+whatIsHeadOfficeAddressNonUk.error.line2.length = Address line 2 must be 100 characters or less
+whatIsHeadOfficeAddressNonUk.line3 = Address line 3 (optional)
+whatIsHeadOfficeAddressNonUk.error.line3.length = Address line 3 must be 100 characters or less
+whatIsHeadOfficeAddressNonUk.line5 = Country
+whatIsHeadOfficeAddressNonUk.error.line5.required = Please enter country
+whatIsHeadOfficeAddressNonUk.checkYourAnswersLabel = What is the head office’s address?
+
+whatIsHeadOfficeAddressUk.title = What is the head office’s address?
+whatIsHeadOfficeAddressUk.heading = What is the head office’s address?
+whatIsHeadOfficeAddressUk.line1 = Address line 1
+whatIsHeadOfficeAddressUk.error.line1.required = Please enter address line 1
+whatIsHeadOfficeAddressUk.error.line1.length = Address line 1 must be 100 characters or less
+whatIsHeadOfficeAddressUk.line2 = Address line 2
+whatIsHeadOfficeAddressUk.error.line2.required = Please enter address line 2
+whatIsHeadOfficeAddressUk.error.line2.length = Address line 2 must be 100 characters or less
+whatIsHeadOfficeAddressUk.line3 = Address line 3 (optional)
+whatIsHeadOfficeAddressUk.error.line3.length = Address line 3 must be 100 characters or less
+whatIsHeadOfficeAddressUk.line4 = Address line 4 (optional)
+whatIsHeadOfficeAddressUk.error.line4.length = Address line 4 must be 100 characters or less
+whatIsHeadOfficeAddressUk.line5 = Postcode
+whatIsHeadOfficeAddressUk.line5.hint = For example AB1 1AB
+whatIsHeadOfficeAddressUk.error.line5.required = Please enter postcode
+whatIsHeadOfficeAddressUk.error.line5.length = Postcode must be 10 characters or less
+whatIsHeadOfficeAddressUk.checkYourAnswersLabel = What is the head office’s address?
+
+whatIsTheBusinessName.title = What is the business’s name?
+whatIsTheBusinessName.heading = What is the business’s name?
+whatIsTheBusinessName.checkYourAnswersLabel = What is the business’s name?
+whatIsTheBusinessName.error.required = Enter the business’s name
+whatIsTheBusinessName.error.length = The business’s name must be 100 characters or less
+
+whatIsTheLeadTrusteesRegisteredName.title = What is the lead trustee’s registered name?
+whatIsTheLeadTrusteesRegisteredName.heading = What is the lead trustee’s registered name?
+whatIsTheLeadTrusteesRegisteredName.hint = Enter the name as it appears on tax returns and other letters about Corporation Tax.
+whatIsTheLeadTrusteesRegisteredName.checkYourAnswersLabel = What is the lead trustee’s registered name?
+whatIsTheLeadTrusteesRegisteredName.error.required = Enter the lead trustee’s registered name
+whatIsTheLeadTrusteesRegisteredName.error.length = The registered name must be 100 characters or less
+
+whatIsTheUtr.title = What is the business’s Unique Taxpayer Reference (UTR)?
+whatIsTheUtr.heading = What is the business’s Unique Taxpayer Reference (UTR)?
+whatIsTheUtr.info = Providing this information will help verify the trust and correspondence.
+whatIsTheUtr.hint = This is 10 numbers, for example 12345 67890. It will be on tax returns and other letters about Self Assessment. It may be called "reference", "UTR", or "official use".
+whatIsTheUtr.checkYourAnswersLabel = What is the business’s Unique Taxpayer Reference (UTR)?
+whatIsTheUtr.error.required = Enter the business’s Unique Taxpayer Reference (UTR)
+whatIsTheUtr.error.length = The Unique Taxpayer Reference must be 100 characters or less

@@ -27,7 +27,7 @@
           }) }}
         {% endif %}
 
-        <form action="{{ routes.controllers.WhatIsTheirDateOfBirthController.onSubmit(mode).url }}" method="post">
+        <form action="{{ routes.controllers.individual.lead.WhatIsTheirDateOfBirthController.onSubmit(mode).url }}" method="post">
 
           {{ csrf() | safe }}
 

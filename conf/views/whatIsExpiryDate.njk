@@ -27,7 +27,7 @@
           }) }}
         {% endif %}
 
-        <form action="{{ routes.controllers.WhatIsExpiryDateController.onSubmit(mode).url }}" method="post">
+        <form action="{{ routes.controllers.individual.lead.WhatIsExpiryDateController.onSubmit(mode).url }}" method="post">
 
           {{ csrf() | safe }}
 

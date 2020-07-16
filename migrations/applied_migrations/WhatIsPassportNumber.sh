@@ -6,11 +6,11 @@ echo "Applying migration WhatIsPassportNumber"
 echo "Adding routes to conf/app.routes"
 
 echo "" >> ../conf/app.routes
-echo "GET        /whatIsPassportNumber                        controllers.WhatIsPassportNumberController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
-echo "POST       /whatIsPassportNumber                        controllers.WhatIsPassportNumberController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "GET        /whatIsPassportNumber                        controllers.individual.lead.WhatIsPassportNumberController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "POST       /whatIsPassportNumber                        controllers.individual.lead.WhatIsPassportNumberController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
 
-echo "GET        /changeWhatIsPassportNumber                  controllers.WhatIsPassportNumberController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
-echo "POST       /changeWhatIsPassportNumber                  controllers.WhatIsPassportNumberController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "GET        /changeWhatIsPassportNumber                  controllers.individual.lead.WhatIsPassportNumberController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "POST       /changeWhatIsPassportNumber                  controllers.individual.lead.WhatIsPassportNumberController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
 
 echo "Adding messages to conf.messages"
 echo "" >> ../conf/messages.en

@@ -6,11 +6,11 @@ echo "Applying migration WhatIsTheirTelephoneNumber"
 echo "Adding routes to conf/app.routes"
 
 echo "" >> ../conf/app.routes
-echo "GET        /whatIsTheirTelephoneNumber                        controllers.WhatIsTheirTelephoneNumberController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
-echo "POST       /whatIsTheirTelephoneNumber                        controllers.WhatIsTheirTelephoneNumberController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "GET        /whatIsTheirTelephoneNumber                        controllers.individual.lead.WhatIsTheirTelephoneNumberController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "POST       /whatIsTheirTelephoneNumber                        controllers.individual.lead.WhatIsTheirTelephoneNumberController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
 
-echo "GET        /changeWhatIsTheirTelephoneNumber                  controllers.WhatIsTheirTelephoneNumberController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
-echo "POST       /changeWhatIsTheirTelephoneNumber                  controllers.WhatIsTheirTelephoneNumberController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "GET        /changeWhatIsTheirTelephoneNumber                  controllers.individual.lead.WhatIsTheirTelephoneNumberController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "POST       /changeWhatIsTheirTelephoneNumber                  controllers.individual.lead.WhatIsTheirTelephoneNumberController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
 
 echo "Adding messages to conf.messages"
 echo "" >> ../conf/messages.en

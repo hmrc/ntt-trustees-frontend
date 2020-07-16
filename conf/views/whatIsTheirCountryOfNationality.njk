@@ -28,7 +28,7 @@
           }) }}
         {% endif %}
 
-        <form action="{{ routes.controllers.WhatIsTheirCountryOfNationalityController.onSubmit(mode).url }}" method="post">
+        <form action="{{ routes.controllers.individual.lead.WhatIsTheirCountryOfNationalityController.onSubmit(mode).url }}" method="post">
 
           {{ csrf() | safe }}
 

@@ -24,6 +24,62 @@ import play.api.libs.json.{JsValue, Json}
 
 trait UserAnswersEntryGenerators extends PageGenerators with ModelGenerators {
 
+  implicit lazy val arbitraryWhatIsTheUtrUserAnswersEntry: Arbitrary[(WhatIsTheUtrPage.type, JsValue)] =
+    Arbitrary {
+      for {
+        page  <- arbitrary[WhatIsTheUtrPage.type]
+        value <- arbitrary[String].suchThat(_.nonEmpty).map(Json.toJson(_))
+      } yield (page, value)
+    }
+
+  implicit lazy val arbitraryWhatIsTheLeadTrusteesRegisteredNameUserAnswersEntry: Arbitrary[(WhatIsTheLeadTrusteesRegisteredNamePage.type, JsValue)] =
+    Arbitrary {
+      for {
+        page  <- arbitrary[WhatIsTheLeadTrusteesRegisteredNamePage.type]
+        value <- arbitrary[String].suchThat(_.nonEmpty).map(Json.toJson(_))
+      } yield (page, value)
+    }
+
+  implicit lazy val arbitraryWhatIsTheBusinessNameUserAnswersEntry: Arbitrary[(WhatIsTheBusinessNamePage.type, JsValue)] =
+    Arbitrary {
+      for {
+        page  <- arbitrary[WhatIsTheBusinessNamePage.type]
+        value <- arbitrary[String].suchThat(_.nonEmpty).map(Json.toJson(_))
+      } yield (page, value)
+    }
+
+  implicit lazy val arbitraryWhatIsHeadOfficeAddressUkUserAnswersEntry: Arbitrary[(WhatIsHeadOfficeAddressUkPage.type, JsValue)] =
+    Arbitrary {
+      for {
+        page  <- arbitrary[WhatIsHeadOfficeAddressUkPage.type]
+        value <- arbitrary[String].suchThat(_.nonEmpty).map(Json.toJson(_))
+      } yield (page, value)
+    }
+
+  implicit lazy val arbitraryWhatIsHeadOfficeAddressNonUkUserAnswersEntry: Arbitrary[(WhatIsHeadOfficeAddressNonUkPage.type, JsValue)] =
+    Arbitrary {
+      for {
+        page  <- arbitrary[WhatIsHeadOfficeAddressNonUkPage.type]
+        value <- arbitrary[String].suchThat(_.nonEmpty).map(Json.toJson(_))
+      } yield (page, value)
+    }
+
+  implicit lazy val arbitraryIsTrusteeAUkRegisteredBusinessUserAnswersEntry: Arbitrary[(IsTrusteeAUkRegisteredBusinessPage.type, JsValue)] =
+    Arbitrary {
+      for {
+        page  <- arbitrary[IsTrusteeAUkRegisteredBusinessPage.type]
+        value <- arbitrary[Boolean].map(Json.toJson(_))
+      } yield (page, value)
+    }
+
+  implicit lazy val arbitraryIsHeadOfficeInUkUserAnswersEntry: Arbitrary[(IsHeadOfficeInUkPage.type, JsValue)] =
+    Arbitrary {
+      for {
+        page  <- arbitrary[IsHeadOfficeInUkPage.type]
+        value <- arbitrary[Boolean].map(Json.toJson(_))
+      } yield (page, value)
+    }
+
   implicit lazy val arbitraryWhatIsPassportNumberUserAnswersEntry: Arbitrary[(WhatIsPassportNumberPage.type, JsValue)] =
     Arbitrary {
       for {

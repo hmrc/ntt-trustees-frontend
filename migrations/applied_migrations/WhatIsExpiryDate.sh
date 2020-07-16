@@ -6,11 +6,11 @@ echo "Applying migration WhatIsExpiryDate"
 echo "Adding routes to conf/app.routes"
 
 echo "" >> ../conf/app.routes
-echo "GET        /whatIsExpiryDate                  controllers.WhatIsExpiryDateController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
-echo "POST       /whatIsExpiryDate                  controllers.WhatIsExpiryDateController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "GET        /whatIsExpiryDate                  controllers.individual.lead.WhatIsExpiryDateController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "POST       /whatIsExpiryDate                  controllers.individual.lead.WhatIsExpiryDateController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
 
-echo "GET        /changeWhatIsExpiryDate                        controllers.WhatIsExpiryDateController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
-echo "POST       /changeWhatIsExpiryDate                        controllers.WhatIsExpiryDateController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "GET        /changeWhatIsExpiryDate                        controllers.individual.lead.WhatIsExpiryDateController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "POST       /changeWhatIsExpiryDate                        controllers.individual.lead.WhatIsExpiryDateController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
 
 echo "Adding messages to conf.messages"
 echo "" >> ../conf/messages.en

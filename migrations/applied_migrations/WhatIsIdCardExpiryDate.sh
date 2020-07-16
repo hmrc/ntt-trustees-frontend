@@ -6,11 +6,11 @@ echo "Applying migration WhatIsIdCardExpiryDate"
 echo "Adding routes to conf/app.routes"
 
 echo "" >> ../conf/app.routes
-echo "GET        /whatIsIdCardExpiryDate                  controllers.WhatIsIdCardExpiryDateController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
-echo "POST       /whatIsIdCardExpiryDate                  controllers.WhatIsIdCardExpiryDateController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "GET        /whatIsIdCardExpiryDate                  controllers.individual.lead.WhatIsIdCardExpiryDateController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "POST       /whatIsIdCardExpiryDate                  controllers.individual.lead.WhatIsIdCardExpiryDateController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
 
-echo "GET        /changeWhatIsIdCardExpiryDate                        controllers.WhatIsIdCardExpiryDateController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
-echo "POST       /changeWhatIsIdCardExpiryDate                        controllers.WhatIsIdCardExpiryDateController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "GET        /changeWhatIsIdCardExpiryDate                        controllers.individual.lead.WhatIsIdCardExpiryDateController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "POST       /changeWhatIsIdCardExpiryDate                        controllers.individual.lead.WhatIsIdCardExpiryDateController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
 
 echo "Adding messages to conf.messages"
 echo "" >> ../conf/messages.en

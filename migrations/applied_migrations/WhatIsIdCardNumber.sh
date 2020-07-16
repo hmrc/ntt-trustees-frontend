@@ -6,11 +6,11 @@ echo "Applying migration WhatIsIdCardNumber"
 echo "Adding routes to conf/app.routes"
 
 echo "" >> ../conf/app.routes
-echo "GET        /whatIsIdCardNumber                        controllers.WhatIsIdCardNumberController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
-echo "POST       /whatIsIdCardNumber                        controllers.WhatIsIdCardNumberController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "GET        /whatIsIdCardNumber                        controllers.individual.lead.WhatIsIdCardNumberController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "POST       /whatIsIdCardNumber                        controllers.individual.lead.WhatIsIdCardNumberController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
 
-echo "GET        /changeWhatIsIdCardNumber                  controllers.WhatIsIdCardNumberController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
-echo "POST       /changeWhatIsIdCardNumber                  controllers.WhatIsIdCardNumberController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "GET        /changeWhatIsIdCardNumber                  controllers.individual.lead.WhatIsIdCardNumberController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "POST       /changeWhatIsIdCardNumber                  controllers.individual.lead.WhatIsIdCardNumberController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
 
 echo "Adding messages to conf.messages"
 echo "" >> ../conf/messages.en

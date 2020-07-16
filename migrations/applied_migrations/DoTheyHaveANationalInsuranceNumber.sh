@@ -6,11 +6,11 @@ echo "Applying migration DoTheyHaveANationalInsuranceNumber"
 echo "Adding routes to conf/app.routes"
 
 echo "" >> ../conf/app.routes
-echo "GET        /doTheyHaveANationalInsuranceNumber                        controllers.DoTheyHaveANationalInsuranceNumberController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
-echo "POST       /doTheyHaveANationalInsuranceNumber                        controllers.DoTheyHaveANationalInsuranceNumberController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "GET        /doTheyHaveANationalInsuranceNumber                        controllers.individual.lead.DoTheyHaveANationalInsuranceNumberController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "POST       /doTheyHaveANationalInsuranceNumber                        controllers.individual.lead.DoTheyHaveANationalInsuranceNumberController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
 
-echo "GET        /changeDoTheyHaveANationalInsuranceNumber                  controllers.DoTheyHaveANationalInsuranceNumberController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
-echo "POST       /changeDoTheyHaveANationalInsuranceNumber                  controllers.DoTheyHaveANationalInsuranceNumberController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "GET        /changeDoTheyHaveANationalInsuranceNumber                  controllers.individual.lead.DoTheyHaveANationalInsuranceNumberController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "POST       /changeDoTheyHaveANationalInsuranceNumber                  controllers.individual.lead.DoTheyHaveANationalInsuranceNumberController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
 
 echo "Adding messages to conf.messages"
 echo "" >> ../conf/messages.en

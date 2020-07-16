@@ -6,11 +6,11 @@ echo "Applying migration WhatIsTheirCountryOfNationality"
 echo "Adding routes to conf/app.routes"
 
 echo "" >> ../conf/app.routes
-echo "GET        /whatIsTheirCountryOfNationality                        controllers.WhatIsTheirCountryOfNationalityController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
-echo "POST       /whatIsTheirCountryOfNationality                        controllers.WhatIsTheirCountryOfNationalityController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "GET        /whatIsTheirCountryOfNationality                        controllers.individual.lead.WhatIsTheirCountryOfNationalityController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "POST       /whatIsTheirCountryOfNationality                        controllers.individual.lead.WhatIsTheirCountryOfNationalityController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
 
-echo "GET        /changeWhatIsTheirCountryOfNationality                  controllers.WhatIsTheirCountryOfNationalityController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
-echo "POST       /changeWhatIsTheirCountryOfNationality                  controllers.WhatIsTheirCountryOfNationalityController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "GET        /changeWhatIsTheirCountryOfNationality                  controllers.individual.lead.WhatIsTheirCountryOfNationalityController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "POST       /changeWhatIsTheirCountryOfNationality                  controllers.individual.lead.WhatIsTheirCountryOfNationalityController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
 
 echo "Adding messages to conf.messages"
 echo "" >> ../conf/messages.en

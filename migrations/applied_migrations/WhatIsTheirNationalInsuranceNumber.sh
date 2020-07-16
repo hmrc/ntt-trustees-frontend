@@ -6,11 +6,11 @@ echo "Applying migration WhatIsTheirNationalInsuranceNumber"
 echo "Adding routes to conf/app.routes"
 
 echo "" >> ../conf/app.routes
-echo "GET        /whatIsTheirNationalInsuranceNumber                        controllers.WhatIsTheirNationalInsuranceNumberController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
-echo "POST       /whatIsTheirNationalInsuranceNumber                        controllers.WhatIsTheirNationalInsuranceNumberController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "GET        /whatIsTheirNationalInsuranceNumber                        controllers.individual.lead.WhatIsTheirNationalInsuranceNumberController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "POST       /whatIsTheirNationalInsuranceNumber                        controllers.individual.lead.WhatIsTheirNationalInsuranceNumberController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
 
-echo "GET        /changeWhatIsTheirNationalInsuranceNumber                  controllers.WhatIsTheirNationalInsuranceNumberController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
-echo "POST       /changeWhatIsTheirNationalInsuranceNumber                  controllers.WhatIsTheirNationalInsuranceNumberController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "GET        /changeWhatIsTheirNationalInsuranceNumber                  controllers.individual.lead.WhatIsTheirNationalInsuranceNumberController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "POST       /changeWhatIsTheirNationalInsuranceNumber                  controllers.individual.lead.WhatIsTheirNationalInsuranceNumberController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
 
 echo "Adding messages to conf.messages"
 echo "" >> ../conf/messages.en

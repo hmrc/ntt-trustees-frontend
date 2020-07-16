@@ -6,11 +6,11 @@ echo "Applying migration DoYouKnowTheirEmailAddress"
 echo "Adding routes to conf/app.routes"
 
 echo "" >> ../conf/app.routes
-echo "GET        /doYouKnowTheirEmailAddress                        controllers.DoYouKnowTheirEmailAddressController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
-echo "POST       /doYouKnowTheirEmailAddress                        controllers.DoYouKnowTheirEmailAddressController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "GET        /doYouKnowTheirEmailAddress                        controllers.individual.lead.DoYouKnowTheirEmailAddressController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "POST       /doYouKnowTheirEmailAddress                        controllers.individual.lead.DoYouKnowTheirEmailAddressController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
 
-echo "GET        /changeDoYouKnowTheirEmailAddress                  controllers.DoYouKnowTheirEmailAddressController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
-echo "POST       /changeDoYouKnowTheirEmailAddress                  controllers.DoYouKnowTheirEmailAddressController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "GET        /changeDoYouKnowTheirEmailAddress                  controllers.individual.lead.DoYouKnowTheirEmailAddressController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "POST       /changeDoYouKnowTheirEmailAddress                  controllers.individual.lead.DoYouKnowTheirEmailAddressController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
 
 echo "Adding messages to conf.messages"
 echo "" >> ../conf/messages.en

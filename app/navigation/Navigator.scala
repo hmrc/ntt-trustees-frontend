@@ -19,7 +19,10 @@ package navigation
 import javax.inject.{Inject, Singleton}
 
 import play.api.mvc.Call
+
 import controllers.routes
+import controllers.individual.lead.{routes => indLeadRoutes}
+import controllers.company.lead.{routes => companyLeadRoutes}
 import pages._
 import models._
 
@@ -29,23 +32,32 @@ class Navigator @Inject()() {
   private val normalRoutes: Page => UserAnswers => Call = {
     case StartJourneyPage                         => _ => routes.WhoManagesTheTrustController.onPageLoad()
     case WhoManagesTheTrustPage                   => _ => routes.AreYouEnteringDetailsForLeadTrusteeController.onPageLoad(NormalMode)
-    case AreYouEnteringDetailsForLeadTrusteePage  => _ => routes.WhatIsTheirNameController.onPageLoad(NormalMode)
-    case WhatIsTheirNamePage                      => _ => routes.WhatIsTheirDateOfBirthController.onPageLoad(NormalMode)
-    case WhatIsTheirDateOfBirthPage               => _ => routes.DoTheyHaveANationalInsuranceNumberController.onPageLoad(NormalMode)
-    case DoTheyHaveANationalInsuranceNumberPage   => _ => routes.WhatIsTheirNationalInsuranceNumberController.onPageLoad(NormalMode)
-    case WhatIsTheirNationalInsuranceNumberPage   => _ => routes.WhatIsTheirNationalityController.onPageLoad(NormalMode)
-    case WhatIsTheirNationalityPage               => _ => routes.WhichDetailsCanYouProvideController.onPageLoad(NormalMode)
-    case WhichDetailsCanYouProvidePage            => _ => routes.WhatIsPassportCountryOfIssueController.onPageLoad(NormalMode)
-    case WhatIsPassportCountryOfIssuePage         => _ => routes.WhatIsPassportNumberController.onPageLoad(NormalMode)
-    case WhatIsPassportNumberPage                 => _ => routes.WhatIsExpiryDateController.onPageLoad(NormalMode)
-    case WhatIsExpiryDatePage                     => _ => routes.WhatIsIdCardCountryOfIssueController.onPageLoad(NormalMode)
-    case WhatIsIdCardCountryOfIssuePage           => _ => routes.WhatIsIdCardNumberController.onPageLoad(NormalMode)
-    case WhatIsIdCardNumberPage                   => _ => routes.WhatIsIdCardExpiryDateController.onPageLoad(NormalMode)
-    case WhatIsIdCardExpiryDatePage               => _ => routes.IsTheirResidenceInTheUkController.onPageLoad(NormalMode)
-    case IsTheirResidenceInTheUkPage              => _ => routes.WhatIsTheirAddressUkController.onPageLoad(NormalMode)
-    case WhatIsTheirAddressUkPage                 => _ => routes.WhatIsTheirAddressNonUkController.onPageLoad(NormalMode)
-    case WhatIsTheirAddressNonUkPage              => _ => routes.WhatIsTheirEmailAddressController.onPageLoad(NormalMode)
-    case WhatIsTheirEmailAddressPage              => _ => routes.WhatIsTheirTelephoneNumberController.onPageLoad(NormalMode)
+    case AreYouEnteringDetailsForLeadTrusteePage  => _ => indLeadRoutes.WhatIsTheirNameController.onPageLoad(NormalMode)
+    case WhatIsTheirNamePage                      => _ => indLeadRoutes.WhatIsTheirDateOfBirthController.onPageLoad(NormalMode)
+    case WhatIsTheirDateOfBirthPage               => _ => indLeadRoutes.DoTheyHaveANationalInsuranceNumberController.onPageLoad(NormalMode)
+    case DoTheyHaveANationalInsuranceNumberPage   => _ => indLeadRoutes.WhatIsTheirNationalInsuranceNumberController.onPageLoad(NormalMode)
+    case WhatIsTheirNationalInsuranceNumberPage   => _ => indLeadRoutes.WhatIsTheirNationalityController.onPageLoad(NormalMode)
+    case WhatIsTheirNationalityPage               => _ => indLeadRoutes.WhichDetailsCanYouProvideController.onPageLoad(NormalMode)
+    case WhichDetailsCanYouProvidePage            => _ => indLeadRoutes.WhatIsPassportCountryOfIssueController.onPageLoad(NormalMode)
+    case WhatIsPassportCountryOfIssuePage         => _ => indLeadRoutes.WhatIsPassportNumberController.onPageLoad(NormalMode)
+    case WhatIsPassportNumberPage                 => _ => indLeadRoutes.WhatIsExpiryDateController.onPageLoad(NormalMode)
+    case WhatIsExpiryDatePage                     => _ => indLeadRoutes.WhatIsIdCardCountryOfIssueController.onPageLoad(NormalMode)
+    case WhatIsIdCardCountryOfIssuePage           => _ => indLeadRoutes.WhatIsIdCardNumberController.onPageLoad(NormalMode)
+    case WhatIsIdCardNumberPage                   => _ => indLeadRoutes.WhatIsIdCardExpiryDateController.onPageLoad(NormalMode)
+    case WhatIsIdCardExpiryDatePage               => _ => indLeadRoutes.IsTheirResidenceInTheUkController.onPageLoad(NormalMode)
+    case IsTheirResidenceInTheUkPage              => _ => indLeadRoutes.WhatIsTheirAddressUkController.onPageLoad(NormalMode)
+    case WhatIsTheirAddressUkPage                 => _ => indLeadRoutes.WhatIsTheirAddressNonUkController.onPageLoad(NormalMode)
+    case WhatIsTheirAddressNonUkPage              => _ => indLeadRoutes.WhatIsTheirEmailAddressController.onPageLoad(NormalMode)
+    case WhatIsTheirEmailAddressPage              => _ => indLeadRoutes.WhatIsTheirTelephoneNumberController.onPageLoad(NormalMode)
+
+    case WhatIsTheirTelephoneNumberPage           => _ => companyLeadRoutes.IsTrusteeAUkRegisteredBusinessController.onPageLoad(NormalMode)
+    case IsTrusteeAUkRegisteredBusinessPage       => _ => companyLeadRoutes.WhatIsTheLeadTrusteesRegisteredNameController.onPageLoad(NormalMode)
+    case WhatIsTheLeadTrusteesRegisteredNamePage  => _ => companyLeadRoutes.WhatIsTheBusinessNameController.onPageLoad(NormalMode)
+    case WhatIsTheBusinessNamePage                => _ => companyLeadRoutes.WhatIsTheUtrController.onPageLoad(NormalMode)
+    case WhatIsTheUtrPage                         => _ => companyLeadRoutes.IsHeadOfficeInUkController.onPageLoad(NormalMode)
+    case IsHeadOfficeInUkPage                     => _ => companyLeadRoutes.WhatIsHeadOfficeAddressUkController.onPageLoad(NormalMode)
+    case WhatIsHeadOfficeAddressUkPage            => _ => companyLeadRoutes.WhatIsHeadOfficeAddressNonUkController.onPageLoad(NormalMode)
+
     case _ => _ => routes.IndexController.onPageLoad()
   }
 

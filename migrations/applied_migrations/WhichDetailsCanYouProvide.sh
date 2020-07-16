@@ -6,11 +6,11 @@ echo "Applying migration WhichDetailsCanYouProvide"
 echo "Adding routes to conf/app.routes"
 
 echo "" >> ../conf/app.routes
-echo "GET        /whichDetailsCanYouProvide                        controllers.WhichDetailsCanYouProvideController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
-echo "POST       /whichDetailsCanYouProvide                        controllers.WhichDetailsCanYouProvideController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "GET        /whichDetailsCanYouProvide                        controllers.individual.lead.WhichDetailsCanYouProvideController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "POST       /whichDetailsCanYouProvide                        controllers.individual.lead.WhichDetailsCanYouProvideController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
 
-echo "GET        /changeWhichDetailsCanYouProvide                  controllers.WhichDetailsCanYouProvideController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
-echo "POST       /changeWhichDetailsCanYouProvide                  controllers.WhichDetailsCanYouProvideController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "GET        /changeWhichDetailsCanYouProvide                  controllers.individual.lead.WhichDetailsCanYouProvideController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "POST       /changeWhichDetailsCanYouProvide                  controllers.individual.lead.WhichDetailsCanYouProvideController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
 
 echo "Adding messages to conf.messages"
 echo "" >> ../conf/messages.en

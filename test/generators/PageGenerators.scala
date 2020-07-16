@@ -21,6 +21,27 @@ import pages._
 
 trait PageGenerators {
 
+  implicit lazy val arbitraryWhatIsTheUtrPage: Arbitrary[WhatIsTheUtrPage.type] =
+    Arbitrary(WhatIsTheUtrPage)
+
+  implicit lazy val arbitraryWhatIsTheLeadTrusteesRegisteredNamePage: Arbitrary[WhatIsTheLeadTrusteesRegisteredNamePage.type] =
+    Arbitrary(WhatIsTheLeadTrusteesRegisteredNamePage)
+
+  implicit lazy val arbitraryWhatIsTheBusinessNamePage: Arbitrary[WhatIsTheBusinessNamePage.type] =
+    Arbitrary(WhatIsTheBusinessNamePage)
+
+  implicit lazy val arbitraryWhatIsHeadOfficeAddressUkPage: Arbitrary[WhatIsHeadOfficeAddressUkPage.type] =
+    Arbitrary(WhatIsHeadOfficeAddressUkPage)
+
+  implicit lazy val arbitraryWhatIsHeadOfficeAddressNonUkPage: Arbitrary[WhatIsHeadOfficeAddressNonUkPage.type] =
+    Arbitrary(WhatIsHeadOfficeAddressNonUkPage)
+
+  implicit lazy val arbitraryIsTrusteeAUkRegisteredBusinessPage: Arbitrary[IsTrusteeAUkRegisteredBusinessPage.type] =
+    Arbitrary(IsTrusteeAUkRegisteredBusinessPage)
+
+  implicit lazy val arbitraryIsHeadOfficeInUkPage: Arbitrary[IsHeadOfficeInUkPage.type] =
+    Arbitrary(IsHeadOfficeInUkPage)
+
   implicit lazy val arbitraryWhatIsPassportNumberPage: Arbitrary[WhatIsPassportNumberPage.type] =
     Arbitrary(WhatIsPassportNumberPage)
 

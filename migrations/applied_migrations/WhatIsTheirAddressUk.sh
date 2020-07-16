@@ -6,11 +6,11 @@ echo "Applying migration WhatIsTheirAddressUk"
 echo "Adding routes to conf/app.routes"
 
 echo "" >> ../conf/app.routes
-echo "GET        /whatIsTheirAddressUk                        controllers.WhatIsTheirAddressUkController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
-echo "POST       /whatIsTheirAddressUk                        controllers.WhatIsTheirAddressUkController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "GET        /whatIsTheirAddressUk                        controllers.individual.lead.WhatIsTheirAddressUkController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "POST       /whatIsTheirAddressUk                        controllers.individual.lead.WhatIsTheirAddressUkController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
 
-echo "GET        /changeWhatIsTheirAddressUk                  controllers.WhatIsTheirAddressUkController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
-echo "POST       /changeWhatIsTheirAddressUk                  controllers.WhatIsTheirAddressUkController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "GET        /changeWhatIsTheirAddressUk                  controllers.individual.lead.WhatIsTheirAddressUkController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "POST       /changeWhatIsTheirAddressUk                  controllers.individual.lead.WhatIsTheirAddressUkController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
 
 echo "Adding messages to conf.messages"
 echo "" >> ../conf/messages.en

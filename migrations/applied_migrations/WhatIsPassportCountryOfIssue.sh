@@ -6,11 +6,11 @@ echo "Applying migration WhatIsPassportCountryOfIssue"
 echo "Adding routes to conf/app.routes"
 
 echo "" >> ../conf/app.routes
-echo "GET        /whatIsPassportCountryOfIssue                        controllers.WhatIsPassportCountryOfIssueController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
-echo "POST       /whatIsPassportCountryOfIssue                        controllers.WhatIsPassportCountryOfIssueController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "GET        /whatIsPassportCountryOfIssue                        controllers.individual.lead.WhatIsPassportCountryOfIssueController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "POST       /whatIsPassportCountryOfIssue                        controllers.individual.lead.WhatIsPassportCountryOfIssueController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
 
-echo "GET        /changeWhatIsPassportCountryOfIssue                  controllers.WhatIsPassportCountryOfIssueController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
-echo "POST       /changeWhatIsPassportCountryOfIssue                  controllers.WhatIsPassportCountryOfIssueController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "GET        /changeWhatIsPassportCountryOfIssue                  controllers.individual.lead.WhatIsPassportCountryOfIssueController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "POST       /changeWhatIsPassportCountryOfIssue                  controllers.individual.lead.WhatIsPassportCountryOfIssueController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
 
 echo "Adding messages to conf.messages"
 echo "" >> ../conf/messages.en

@@ -6,11 +6,11 @@ echo "Applying migration WhatIsIdCardCountryOfIssue"
 echo "Adding routes to conf/app.routes"
 
 echo "" >> ../conf/app.routes
-echo "GET        /whatIsIdCardCountryOfIssue                        controllers.WhatIsIdCardCountryOfIssueController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
-echo "POST       /whatIsIdCardCountryOfIssue                        controllers.WhatIsIdCardCountryOfIssueController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "GET        /whatIsIdCardCountryOfIssue                        controllers.individual.lead.WhatIsIdCardCountryOfIssueController.onPageLoad(mode: Mode = NormalMode)" >> ../conf/app.routes
+echo "POST       /whatIsIdCardCountryOfIssue                        controllers.individual.lead.WhatIsIdCardCountryOfIssueController.onSubmit(mode: Mode = NormalMode)" >> ../conf/app.routes
 
-echo "GET        /changeWhatIsIdCardCountryOfIssue                  controllers.WhatIsIdCardCountryOfIssueController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
-echo "POST       /changeWhatIsIdCardCountryOfIssue                  controllers.WhatIsIdCardCountryOfIssueController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "GET        /changeWhatIsIdCardCountryOfIssue                  controllers.individual.lead.WhatIsIdCardCountryOfIssueController.onPageLoad(mode: Mode = CheckMode)" >> ../conf/app.routes
+echo "POST       /changeWhatIsIdCardCountryOfIssue                  controllers.individual.lead.WhatIsIdCardCountryOfIssueController.onSubmit(mode: Mode = CheckMode)" >> ../conf/app.routes
 
 echo "Adding messages to conf.messages"
 echo "" >> ../conf/messages.en
