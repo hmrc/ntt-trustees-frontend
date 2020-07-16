@@ -129,3 +129,173 @@ compliant.nine.p2.1=The service was built using parts that were tested by the
 compliant.nine.p2.2=Digital Accessibility Centre
 compliant.nine.p2.3=The full service was tested by HMRC and included disabled users.
 compliant.nine.p3=This page was prepared on [date when it was first published]. It was last updated on [date when it was last updated].
+
+addATrusteee.title = addATrusteee
+addATrusteee.heading = addATrusteee
+
+areYouEnteringDetailsForLeadTrustee.title = Are you entering details for the lead trustee or a trustee?
+areYouEnteringDetailsForLeadTrustee.heading = Are you entering details for the lead trustee or a trustee?
+areYouEnteringDetailsForLeadTrustee.hint = The lead trustee is the main point of contact for the trust. Do not enter agent details unless they are legally the lead trustee or a trustee.
+areYouEnteringDetailsForLeadTrustee.checkYourAnswersLabel = Are you entering details for the lead trustee or a trustee?
+areYouEnteringDetailsForLeadTrustee.leadtrustee = Lead trustee
+areYouEnteringDetailsForLeadTrustee.trustee = Trustee
+areYouEnteringDetailsForLeadTrustee.error.required = Select whether you are entering details for the lead trustee
+
+doTheyHaveANationalInsuranceNumber.title = Do they have a National Insurance number?
+doTheyHaveANationalInsuranceNumber.heading = Do they have a National Insurance number?
+doTheyHaveANationalInsuranceNumber.checkYourAnswersLabel = Do they have a National Insurance number?
+doTheyHaveANationalInsuranceNumber.error.required = Select yes if they have a National Insurance number
+
+doYouKnowTheirEmailAddress.title = Do you know their email address?
+doYouKnowTheirEmailAddress.heading = Do you know their email address?
+doYouKnowTheirEmailAddress.checkYourAnswersLabel = Do you know their email address?
+doYouKnowTheirEmailAddress.error.required = Select yes if you know their email address
+
+isTheirResidenceInTheUk.title = Is their residence in the UK?
+isTheirResidenceInTheUk.heading = Is their residence in the UK?
+isTheirResidenceInTheUk.checkYourAnswersLabel = Is their residence in the UK?
+isTheirResidenceInTheUk.error.required = Select yes if their residence in the UK
+
+whatIsTheirAddressNonUk.title = What is their address?
+whatIsTheirAddressNonUk.heading = What is their address?
+whatIsTheirAddressNonUk.line1 = Address line 1
+whatIsTheirAddressNonUk.error.line1.required = Please enter address line 1
+whatIsTheirAddressNonUk.error.line1.length = Address line 1 must be 100 characters or less
+whatIsTheirAddressNonUk.line2 = Address line 2
+whatIsTheirAddressNonUk.error.line2.required = Please enter address line 2
+whatIsTheirAddressNonUk.error.line2.length = Address line 2 must be 100 characters or less
+whatIsTheirAddressNonUk.line3 = Address line 3 (optional)
+whatIsTheirAddressNonUk.error.line3.length = Address line 3 must be 100 characters or less
+whatIsTheirAddressNonUk.line5 = Country
+whatIsTheirAddressNonUk.error.line5.required = Please enter country
+whatIsTheirAddressNonUk.checkYourAnswersLabel = What is their address?
+
+whatIsTheirAddressUk.title = What is their address?
+whatIsTheirAddressUk.heading = What is their address?
+whatIsTheirAddressUk.line1 = Address line 1
+whatIsTheirAddressUk.error.line1.required = Please enter address line 1
+whatIsTheirAddressUk.error.line1.length = Address line 1 must be 100 characters or less
+whatIsTheirAddressUk.line2 = Address line 2
+whatIsTheirAddressUk.error.line2.required = Please enter address line 2
+whatIsTheirAddressUk.error.line2.length = Address line 2 must be 100 characters or less
+whatIsTheirAddressUk.line3 = Address line 3 (optional)
+whatIsTheirAddressUk.error.line3.length = Address line 3 must be 100 characters or less
+whatIsTheirAddressUk.line4 = Address line 4 (optional)
+whatIsTheirAddressUk.error.line4.length = Address line 4 must be 100 characters or less
+whatIsTheirAddressUk.line5 = Postcode
+whatIsTheirAddressUk.line5.hint = For example AB1 1AB
+whatIsTheirAddressUk.error.line5.required = Please enter postcode
+whatIsTheirAddressUk.error.line5.length = Postcode must be 10 characters or less
+whatIsTheirAddressUk.checkYourAnswersLabel = What is their address?
+
+whatIsTheirCountryOfNationality.title = What is their country of nationality?
+whatIsTheirCountryOfNationality.heading = What is their country of nationality?
+whatIsTheirCountryOfNationality.checkYourAnswersLabel = What is their country of nationality?
+whatIsTheirCountryOfNationality.error.required = Enter their country of nationality
+whatIsTheirCountryOfNationality.error.length = Their country of nationality must be 100 characters or less
+
+whatIsTheirDateOfBirth.title = What is their date of birth?
+whatIsTheirDateOfBirth.heading = What is their date of birth?
+whatIsTheirDateOfBirth.hint = For example, 12 11 2007
+whatIsTheirDateOfBirth.checkYourAnswersLabel = What is their date of birth?
+whatIsTheirDateOfBirth.error.required.all = Enter their date of birth?
+whatIsTheirDateOfBirth.error.required.two = Their date of birth must include {0} and {1}
+whatIsTheirDateOfBirth.error.required = Their date of birth must include {0}
+whatIsTheirDateOfBirth.error.invalid = Enter a real date of birth
+
+whatIsTheirEmailAddress.title = What is their email address?
+whatIsTheirEmailAddress.heading = What is their email address?
+whatIsTheirEmailAddress.checkYourAnswersLabel = What is their email address?
+whatIsTheirEmailAddress.error.required = Enter their email address
+whatIsTheirEmailAddress.error.length = Their email address must be 100 characters or less
+
+whatIsTheirNationalInsuranceNumber.title = What is their National Insurance number?
+whatIsTheirNationalInsuranceNumber.heading = What is their National Insurance number?
+whatIsTheirNationalInsuranceNumber.info = Providing this information will help verify the trust and help correspondence.
+whatIsTheirNationalInsuranceNumber.hint = It is on their National Insurance card, benefit letter, payslip or P60. For example, 'QQ 12 34 56 C'.
+whatIsTheirNationalInsuranceNumber.checkYourAnswersLabel = What is their National Insurance number?
+whatIsTheirNationalInsuranceNumber.error.required = Enter their National Insurance number
+whatIsTheirNationalInsuranceNumber.error.length = Their National Insurance number must be 100 characters or less
+
+whatIsTheirTelephoneNumber.title = What is their telephone number?
+whatIsTheirTelephoneNumber.heading = What is their telephone number?
+whatIsTheirTelephoneNumber.hint = For international numbers include the country code
+whatIsTheirTelephoneNumber.checkYourAnswersLabel = What is their telephone number?
+whatIsTheirTelephoneNumber.error.required = Enter their telephone number
+whatIsTheirTelephoneNumber.error.length = Their telephone number must be 100 characters or less
+
+whichDetailsCanYouProvide.title = Which of their details can you provide?
+whichDetailsCanYouProvide.heading = Which of their details can you provide?
+whichDetailsCanYouProvide.checkYourAnswersLabel = Which of their details can you provide?
+whichDetailsCanYouProvide.passport = Passport
+whichDetailsCanYouProvide.idcard = ID card
+whichDetailsCanYouProvide.error.required = Select which of their details can you provide
+
+whoManagesTheTrust.title = Who manages the trust
+whoManagesTheTrust.heading = Who manages the trust
+whoManagesTheTrust.info = Info about trustees
+
+whatIsTheirName.title = What is their name?
+whatIsTheirName.heading = What is their name?
+whatIsTheirName.checkYourAnswersLabel = What is their name?
+
+whatIsTheirName.firstName = First name
+whatIsTheirName.middleName = Middle name (optional)
+whatIsTheirName.lastName = Last Name
+
+whatIsTheirName.firstName.error.required = Enter first name
+whatIsTheirName.lastName.error.required = Enter last name
+
+whatIsTheirName.firstName.error.length = First name must be 100 characters or less
+whatIsTheirName.middleName.error.length = Middle name must be 100 characters or less
+whatIsTheirName.lastName.error.length = Last name must be 100 characters or less
+
+toRemove.startJourney = Start journey
+
+whatIsTheirNationality.title = What is their nationality?
+whatIsTheirNationality.heading = What is their nationality?
+whatIsTheirNationality.checkYourAnswersLabel = What is their nationality?
+whatIsTheirNationality.error.required = Enter their nationality
+whatIsTheirNationality.error.length = Their nationality must be 100 characters or less
+
+whatIsExpiryDate.title = What is their passport's expiry date?
+whatIsExpiryDate.heading = What is their passport's expiry date?
+whatIsExpiryDate.hint = For example, 12 11 2007
+whatIsExpiryDate.checkYourAnswersLabel = What is their passport's expiry date?
+whatIsExpiryDate.error.required.all = Enter the expiry date
+whatIsExpiryDate.error.required.two = The expiry date must include {0} and {1}
+whatIsExpiryDate.error.required = The expiry date must include {0}
+whatIsExpiryDate.error.invalid = Enter a real expiry date
+
+whatIsIdCardCountryOfIssue.title = What is their ID card's country of issue?
+whatIsIdCardCountryOfIssue.heading = What is their ID card's country of issue?
+whatIsIdCardCountryOfIssue.checkYourAnswersLabel = What is their ID card's country of issue?
+whatIsIdCardCountryOfIssue.error.required = Enter the country of issue
+whatIsIdCardCountryOfIssue.error.length = Country of issue must be 100 characters or less
+
+whatIsIdCardExpiryDate.title = What is their ID card's expiry date?
+whatIsIdCardExpiryDate.heading = What is their ID card's expiry date?
+whatIsIdCardExpiryDate.hint = For example, 12 11 2007
+whatIsIdCardExpiryDate.checkYourAnswersLabel = What is their ID card's expiry date?
+whatIsIdCardExpiryDate.error.required.all = Enter the expiry date
+whatIsIdCardExpiryDate.error.required.two = The expiry date must include {0} and {1}
+whatIsIdCardExpiryDate.error.required = The expiry date must include {0}
+whatIsIdCardExpiryDate.error.invalid = Enter a real expiry date
+
+whatIsIdCardNumber.title = What is their ID card number?
+whatIsIdCardNumber.heading = What is their ID card number?
+whatIsIdCardNumber.checkYourAnswersLabel = What is their ID card number?
+whatIsIdCardNumber.error.required = Enter ID card number
+whatIsIdCardNumber.error.length = ID card number must be 100 characters or less
+
+whatIsPassportCountryOfIssue.title = What is their passport's country of issue?
+whatIsPassportCountryOfIssue.heading = What is their passport's country of issue?
+whatIsPassportCountryOfIssue.checkYourAnswersLabel = What is their passport's country of issue?
+whatIsPassportCountryOfIssue.error.required = Enter the country of issue
+whatIsPassportCountryOfIssue.error.length = Country of issue must be 100 characters or less
+
+whatIsPassportNumber.title = What is their passport number?
+whatIsPassportNumber.heading = What is their passport number?
+whatIsPassportNumber.checkYourAnswersLabel = What is their passport number?
+whatIsPassportNumber.error.required = Enter their passport number
+whatIsPassportNumber.error.length =  Passport number must be 100 characters or less

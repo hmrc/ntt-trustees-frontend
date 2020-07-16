@@ -27,6 +27,25 @@ import models._
 class Navigator @Inject()() {
 
   private val normalRoutes: Page => UserAnswers => Call = {
+    case StartJourneyPage                         => _ => routes.WhoManagesTheTrustController.onPageLoad()
+    case WhoManagesTheTrustPage                   => _ => routes.AreYouEnteringDetailsForLeadTrusteeController.onPageLoad(NormalMode)
+    case AreYouEnteringDetailsForLeadTrusteePage  => _ => routes.WhatIsTheirNameController.onPageLoad(NormalMode)
+    case WhatIsTheirNamePage                      => _ => routes.WhatIsTheirDateOfBirthController.onPageLoad(NormalMode)
+    case WhatIsTheirDateOfBirthPage               => _ => routes.DoTheyHaveANationalInsuranceNumberController.onPageLoad(NormalMode)
+    case DoTheyHaveANationalInsuranceNumberPage   => _ => routes.WhatIsTheirNationalInsuranceNumberController.onPageLoad(NormalMode)
+    case WhatIsTheirNationalInsuranceNumberPage   => _ => routes.WhatIsTheirNationalityController.onPageLoad(NormalMode)
+    case WhatIsTheirNationalityPage               => _ => routes.WhichDetailsCanYouProvideController.onPageLoad(NormalMode)
+    case WhichDetailsCanYouProvidePage            => _ => routes.WhatIsPassportCountryOfIssueController.onPageLoad(NormalMode)
+    case WhatIsPassportCountryOfIssuePage         => _ => routes.WhatIsPassportNumberController.onPageLoad(NormalMode)
+    case WhatIsPassportNumberPage                 => _ => routes.WhatIsExpiryDateController.onPageLoad(NormalMode)
+    case WhatIsExpiryDatePage                     => _ => routes.WhatIsIdCardCountryOfIssueController.onPageLoad(NormalMode)
+    case WhatIsIdCardCountryOfIssuePage           => _ => routes.WhatIsIdCardNumberController.onPageLoad(NormalMode)
+    case WhatIsIdCardNumberPage                   => _ => routes.WhatIsIdCardExpiryDateController.onPageLoad(NormalMode)
+    case WhatIsIdCardExpiryDatePage               => _ => routes.IsTheirResidenceInTheUkController.onPageLoad(NormalMode)
+    case IsTheirResidenceInTheUkPage              => _ => routes.WhatIsTheirAddressUkController.onPageLoad(NormalMode)
+    case WhatIsTheirAddressUkPage                 => _ => routes.WhatIsTheirAddressNonUkController.onPageLoad(NormalMode)
+    case WhatIsTheirAddressNonUkPage              => _ => routes.WhatIsTheirEmailAddressController.onPageLoad(NormalMode)
+    case WhatIsTheirEmailAddressPage              => _ => routes.WhatIsTheirTelephoneNumberController.onPageLoad(NormalMode)
     case _ => _ => routes.IndexController.onPageLoad()
   }
 

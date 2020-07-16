@@ -36,6 +36,27 @@ trait Formatters {
       Map(key -> value)
   }
 
+  private[mappings] def requiredStringToOptionalFormatter(errorKey: String): Formatter[Option[String]] = new Formatter[Option[String]] {
+    override def bind(key: String, data: Map[String, String]): Either[Seq[FormError], Option[String]] =
+      data.get(key) match {
+        case None | Some("") => Left(Seq(FormError(key, errorKey)))
+        case Some(s) => Right(Option(s))
+      }
+
+    override def unbind(key: String, value: Option[String]): Map[String, String] =
+      Map(key -> value.getOrElse(""))
+  }
+
+  private[mappings] def optionalStringFormatter: Formatter[Option[String]] = new Formatter[Option[String]] {
+    override def bind(key: String, data: Map[String, String]): Either[Seq[FormError], Option[String]] =
+      Right(data.get(key).filter(_.lengthCompare(0) > 0))
+
+    override def unbind(key: String, value: Option[String]): Map[String, String] =
+      Map(key -> value.getOrElse(""))
+  }
+
+
+
   private[mappings] def booleanFormatter(requiredKey: String, invalidKey: String): Formatter[Boolean] =
     new Formatter[Boolean] {
 

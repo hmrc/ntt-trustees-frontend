@@ -1,6 +1,7 @@
 # microservice specific routes
 
 GET        /                                            controllers.IndexController.onPageLoad
+POST       /                                            controllers.IndexController.onSubmit
 
 GET        /assets/*file                                controllers.Assets.versioned(path="/public", file: Asset)
 
@@ -13,3 +14,108 @@ GET        /check-your-answers                          controllers.CheckYourAns
 GET        /unauthorised                                controllers.UnauthorisedController.onPageLoad
 
 GET        /accessibility-statement                     controllers.AccessibilityController.onPageLoad
+
+GET        /addATrusteee                       controllers.AddATrusteeeController.onPageLoad()
+
+GET        /areYouEnteringDetailsForLeadTrustee                        controllers.AreYouEnteringDetailsForLeadTrusteeController.onPageLoad(mode: Mode = NormalMode)
+POST       /areYouEnteringDetailsForLeadTrustee                        controllers.AreYouEnteringDetailsForLeadTrusteeController.onSubmit(mode: Mode = NormalMode)
+GET        /changeAreYouEnteringDetailsForLeadTrustee                  controllers.AreYouEnteringDetailsForLeadTrusteeController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeAreYouEnteringDetailsForLeadTrustee                  controllers.AreYouEnteringDetailsForLeadTrusteeController.onSubmit(mode: Mode = CheckMode)
+
+GET        /doTheyHaveANationalInsuranceNumber                          controllers.DoTheyHaveANationalInsuranceNumberController.onPageLoad(mode: Mode = NormalMode)
+POST       /doTheyHaveANationalInsuranceNumber                          controllers.DoTheyHaveANationalInsuranceNumberController.onSubmit(mode: Mode = NormalMode)
+GET        /changeDoTheyHaveANationalInsuranceNumber                    controllers.DoTheyHaveANationalInsuranceNumberController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeDoTheyHaveANationalInsuranceNumber                    controllers.DoTheyHaveANationalInsuranceNumberController.onSubmit(mode: Mode = CheckMode)
+
+GET        /doYouKnowTheirEmailAddress                                  controllers.DoYouKnowTheirEmailAddressController.onPageLoad(mode: Mode = NormalMode)
+POST       /doYouKnowTheirEmailAddress                                  controllers.DoYouKnowTheirEmailAddressController.onSubmit(mode: Mode = NormalMode)
+GET        /changeDoYouKnowTheirEmailAddress                            controllers.DoYouKnowTheirEmailAddressController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeDoYouKnowTheirEmailAddress                            controllers.DoYouKnowTheirEmailAddressController.onSubmit(mode: Mode = CheckMode)
+
+GET        /isTheirResidenceInTheUk                                     controllers.IsTheirResidenceInTheUkController.onPageLoad(mode: Mode = NormalMode)
+POST       /isTheirResidenceInTheUk                                     controllers.IsTheirResidenceInTheUkController.onSubmit(mode: Mode = NormalMode)
+GET        /changeIsTheirResidenceInTheUk                               controllers.IsTheirResidenceInTheUkController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeIsTheirResidenceInTheUk                               controllers.IsTheirResidenceInTheUkController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheirAddressNonUk                                     controllers.WhatIsTheirAddressNonUkController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheirAddressNonUk                                     controllers.WhatIsTheirAddressNonUkController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheirAddressNonUk                               controllers.WhatIsTheirAddressNonUkController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheirAddressNonUk                               controllers.WhatIsTheirAddressNonUkController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheirAddressUk                                        controllers.WhatIsTheirAddressUkController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheirAddressUk                                        controllers.WhatIsTheirAddressUkController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheirAddressUk                                  controllers.WhatIsTheirAddressUkController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheirAddressUk                                  controllers.WhatIsTheirAddressUkController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheirCountryOfNationality                             controllers.WhatIsTheirCountryOfNationalityController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheirCountryOfNationality                             controllers.WhatIsTheirCountryOfNationalityController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheirCountryOfNationality                       controllers.WhatIsTheirCountryOfNationalityController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheirCountryOfNationality                       controllers.WhatIsTheirCountryOfNationalityController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheirDateOfBirth                                      controllers.WhatIsTheirDateOfBirthController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheirDateOfBirth                                      controllers.WhatIsTheirDateOfBirthController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheirDateOfBirth                                controllers.WhatIsTheirDateOfBirthController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheirDateOfBirth                                controllers.WhatIsTheirDateOfBirthController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheirEmailAddress                                     controllers.WhatIsTheirEmailAddressController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheirEmailAddress                                     controllers.WhatIsTheirEmailAddressController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheirEmailAddress                               controllers.WhatIsTheirEmailAddressController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheirEmailAddress                               controllers.WhatIsTheirEmailAddressController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheirNationalInsuranceNumber                          controllers.WhatIsTheirNationalInsuranceNumberController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheirNationalInsuranceNumber                          controllers.WhatIsTheirNationalInsuranceNumberController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheirNationalInsuranceNumber                    controllers.WhatIsTheirNationalInsuranceNumberController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheirNationalInsuranceNumber                    controllers.WhatIsTheirNationalInsuranceNumberController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheirTelephoneNumber                                  controllers.WhatIsTheirTelephoneNumberController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheirTelephoneNumber                                  controllers.WhatIsTheirTelephoneNumberController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheirTelephoneNumber                            controllers.WhatIsTheirTelephoneNumberController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheirTelephoneNumber                            controllers.WhatIsTheirTelephoneNumberController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whichDetailsCanYouProvide                                   controllers.WhichDetailsCanYouProvideController.onPageLoad(mode: Mode = NormalMode)
+POST       /whichDetailsCanYouProvide                                   controllers.WhichDetailsCanYouProvideController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhichDetailsCanYouProvide                             controllers.WhichDetailsCanYouProvideController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhichDetailsCanYouProvide                             controllers.WhichDetailsCanYouProvideController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whoManagesTheTrust                                          controllers.WhoManagesTheTrustController.onPageLoad()
+POST       /whoManagesTheTrust                                          controllers.WhoManagesTheTrustController.onSubmit()
+
+GET        /whatIsTheirName                                             controllers.WhatIsTheirNameController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheirName                                             controllers.WhatIsTheirNameController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheirName                                       controllers.WhatIsTheirNameController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheirName                                       controllers.WhatIsTheirNameController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheirNationality                        controllers.WhatIsTheirNationalityController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheirNationality                        controllers.WhatIsTheirNationalityController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheirNationality                  controllers.WhatIsTheirNationalityController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheirNationality                  controllers.WhatIsTheirNationalityController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsExpiryDate                  controllers.WhatIsExpiryDateController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsExpiryDate                  controllers.WhatIsExpiryDateController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsExpiryDate                        controllers.WhatIsExpiryDateController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsExpiryDate                        controllers.WhatIsExpiryDateController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsIdCardCountryOfIssue                        controllers.WhatIsIdCardCountryOfIssueController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsIdCardCountryOfIssue                        controllers.WhatIsIdCardCountryOfIssueController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsIdCardCountryOfIssue                  controllers.WhatIsIdCardCountryOfIssueController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsIdCardCountryOfIssue                  controllers.WhatIsIdCardCountryOfIssueController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsIdCardExpiryDate                  controllers.WhatIsIdCardExpiryDateController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsIdCardExpiryDate                  controllers.WhatIsIdCardExpiryDateController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsIdCardExpiryDate                        controllers.WhatIsIdCardExpiryDateController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsIdCardExpiryDate                        controllers.WhatIsIdCardExpiryDateController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsIdCardNumber                        controllers.WhatIsIdCardNumberController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsIdCardNumber                        controllers.WhatIsIdCardNumberController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsIdCardNumber                  controllers.WhatIsIdCardNumberController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsIdCardNumber                  controllers.WhatIsIdCardNumberController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsPassportCountryOfIssue                        controllers.WhatIsPassportCountryOfIssueController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsPassportCountryOfIssue                        controllers.WhatIsPassportCountryOfIssueController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsPassportCountryOfIssue                  controllers.WhatIsPassportCountryOfIssueController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsPassportCountryOfIssue                  controllers.WhatIsPassportCountryOfIssueController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsPassportNumber                        controllers.WhatIsPassportNumberController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsPassportNumber                        controllers.WhatIsPassportNumberController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsPassportNumber                  controllers.WhatIsPassportNumberController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsPassportNumber                  controllers.WhatIsPassportNumberController.onSubmit(mode: Mode = CheckMode)

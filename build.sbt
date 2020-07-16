@@ -1,5 +1,5 @@
 import play.sbt.routes.RoutesKeys
-import sbt.Def
+import sbt.{Def, GlobFilter}
 import scoverage.ScoverageKeys
 import uk.gov.hmrc.DefaultBuildSettings
 import uk.gov.hmrc.versioning.SbtGitVersioning.autoImport.majorVersion
@@ -43,10 +43,17 @@ lazy val root = (project in file("."))
       Resolver.jcenterRepo
     ),
     Concat.groups := Seq(
-      "javascripts/application.js" -> group(Seq("lib/govuk-frontend/govuk/all.js"))
+      "javascripts/application.js" ->
+        group(Seq(
+          "lib/govuk-frontend/govuk/all.js",
+          "javascripts/accessible-autocomplete.min.js",
+          "javascripts/back-link.js",
+          "javascripts/run-autocomplete.js"
+        ))
     ),
     uglifyCompressOptions := Seq("unused=false", "dead_code=false"),
-    pipelineStages in Assets := Seq(concat,uglify)
+    pipelineStages in Assets := Seq(concat,uglify),
+    includeFilter in uglify := GlobFilter("application.js")
   )
 
 lazy val testSettings: Seq[Def.Setting[_]] = Seq(
