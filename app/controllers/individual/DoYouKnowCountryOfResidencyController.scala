@@ -14,32 +14,32 @@
  * limitations under the License.
  */
 
-package controllers.individual.lead
+package controllers.individual
 
 import controllers.actions._
-import forms.WhatIsTheirCountryOfNationalityFormProvider
+import forms.DoYouKnowCountryOfResidencyFormProvider
 import javax.inject.Inject
 import models.Mode
 import navigation.Navigator
-import pages.WhatIsTheirCountryOfNationalityPage
+import pages.DoYouKnowCountryOfResidencyPage
 import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import renderer.Renderer
 import repositories.SessionRepository
 import uk.gov.hmrc.play.bootstrap.controller.FrontendBaseController
-import uk.gov.hmrc.viewmodels.NunjucksSupport
+import uk.gov.hmrc.viewmodels.{NunjucksSupport, Radios}
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class WhatIsTheirCountryOfNationalityController @Inject()(
+class DoYouKnowCountryOfResidencyController @Inject()(
     override val messagesApi: MessagesApi,
     sessionRepository: SessionRepository,
     navigator: Navigator,
     identify: IdentifierAction,
     getData: DataRetrievalAction,
     requireData: DataRequiredAction,
-    formProvider: WhatIsTheirCountryOfNationalityFormProvider,
+    formProvider: DoYouKnowCountryOfResidencyFormProvider,
     val controllerComponents: MessagesControllerComponents,
     renderer: Renderer
 )(implicit ec: ExecutionContext) extends FrontendBaseController with I18nSupport with NunjucksSupport {
@@ -49,17 +49,18 @@ class WhatIsTheirCountryOfNationalityController @Inject()(
   def onPageLoad(mode: Mode): Action[AnyContent] = (identify andThen getData andThen requireData).async {
     implicit request =>
 
-      val preparedForm = request.userAnswers.get(WhatIsTheirCountryOfNationalityPage) match {
+      val preparedForm = request.userAnswers.get(DoYouKnowCountryOfResidencyPage) match {
         case None => form
         case Some(value) => form.fill(value)
       }
 
       val json = Json.obj(
-        "form" -> preparedForm,
-        "mode" -> mode
+        "form"   -> preparedForm,
+        "mode"   -> mode,
+        "radios" -> Radios.yesNo(preparedForm("value"))
       )
 
-      renderer.render("whatIsTheirCountryOfNationality.njk", json).map(Ok(_))
+      renderer.render("doYouKnowCountryOfResidency.njk", json).map(Ok(_))
   }
 
   def onSubmit(mode: Mode): Action[AnyContent] = (identify andThen getData andThen requireData).async {
@@ -69,17 +70,18 @@ class WhatIsTheirCountryOfNationalityController @Inject()(
         formWithErrors => {
 
           val json = Json.obj(
-            "form" -> formWithErrors,
-            "mode" -> mode
+            "form"   -> formWithErrors,
+            "mode"   -> mode,
+            "radios" -> Radios.yesNo(formWithErrors("value"))
           )
 
-          renderer.render("whatIsTheirCountryOfNationality.njk", json).map(BadRequest(_))
+          renderer.render("doYouKnowCountryOfResidency.njk", json).map(BadRequest(_))
         },
         value =>
           for {
-            updatedAnswers <- Future.fromTry(request.userAnswers.set(WhatIsTheirCountryOfNationalityPage, value))
+            updatedAnswers <- Future.fromTry(request.userAnswers.set(DoYouKnowCountryOfResidencyPage, value))
             _              <- sessionRepository.set(updatedAnswers)
-          } yield Redirect(navigator.nextPage(WhatIsTheirCountryOfNationalityPage, mode, updatedAnswers))
+          } yield Redirect(navigator.nextPage(DoYouKnowCountryOfResidencyPage, mode, updatedAnswers))
       )
   }
 }

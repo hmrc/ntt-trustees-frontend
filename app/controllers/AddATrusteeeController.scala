@@ -17,11 +17,17 @@
 package controllers
 
 import controllers.actions._
+import forms.AddATrusteeFormProvider
 import javax.inject.Inject
-import play.api.i18n.{I18nSupport, MessagesApi}
+import models.NormalMode
+import play.api.data.Field
+import play.api.i18n.{I18nSupport, Messages, MessagesApi}
+import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import renderer.Renderer
 import uk.gov.hmrc.play.bootstrap.controller.FrontendBaseController
+import uk.gov.hmrc.viewmodels.NunjucksSupport
+import uk.gov.hmrc.viewmodels.Radios.Item
 
 import scala.concurrent.ExecutionContext
 
@@ -31,12 +37,27 @@ class AddATrusteeeController @Inject()(
     getData: DataRetrievalAction,
     requireData: DataRequiredAction,
     val controllerComponents: MessagesControllerComponents,
+    formProvider: AddATrusteeFormProvider,
     renderer: Renderer
-)(implicit ec: ExecutionContext) extends FrontendBaseController with I18nSupport {
+)(implicit ec: ExecutionContext) extends FrontendBaseController with I18nSupport with NunjucksSupport {
 
-  def onPageLoad: Action[AnyContent] = (identify andThen getData andThen requireData).async {
+  private def radios(field: Field)(implicit messages: Messages): Seq[Item] = Seq(
+    Item(id = s"${field.id}-yes-now", text = msg"addATrustee.yes.now", value = "yesnow", checked = field.value.contains("yesnow")),
+    Item(id = s"${field.id}-yes-later", text = msg"addATrustee.yes.later", value = "yeslater", checked = field.value.contains("yeslater")),
+    Item(id = s"${field.id}-no", text = msg"addATrustee.no", value = "no", checked = field.value.contains("no"))
+  )
+
+  private val form = formProvider()
+
+  def onPageLoad(): Action[AnyContent] = (identify andThen getData andThen requireData).async {
     implicit request =>
 
-      renderer.render("addATrusteee.njk").map(Ok(_))
+      val json = Json.obj(
+        "form"   -> form,
+        "mode"   -> NormalMode,
+        "radios" -> radios(form("value"))
+      )
+
+      renderer.render("addATrustee.njk", json).map(Ok(_))
   }
 }

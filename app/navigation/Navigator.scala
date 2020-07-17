@@ -21,7 +21,9 @@ import javax.inject.{Inject, Singleton}
 import play.api.mvc.Call
 
 import controllers.routes
+import controllers.individual.{routes => indRoutes}
 import controllers.individual.lead.{routes => indLeadRoutes}
+import controllers.company.{routes => companyRoutes}
 import controllers.company.lead.{routes => companyLeadRoutes}
 import pages._
 import models._
@@ -32,6 +34,7 @@ class Navigator @Inject()() {
   private val normalRoutes: Page => UserAnswers => Call = {
     case StartJourneyPage                         => _ => routes.WhoManagesTheTrustController.onPageLoad()
     case WhoManagesTheTrustPage                   => _ => routes.AreYouEnteringDetailsForLeadTrusteeController.onPageLoad(NormalMode)
+
     case AreYouEnteringDetailsForLeadTrusteePage  => _ => indLeadRoutes.WhatIsTheirNameController.onPageLoad(NormalMode)
     case WhatIsTheirNamePage                      => _ => indLeadRoutes.WhatIsTheirDateOfBirthController.onPageLoad(NormalMode)
     case WhatIsTheirDateOfBirthPage               => _ => indLeadRoutes.DoTheyHaveANationalInsuranceNumberController.onPageLoad(NormalMode)
@@ -57,6 +60,14 @@ class Navigator @Inject()() {
     case WhatIsTheUtrPage                         => _ => companyLeadRoutes.IsHeadOfficeInUkController.onPageLoad(NormalMode)
     case IsHeadOfficeInUkPage                     => _ => companyLeadRoutes.WhatIsHeadOfficeAddressUkController.onPageLoad(NormalMode)
     case WhatIsHeadOfficeAddressUkPage            => _ => companyLeadRoutes.WhatIsHeadOfficeAddressNonUkController.onPageLoad(NormalMode)
+
+    case WhatIsHeadOfficeAddressNonUkPage         => _ => indRoutes.DoYouKnowCountryOfNationalityController.onPageLoad(NormalMode)
+    case DoYouKnowCountryOfNationalityPage        => _ => indRoutes.DoYouKnowCountryOfResidencyController.onPageLoad(NormalMode)
+
+    case DoYouKnowCountryOfResidencyPage          => _ => companyRoutes.DoYouKnowHeadOfficeCountryController.onPageLoad(NormalMode)
+
+    case DoYouKnowHeadOfficeCountryPage           => _ => routes.CheckYourAnswersController.onPageLoad()
+    case CheckYourAnswersPage                     => _ => routes.AddATrusteeeController.onPageLoad()
 
     case _ => _ => routes.IndexController.onPageLoad()
   }

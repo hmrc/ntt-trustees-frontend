@@ -24,6 +24,30 @@ import play.api.libs.json.{JsValue, Json}
 
 trait UserAnswersEntryGenerators extends PageGenerators with ModelGenerators {
 
+  implicit lazy val arbitraryDoYouKnowHeadOfficeCountryUserAnswersEntry: Arbitrary[(DoYouKnowHeadOfficeCountryPage.type, JsValue)] =
+    Arbitrary {
+      for {
+        page  <- arbitrary[DoYouKnowHeadOfficeCountryPage.type]
+        value <- arbitrary[Boolean].map(Json.toJson(_))
+      } yield (page, value)
+    }
+
+  implicit lazy val arbitraryDoYouKnowCountryOfResidencyUserAnswersEntry: Arbitrary[(DoYouKnowCountryOfResidencyPage.type, JsValue)] =
+    Arbitrary {
+      for {
+        page  <- arbitrary[DoYouKnowCountryOfResidencyPage.type]
+        value <- arbitrary[Boolean].map(Json.toJson(_))
+      } yield (page, value)
+    }
+
+  implicit lazy val arbitraryDoYouKnowCountryOfNationalityUserAnswersEntry: Arbitrary[(DoYouKnowCountryOfNationalityPage.type, JsValue)] =
+    Arbitrary {
+      for {
+        page  <- arbitrary[DoYouKnowCountryOfNationalityPage.type]
+        value <- arbitrary[Boolean].map(Json.toJson(_))
+      } yield (page, value)
+    }
+
   implicit lazy val arbitraryWhatIsTheUtrUserAnswersEntry: Arbitrary[(WhatIsTheUtrPage.type, JsValue)] =
     Arbitrary {
       for {
@@ -184,13 +208,6 @@ trait UserAnswersEntryGenerators extends PageGenerators with ModelGenerators {
       } yield (page, value)
     }
 
-  implicit lazy val arbitraryWhatIsTheirCountryOfNationalityUserAnswersEntry: Arbitrary[(WhatIsTheirCountryOfNationalityPage.type, JsValue)] =
-    Arbitrary {
-      for {
-        page  <- arbitrary[WhatIsTheirCountryOfNationalityPage.type]
-        value <- arbitrary[String].suchThat(_.nonEmpty).map(Json.toJson(_))
-      } yield (page, value)
-    }
 
   implicit lazy val arbitraryWhatIsTheirAddressUkUserAnswersEntry: Arbitrary[(WhatIsTheirAddressUkPage.type, JsValue)] =
     Arbitrary {

@@ -1,0 +1,4 @@
+GET        /doYouKnowHeadOfficeCountry                        controllers.company.DoYouKnowHeadOfficeCountryController.onPageLoad(mode: Mode = NormalMode)
+POST       /doYouKnowHeadOfficeCountry                        controllers.company.DoYouKnowHeadOfficeCountryController.onSubmit(mode: Mode = NormalMode)
+GET        /changeDoYouKnowHeadOfficeCountry                  controllers.company.DoYouKnowHeadOfficeCountryController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeDoYouKnowHeadOfficeCountry                  controllers.company.DoYouKnowHeadOfficeCountryController.onSubmit(mode: Mode = CheckMode)

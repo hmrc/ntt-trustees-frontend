@@ -1,6 +1,8 @@
 # microservice specific routes
 
+->         /individual                                                  individual.Routes
 ->         /individual-lead                                             individuallead.Routes
+->         /company                                                     company.Routes
 ->         /company-lead                                                companylead.Routes
 
 GET        /                                                            controllers.IndexController.onPageLoad
@@ -13,12 +15,13 @@ GET        /language/:lang                                              controll
 GET        /this-service-has-been-reset                                 controllers.SessionExpiredController.onPageLoad
 
 GET        /check-your-answers                                          controllers.CheckYourAnswersController.onPageLoad
+POST       /check-your-answers                                          controllers.CheckYourAnswersController.onSubmit
 
 GET        /unauthorised                                                controllers.UnauthorisedController.onPageLoad
 
 GET        /accessibility-statement                                     controllers.AccessibilityController.onPageLoad
 
-GET        /addATrusteee                                                controllers.AddATrusteeeController.onPageLoad()
+GET        /addATrusteee                                                controllers.AddATrusteeeController.onPageLoad
 
 GET        /whoManagesTheTrust                                          controllers.WhoManagesTheTrustController.onPageLoad()
 POST       /whoManagesTheTrust                                          controllers.WhoManagesTheTrustController.onSubmit()

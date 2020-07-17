@@ -19,17 +19,65 @@ package utils
 import java.time.format.DateTimeFormatter
 
 import controllers.routes
+import controllers.individual.{routes => indRoutes}
 import controllers.individual.lead.{routes => indLeadRoutes}
-import controllers.company.lead.{routes =>    companyLeadRoutes}
-import models.{CheckMode, UserAnswers}
+import controllers.company.{routes => companyRoutes}
+import controllers.company.lead.{routes => companyLeadRoutes}
+import models.{Address, CheckMode, IdDetailsType, TrusteeType, UserAnswers}
 import pages._
 import play.api.i18n.Messages
 import CheckYourAnswersHelper._
+import services.CountryService
 import uk.gov.hmrc.viewmodels._
 import uk.gov.hmrc.viewmodels.SummaryList._
 import uk.gov.hmrc.viewmodels.Text.Literal
 
-class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messages) {
+class CheckYourAnswersHelper(userAnswers: UserAnswers, countryService: CountryService)(implicit messages: Messages) {
+
+  def doYouKnowHeadOfficeCountry: Option[Row] = userAnswers.get(DoYouKnowHeadOfficeCountryPage) map {
+    answer =>
+      Row(
+        key     = Key(msg"doYouKnowHeadOfficeCountry.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
+        value   = Value(yesOrNo(answer)),
+        actions = List(
+          Action(
+            content            = msg"site.edit",
+            href               = companyRoutes.DoYouKnowHeadOfficeCountryController.onPageLoad(CheckMode).url,
+            visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"doYouKnowHeadOfficeCountry.checkYourAnswersLabel"))
+          )
+        )
+      )
+  }
+
+  def doYouKnowCountryOfResidency: Option[Row] = userAnswers.get(DoYouKnowCountryOfResidencyPage) map {
+    answer =>
+      Row(
+        key     = Key(msg"doYouKnowCountryOfResidency.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
+        value   = Value(yesOrNo(answer)),
+        actions = List(
+          Action(
+            content            = msg"site.edit",
+            href               = indRoutes.DoYouKnowCountryOfResidencyController.onPageLoad(CheckMode).url,
+            visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"doYouKnowCountryOfResidency.checkYourAnswersLabel"))
+          )
+        )
+      )
+  }
+
+  def doYouKnowCountryOfNationality: Option[Row] = userAnswers.get(DoYouKnowCountryOfNationalityPage) map {
+    answer =>
+      Row(
+        key     = Key(msg"doYouKnowCountryOfNationality.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
+        value   = Value(yesOrNo(answer)),
+        actions = List(
+          Action(
+            content            = msg"site.edit",
+            href               = indRoutes.DoYouKnowCountryOfNationalityController.onPageLoad(CheckMode).url,
+            visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"doYouKnowCountryOfNationality.checkYourAnswersLabel"))
+          )
+        )
+      )
+  }
 
   def whatIsTheUtr: Option[Row] = userAnswers.get(WhatIsTheUtrPage) map {
     answer =>
@@ -80,7 +128,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
     answer =>
       Row(
         key     = Key(msg"whatIsHeadOfficeAddressUk.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
-        value   = Value(lit"$answer"),
+        value   = Value(address(answer)),
         actions = List(
           Action(
             content            = msg"site.edit",
@@ -95,7 +143,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
     answer =>
       Row(
         key     = Key(msg"whatIsHeadOfficeAddressNonUk.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
-        value   = Value(lit"$answer"),
+        value   = Value(address(answer)),
         actions = List(
           Action(
             content            = msg"site.edit",
@@ -155,7 +203,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
     answer =>
       Row(
         key     = Key(msg"whatIsPassportCountryOfIssue.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
-        value   = Value(lit"$answer"),
+        value   = Value(country(answer)),
         actions = List(
           Action(
             content            = msg"site.edit",
@@ -200,7 +248,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
     answer =>
       Row(
         key     = Key(msg"whatIsIdCardCountryOfIssue.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
-        value   = Value(lit"$answer"),
+        value   = Value(country(answer)),
         actions = List(
           Action(
             content            = msg"site.edit",
@@ -230,7 +278,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
     answer =>
       Row(
         key     = Key(msg"whatIsTheirNationality.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
-        value   = Value(lit"$answer"),
+        value   = Value(country(answer)),
         actions = List(
           Action(
             content            = msg"site.edit",
@@ -260,7 +308,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
     answer =>
       Row(
         key     = Key(msg"whichDetailsCanYouProvide.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
-        value   = Value(lit"$answer"),
+        value   = Value(msg"${IdDetailsType(answer)}"),
         actions = List(
           Action(
             content            = msg"site.edit",
@@ -331,26 +379,12 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
       )
   }
 
-  def whatIsTheirCountryOfNationality: Option[Row] = userAnswers.get(WhatIsTheirCountryOfNationalityPage) map {
-    answer =>
-      Row(
-        key     = Key(msg"whatIsTheirCountryOfNationality.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
-        value   = Value(lit"$answer"),
-        actions = List(
-          Action(
-            content            = msg"site.edit",
-            href               = indLeadRoutes.WhatIsTheirCountryOfNationalityController.onPageLoad(CheckMode).url,
-            visuallyHiddenText = Some(msg"site.edit.hidden".withArgs(msg"whatIsTheirCountryOfNationality.checkYourAnswersLabel"))
-          )
-        )
-      )
-  }
 
   def whatIsTheirAddressUk: Option[Row] = userAnswers.get(WhatIsTheirAddressUkPage) map {
     answer =>
       Row(
         key     = Key(msg"whatIsTheirAddressUk.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
-        value   = Value(lit"$answer"),
+        value   = Value(address(answer)),
         actions = List(
           Action(
             content            = msg"site.edit",
@@ -365,7 +399,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
     answer =>
       Row(
         key     = Key(msg"whatIsTheirAddressNonUk.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
-        value   = Value(lit"$answer"),
+        value   = Value(address(answer)),
         actions = List(
           Action(
             content            = msg"site.edit",
@@ -426,7 +460,7 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
     answer =>
       Row(
         key     = Key(msg"areYouEnteringDetailsForLeadTrustee.checkYourAnswersLabel", classes = Seq("govuk-!-width-one-half")),
-        value   = Value(lit"$answer"),
+        value   = Value(msg"${TrusteeType(answer)}"),
         actions = List(
           Action(
             content            = msg"site.edit",
@@ -435,6 +469,20 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
           )
         )
       )
+  }
+
+  private def country(code: String): Content =
+    lit"${countryService.getCountryByCode(code).getOrElse("")}"
+
+  private def address(answer: Address): Content = {
+     val a =  s"${answer.addressLine1}, " +
+       s"${answer.addressLine2}, " +
+       s"${answer.addressLine3.map(s => s"$s, ").getOrElse("")}" +
+       s"${answer.addressLine4.map(s => s"$s, ").getOrElse("")}" +
+       s"${answer.postcode.map(s => s"$s, ").getOrElse("")}" +
+       s"${countryService.getCountryByCode(answer.country).getOrElse("")}"
+
+    lit"$a"
   }
 
   private def yesOrNo(answer: Boolean): Content =

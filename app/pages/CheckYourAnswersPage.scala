@@ -16,17 +16,7 @@
 
 package pages
 
-import pages.behaviours.PageBehaviours
+case object CheckYourAnswersPage extends Page {
 
-
-class WhatIsTheirCountryOfNationalityPageSpec extends PageBehaviours {
-
-  "WhatIsTheirCountryOfNationalityPage" - {
-
-    beRetrievable[String](WhatIsTheirCountryOfNationalityPage)
-
-    beSettable[String](WhatIsTheirCountryOfNationalityPage)
-
-    beRemovable[String](WhatIsTheirCountryOfNationalityPage)
-  }
+  override def toString: String = "checkYourAnswersPage"
 }

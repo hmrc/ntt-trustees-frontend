@@ -10,6 +10,7 @@ site.edit.hidden = Change {0}
 site.no = No
 site.yes = Yes
 site.continue = Continue
+site.save.continue = Save and Continue
 site.service_name = ntt-trustees-frontend
 site.textarea.char_limit = (Limit is {0} characters)
 site.title.suffix = - ntt-trustees-frontend - GOV.UK
@@ -130,8 +131,18 @@ compliant.nine.p2.2=Digital Accessibility Centre
 compliant.nine.p2.3=The full service was tested by HMRC and included disabled users.
 compliant.nine.p3=This page was prepared on [date when it was first published]. It was last updated on [date when it was last updated].
 
-addATrusteee.title = addATrusteee
-addATrusteee.heading = addATrusteee
+addATrustee.title = Add a trustee
+addATrustee.heading = Add a trustee
+
+addATrustee.completed = Completed
+addATrustee.incomplete = Incomplete
+
+addATrustee.addAnother = Do you want to add another trustee?
+addATrustee.yes.now = Yes, I want to add them now
+addATrustee.yes.later = Yes, I want to add them later
+addATrustee.no = No, I have added all trustees
+
+addATrustee.error.required = Please select an option
 
 areYouEnteringDetailsForLeadTrustee.title = Are you entering details for the lead trustee or a trustee?
 areYouEnteringDetailsForLeadTrustee.heading = Are you entering details for the lead trustee or a trustee?
@@ -362,3 +373,18 @@ whatIsTheUtr.hint = This is 10 numbers, for example 12345 67890. It will be on t
 whatIsTheUtr.checkYourAnswersLabel = What is the business’s Unique Taxpayer Reference (UTR)?
 whatIsTheUtr.error.required = Enter the business’s Unique Taxpayer Reference (UTR)
 whatIsTheUtr.error.length = The Unique Taxpayer Reference must be 100 characters or less
+
+doYouKnowCountryOfNationality.title = Do you know their country of nationality?
+doYouKnowCountryOfNationality.heading = Do you know their country of nationality?
+doYouKnowCountryOfNationality.checkYourAnswersLabel = Do you know their country of nationality?
+doYouKnowCountryOfNationality.error.required = Select yes if you know their country of nationality
+
+doYouKnowCountryOfResidency.title = Do you know their country of residency?
+doYouKnowCountryOfResidency.heading = Do you know their country of residency?
+doYouKnowCountryOfResidency.checkYourAnswersLabel = Do you know their country of residency?
+doYouKnowCountryOfResidency.error.required = Select yes if you know their country of residency
+
+doYouKnowHeadOfficeCountry.title = Do you know the country the head office is based in?
+doYouKnowHeadOfficeCountry.heading = Do you know the country the head office is based in?
+doYouKnowHeadOfficeCountry.checkYourAnswersLabel = Do you know the country the head office is based in?
+doYouKnowHeadOfficeCountry.error.required = Select yes if you know the country the head office is based in

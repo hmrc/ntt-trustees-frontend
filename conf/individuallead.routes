@@ -24,11 +24,6 @@ POST       /whatIsTheirAddressUk                                        controll
 GET        /changeWhatIsTheirAddressUk                                  controllers.individual.lead.WhatIsTheirAddressUkController.onPageLoad(mode: Mode = CheckMode)
 POST       /changeWhatIsTheirAddressUk                                  controllers.individual.lead.WhatIsTheirAddressUkController.onSubmit(mode: Mode = CheckMode)
 
-GET        /whatIsTheirCountryOfNationality                             controllers.individual.lead.WhatIsTheirCountryOfNationalityController.onPageLoad(mode: Mode = NormalMode)
-POST       /whatIsTheirCountryOfNationality                             controllers.individual.lead.WhatIsTheirCountryOfNationalityController.onSubmit(mode: Mode = NormalMode)
-GET        /changeWhatIsTheirCountryOfNationality                       controllers.individual.lead.WhatIsTheirCountryOfNationalityController.onPageLoad(mode: Mode = CheckMode)
-POST       /changeWhatIsTheirCountryOfNationality                       controllers.individual.lead.WhatIsTheirCountryOfNationalityController.onSubmit(mode: Mode = CheckMode)
-
 GET        /whatIsTheirDateOfBirth                                      controllers.individual.lead.WhatIsTheirDateOfBirthController.onPageLoad(mode: Mode = NormalMode)
 POST       /whatIsTheirDateOfBirth                                      controllers.individual.lead.WhatIsTheirDateOfBirthController.onSubmit(mode: Mode = NormalMode)
 GET        /changeWhatIsTheirDateOfBirth                                controllers.individual.lead.WhatIsTheirDateOfBirthController.onPageLoad(mode: Mode = CheckMode)

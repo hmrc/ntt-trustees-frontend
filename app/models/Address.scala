@@ -23,7 +23,8 @@ final case class Address( addressLine1: String,
                           addressLine3: Option[String],
                           addressLine4: Option[String],
                           country: String,
-                          postcode: Option[String])
+                          postcode: Option[String]) {
+}
 
 object Address {
 

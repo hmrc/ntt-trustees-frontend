@@ -46,7 +46,7 @@ class AddATrusteeeControllerSpec extends SpecBase with MockitoSugar {
 
       verify(mockRenderer, times(1)).render(templateCaptor.capture(), any())(any())
 
-      templateCaptor.getValue mustEqual "addATrusteee.njk"
+      templateCaptor.getValue mustEqual "addATrustee.njk"
 
       application.stop()
     }

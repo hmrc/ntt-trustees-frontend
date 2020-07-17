@@ -20,9 +20,18 @@ import play.api.libs.json.{JsObject, OWrites, Reads, __}
 
 final case class Name(firstName: String,
                       middleName: Option[String],
-                      lastName: String)
+                      lastName: String) {
+  override def toString: String = {
+    this match {
+      case Name(firstName, Some(middleName), lastName) => s"$firstName $middleName $lastName"
+      case Name(firstName, _, lastName) => s"$firstName $lastName"
+    }
+  }
+}
 
 object Name {
+
+
 
   implicit lazy val reads: Reads[Name] = {
     import play.api.libs.functional.syntax._
