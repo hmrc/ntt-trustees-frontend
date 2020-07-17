@@ -32,13 +32,13 @@ import uk.gov.hmrc.viewmodels.Radios.Item
 import scala.concurrent.ExecutionContext
 
 class AddATrusteeeController @Inject()(
-    override val messagesApi: MessagesApi,
-    identify: IdentifierAction,
-    getData: DataRetrievalAction,
-    requireData: DataRequiredAction,
-    val controllerComponents: MessagesControllerComponents,
-    formProvider: AddATrusteeFormProvider,
-    renderer: Renderer
+                                          override val messagesApi: MessagesApi,
+                                          identify: IdentifierAction,
+                                          getData: DataRetrievalAction,
+                                          requireData: DataRequiredAction,
+                                          val controllerComponents: MessagesControllerComponents,
+                                          formProvider: AddATrusteeFormProvider,
+                                          renderer: Renderer
 )(implicit ec: ExecutionContext) extends FrontendBaseController with I18nSupport with NunjucksSupport {
 
   private def radios(field: Field)(implicit messages: Messages): Seq[Item] = Seq(

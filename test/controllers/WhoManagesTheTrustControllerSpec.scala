@@ -37,7 +37,7 @@ class WhoManagesTheTrustControllerSpec extends SpecBase with MockitoSugar {
         .thenReturn(Future.successful(Html("")))
 
       val application = applicationBuilder(userAnswers = Some(emptyUserAnswers)).build()
-      val request = FakeRequest(GET, routes.WhoManagesTheTrusteesController.onPageLoad().url)
+      val request = FakeRequest(GET, routes.WhoManagesTheTrustController.onPageLoad().url)
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
 
       val result = route(application, request).value

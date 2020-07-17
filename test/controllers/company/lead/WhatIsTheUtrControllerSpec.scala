@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package controllers
+package controllers.company.lead
 
 import base.SpecBase
-import forms.WhatIsTheirNameFormProvider
+import forms.WhatIsTheUtrFormProvider
 import matchers.JsonMatchers
-import models.{Name, NormalMode, UserAnswers}
+import models.{NormalMode, UserAnswers}
 import navigation.{FakeNavigator, Navigator}
 import org.mockito.ArgumentCaptor
 import org.mockito.Matchers.any
 import org.mockito.Mockito.{times, verify, when}
 import org.scalatestplus.mockito.MockitoSugar
-import pages.WhatIsTheirNamePage
+import pages.WhatIsTheUtrPage
 import play.api.inject.bind
-import play.api.libs.json.{JsObject, JsString, Json}
+import play.api.libs.json.{JsObject, Json}
 import play.api.mvc.Call
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
@@ -37,16 +37,16 @@ import uk.gov.hmrc.viewmodels.NunjucksSupport
 
 import scala.concurrent.Future
 
-class WhatIsTheirNameControllerSpec extends SpecBase with MockitoSugar with NunjucksSupport with JsonMatchers {
+class WhatIsTheUtrControllerSpec extends SpecBase with MockitoSugar with NunjucksSupport with JsonMatchers {
 
   def onwardRoute = Call("GET", "/foo")
 
-  val formProvider = new WhatIsTheirNameFormProvider()
+  val formProvider = new WhatIsTheUtrFormProvider()
   val form = formProvider()
 
-  lazy val whatIsTheirNameRoute = routes.WhatIsTheirNameController.onPageLoad(NormalMode).url
+  lazy val whatIsTheUtrRoute = routes.WhatIsTheUtrController.onPageLoad(NormalMode).url
 
-  "WhatIsTheirName Controller" - {
+  "WhatIsTheUtr Controller" - {
 
     "must return OK and the correct view for a GET" in {
 
@@ -54,7 +54,7 @@ class WhatIsTheirNameControllerSpec extends SpecBase with MockitoSugar with Nunj
         .thenReturn(Future.successful(Html("")))
 
       val application = applicationBuilder(userAnswers = Some(emptyUserAnswers)).build()
-      val request = FakeRequest(GET, whatIsTheirNameRoute)
+      val request = FakeRequest(GET, whatIsTheUtrRoute)
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
 
@@ -69,7 +69,7 @@ class WhatIsTheirNameControllerSpec extends SpecBase with MockitoSugar with Nunj
         "mode" -> NormalMode
       )
 
-      templateCaptor.getValue mustEqual "whatIsTheirName.njk"
+      templateCaptor.getValue mustEqual "whatIsTheUtr.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -80,9 +80,9 @@ class WhatIsTheirNameControllerSpec extends SpecBase with MockitoSugar with Nunj
       when(mockRenderer.render(any(), any())(any()))
         .thenReturn(Future.successful(Html("")))
 
-      val userAnswers = UserAnswers(userAnswersId).set(WhatIsTheirNamePage, Name("firstName", Some("middleName"), "lastName")).success.value
+      val userAnswers = UserAnswers(userAnswersId).set(WhatIsTheUtrPage, "answer").success.value
       val application = applicationBuilder(userAnswers = Some(userAnswers)).build()
-      val request = FakeRequest(GET, whatIsTheirNameRoute)
+      val request = FakeRequest(GET, whatIsTheUtrRoute)
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
 
@@ -92,17 +92,14 @@ class WhatIsTheirNameControllerSpec extends SpecBase with MockitoSugar with Nunj
 
       verify(mockRenderer, times(1)).render(templateCaptor.capture(), jsonCaptor.capture())(any())
 
-      val filledForm = form.bind(Map(
-        "firstName" -> "firstName",
-        "middleName" -> "middleName",
-        "lastName" -> "lastName"))
+      val filledForm = form.bind(Map("value" -> "answer"))
 
       val expectedJson = Json.obj(
         "form" -> filledForm,
         "mode" -> NormalMode
       )
 
-      templateCaptor.getValue mustEqual "whatIsTheirName.njk"
+      templateCaptor.getValue mustEqual "whatIsTheUtr.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -123,11 +120,8 @@ class WhatIsTheirNameControllerSpec extends SpecBase with MockitoSugar with Nunj
           .build()
 
       val request =
-        FakeRequest(POST, whatIsTheirNameRoute)
-          .withFormUrlEncodedBody(
-            ("firstName", "firstName"),
-            ("middleName", "middleName"),
-            ("lastName", "lastName"))
+        FakeRequest(POST, whatIsTheUtrRoute)
+          .withFormUrlEncodedBody(("value", "answer"))
 
       val result = route(application, request).value
 
@@ -143,7 +137,7 @@ class WhatIsTheirNameControllerSpec extends SpecBase with MockitoSugar with Nunj
         .thenReturn(Future.successful(Html("")))
 
       val application = applicationBuilder(userAnswers = Some(emptyUserAnswers)).build()
-      val request = FakeRequest(POST, whatIsTheirNameRoute).withFormUrlEncodedBody(("value", ""))
+      val request = FakeRequest(POST, whatIsTheUtrRoute).withFormUrlEncodedBody(("value", ""))
       val boundForm = form.bind(Map("value" -> ""))
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
@@ -159,7 +153,7 @@ class WhatIsTheirNameControllerSpec extends SpecBase with MockitoSugar with Nunj
         "mode" -> NormalMode
       )
 
-      templateCaptor.getValue mustEqual "whatIsTheirName.njk"
+      templateCaptor.getValue mustEqual "whatIsTheUtr.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -169,13 +163,13 @@ class WhatIsTheirNameControllerSpec extends SpecBase with MockitoSugar with Nunj
 
       val application = applicationBuilder(userAnswers = None).build()
 
-      val request = FakeRequest(GET, whatIsTheirNameRoute)
+      val request = FakeRequest(GET, whatIsTheUtrRoute)
 
       val result = route(application, request).value
 
       status(result) mustEqual SEE_OTHER
 
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }
@@ -185,14 +179,14 @@ class WhatIsTheirNameControllerSpec extends SpecBase with MockitoSugar with Nunj
       val application = applicationBuilder(userAnswers = None).build()
 
       val request =
-        FakeRequest(POST, whatIsTheirNameRoute)
+        FakeRequest(POST, whatIsTheUtrRoute)
           .withFormUrlEncodedBody(("value", "answer"))
 
       val result = route(application, request).value
 
       status(result) mustEqual SEE_OTHER
 
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }

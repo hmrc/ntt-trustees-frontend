@@ -16,17 +16,28 @@
 
 package pages
 
+import models.Address
+import org.scalacheck.{Arbitrary, Gen}
 import pages.behaviours.PageBehaviours
 
 
 class WhatIsTheirAddressUkPageSpec extends PageBehaviours {
 
+  implicit val arb: Arbitrary[Address] = Arbitrary(Gen.const(
+    Address(
+      "firstLine",
+      "secondLine",
+      Some("thirdLine"),
+      None,
+      "GB",
+      Some("NE11NE"))))
+
   "WhatIsTheirAddressUkPage" - {
 
-    beRetrievable[String](WhatIsTheirAddressUkPage)
+    beRetrievable[Address](WhatIsTheirAddressUkPage)
 
-    beSettable[String](WhatIsTheirAddressUkPage)
+    beSettable[Address](WhatIsTheirAddressUkPage)
 
-    beRemovable[String](WhatIsTheirAddressUkPage)
+    beRemovable[Address](WhatIsTheirAddressUkPage)
   }
 }

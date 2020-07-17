@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package controllers
+package controllers.company.lead
 
 import base.SpecBase
-import forms.DoTheyHaveANationalInsuranceNumberFormProvider
+import forms.WhatIsHeadOfficeAddressUkFormProvider
 import matchers.JsonMatchers
-import models.{NormalMode, UserAnswers}
+import models.{Address, NormalMode, UserAnswers}
 import navigation.{FakeNavigator, Navigator}
 import org.mockito.ArgumentCaptor
 import org.mockito.Matchers.any
 import org.mockito.Mockito.{times, verify, when}
 import org.scalatestplus.mockito.MockitoSugar
-import pages.DoTheyHaveANationalInsuranceNumberPage
+import pages.WhatIsHeadOfficeAddressUkPage
 import play.api.inject.bind
 import play.api.libs.json.{JsObject, Json}
 import play.api.mvc.Call
@@ -33,20 +33,20 @@ import play.api.test.FakeRequest
 import play.api.test.Helpers._
 import play.twirl.api.Html
 import repositories.SessionRepository
-import uk.gov.hmrc.viewmodels.{NunjucksSupport, Radios}
+import uk.gov.hmrc.viewmodels.NunjucksSupport
 
 import scala.concurrent.Future
 
-class DoTheyHaveANationalInsuranceNumberControllerSpec extends SpecBase with MockitoSugar with NunjucksSupport with JsonMatchers {
+class WhatIsHeadOfficeAddressUkControllerSpec extends SpecBase with MockitoSugar with NunjucksSupport with JsonMatchers {
 
   def onwardRoute = Call("GET", "/foo")
 
-  val formProvider = new DoTheyHaveANationalInsuranceNumberFormProvider()
+  val formProvider = new WhatIsHeadOfficeAddressUkFormProvider()
   val form = formProvider()
 
-  lazy val doTheyHaveANationalInsuranceNumberRoute = routes.DoTheyHaveANationalInsuranceNumberController.onPageLoad(NormalMode).url
+  lazy val whatIsHeadOfficeAddressUkRoute = routes.WhatIsHeadOfficeAddressUkController.onPageLoad(NormalMode).url
 
-  "DoTheyHaveANationalInsuranceNumber Controller" - {
+  "WhatIsHeadOfficeAddressUk Controller" - {
 
     "must return OK and the correct view for a GET" in {
 
@@ -54,7 +54,7 @@ class DoTheyHaveANationalInsuranceNumberControllerSpec extends SpecBase with Moc
         .thenReturn(Future.successful(Html("")))
 
       val application = applicationBuilder(userAnswers = Some(emptyUserAnswers)).build()
-      val request = FakeRequest(GET, doTheyHaveANationalInsuranceNumberRoute)
+      val request = FakeRequest(GET, whatIsHeadOfficeAddressUkRoute)
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
 
@@ -65,12 +65,11 @@ class DoTheyHaveANationalInsuranceNumberControllerSpec extends SpecBase with Moc
       verify(mockRenderer, times(1)).render(templateCaptor.capture(), jsonCaptor.capture())(any())
 
       val expectedJson = Json.obj(
-        "form"   -> form,
-        "mode"   -> NormalMode,
-        "radios" -> Radios.yesNo(form("value"))
+        "form" -> form,
+        "mode" -> NormalMode
       )
 
-      templateCaptor.getValue mustEqual "doTheyHaveANationalInsuranceNumber.njk"
+      templateCaptor.getValue mustEqual "whatIsHeadOfficeAddressUk.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -81,9 +80,17 @@ class DoTheyHaveANationalInsuranceNumberControllerSpec extends SpecBase with Moc
       when(mockRenderer.render(any(), any())(any()))
         .thenReturn(Future.successful(Html("")))
 
-      val userAnswers = UserAnswers(userAnswersId).set(DoTheyHaveANationalInsuranceNumberPage, true).success.value
+      val answer = Address(
+        "firstLine",
+        "secondLine",
+        Some("thirdLine"),
+        None,
+        "GB",
+        Some("NE11NE"))
+
+      val userAnswers = UserAnswers(userAnswersId).set(WhatIsHeadOfficeAddressUkPage, answer).success.value
       val application = applicationBuilder(userAnswers = Some(userAnswers)).build()
-      val request = FakeRequest(GET, doTheyHaveANationalInsuranceNumberRoute)
+      val request = FakeRequest(GET, whatIsHeadOfficeAddressUkRoute)
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
 
@@ -93,15 +100,14 @@ class DoTheyHaveANationalInsuranceNumberControllerSpec extends SpecBase with Moc
 
       verify(mockRenderer, times(1)).render(templateCaptor.capture(), jsonCaptor.capture())(any())
 
-      val filledForm = form.bind(Map("value" -> "true"))
+      val filledForm = form.bind(Map("value" -> "answer"))
 
       val expectedJson = Json.obj(
-        "form"   -> filledForm,
-        "mode"   -> NormalMode,
-        "radios" -> Radios.yesNo(filledForm("value"))
+        "form" -> filledForm,
+        "mode" -> NormalMode
       )
 
-      templateCaptor.getValue mustEqual "doTheyHaveANationalInsuranceNumber.njk"
+      templateCaptor.getValue mustEqual "whatIsHeadOfficeAddressUk.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -122,13 +128,12 @@ class DoTheyHaveANationalInsuranceNumberControllerSpec extends SpecBase with Moc
           .build()
 
       val request =
-        FakeRequest(POST, doTheyHaveANationalInsuranceNumberRoute)
-          .withFormUrlEncodedBody(("value", "true"))
+        FakeRequest(POST, whatIsHeadOfficeAddressUkRoute)
+          .withFormUrlEncodedBody(("value", "answer"))
 
       val result = route(application, request).value
 
       status(result) mustEqual SEE_OTHER
-
       redirectLocation(result).value mustEqual onwardRoute.url
 
       application.stop()
@@ -140,7 +145,7 @@ class DoTheyHaveANationalInsuranceNumberControllerSpec extends SpecBase with Moc
         .thenReturn(Future.successful(Html("")))
 
       val application = applicationBuilder(userAnswers = Some(emptyUserAnswers)).build()
-      val request = FakeRequest(POST, doTheyHaveANationalInsuranceNumberRoute).withFormUrlEncodedBody(("value", ""))
+      val request = FakeRequest(POST, whatIsHeadOfficeAddressUkRoute).withFormUrlEncodedBody(("value", ""))
       val boundForm = form.bind(Map("value" -> ""))
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
@@ -152,12 +157,11 @@ class DoTheyHaveANationalInsuranceNumberControllerSpec extends SpecBase with Moc
       verify(mockRenderer, times(1)).render(templateCaptor.capture(), jsonCaptor.capture())(any())
 
       val expectedJson = Json.obj(
-        "form"   -> boundForm,
-        "mode"   -> NormalMode,
-        "radios" -> Radios.yesNo(boundForm("value"))
+        "form" -> boundForm,
+        "mode" -> NormalMode
       )
 
-      templateCaptor.getValue mustEqual "doTheyHaveANationalInsuranceNumber.njk"
+      templateCaptor.getValue mustEqual "whatIsHeadOfficeAddressUk.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -167,13 +171,13 @@ class DoTheyHaveANationalInsuranceNumberControllerSpec extends SpecBase with Moc
 
       val application = applicationBuilder(userAnswers = None).build()
 
-      val request = FakeRequest(GET, doTheyHaveANationalInsuranceNumberRoute)
+      val request = FakeRequest(GET, whatIsHeadOfficeAddressUkRoute)
 
       val result = route(application, request).value
 
       status(result) mustEqual SEE_OTHER
 
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }
@@ -183,14 +187,14 @@ class DoTheyHaveANationalInsuranceNumberControllerSpec extends SpecBase with Moc
       val application = applicationBuilder(userAnswers = None).build()
 
       val request =
-        FakeRequest(POST, doTheyHaveANationalInsuranceNumberRoute)
-          .withFormUrlEncodedBody(("value", "true"))
+        FakeRequest(POST, whatIsHeadOfficeAddressUkRoute)
+          .withFormUrlEncodedBody(("value", "answer"))
 
       val result = route(application, request).value
 
       status(result) mustEqual SEE_OTHER
 
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }

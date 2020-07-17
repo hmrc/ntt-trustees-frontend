@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
-package controllers
+package controllers.individual.lead
+
+import java.time.{LocalDate, ZoneOffset}
 
 import base.SpecBase
-import forms.WhatIsTheirTelephoneNumberFormProvider
+import forms.WhatIsIdCardExpiryDateFormProvider
 import matchers.JsonMatchers
 import models.{NormalMode, UserAnswers}
 import navigation.{FakeNavigator, Navigator}
@@ -25,28 +27,43 @@ import org.mockito.ArgumentCaptor
 import org.mockito.Matchers.any
 import org.mockito.Mockito.{times, verify, when}
 import org.scalatestplus.mockito.MockitoSugar
-import pages.WhatIsTheirTelephoneNumberPage
+import pages.WhatIsIdCardExpiryDatePage
 import play.api.inject.bind
-import play.api.libs.json.{JsObject, JsString, Json}
-import play.api.mvc.Call
+import play.api.libs.json.{JsObject, Json}
+import play.api.mvc.{AnyContentAsEmpty, AnyContentAsFormUrlEncoded, Call}
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 import play.twirl.api.Html
 import repositories.SessionRepository
-import uk.gov.hmrc.viewmodels.NunjucksSupport
+import uk.gov.hmrc.viewmodels.{DateInput, NunjucksSupport}
 
 import scala.concurrent.Future
 
-class WhatIsTheirTelephoneNumberControllerSpec extends SpecBase with MockitoSugar with NunjucksSupport with JsonMatchers {
+class WhatIsIdCardExpiryDateControllerSpec extends SpecBase with MockitoSugar with NunjucksSupport with JsonMatchers {
+
+  val formProvider = new WhatIsIdCardExpiryDateFormProvider()
+  private def form = formProvider()
 
   def onwardRoute = Call("GET", "/foo")
 
-  val formProvider = new WhatIsTheirTelephoneNumberFormProvider()
-  val form = formProvider()
+  val validAnswer = LocalDate.now(ZoneOffset.UTC)
 
-  lazy val whatIsTheirTelephoneNumberRoute = routes.WhatIsTheirTelephoneNumberController.onPageLoad(NormalMode).url
+  lazy val whatIsIdCardExpiryDateRoute = routes.WhatIsIdCardExpiryDateController.onPageLoad(NormalMode).url
 
-  "WhatIsTheirTelephoneNumber Controller" - {
+  override val emptyUserAnswers = UserAnswers(userAnswersId)
+
+  def getRequest(): FakeRequest[AnyContentAsEmpty.type] =
+    FakeRequest(GET, whatIsIdCardExpiryDateRoute)
+
+  def postRequest(): FakeRequest[AnyContentAsFormUrlEncoded] =
+    FakeRequest(POST, whatIsIdCardExpiryDateRoute)
+      .withFormUrlEncodedBody(
+        "value.day"   -> validAnswer.getDayOfMonth.toString,
+        "value.month" -> validAnswer.getMonthValue.toString,
+        "value.year"  -> validAnswer.getYear.toString
+      )
+
+  "WhatIsIdCardExpiryDate Controller" - {
 
     "must return OK and the correct view for a GET" in {
 
@@ -54,22 +71,24 @@ class WhatIsTheirTelephoneNumberControllerSpec extends SpecBase with MockitoSuga
         .thenReturn(Future.successful(Html("")))
 
       val application = applicationBuilder(userAnswers = Some(emptyUserAnswers)).build()
-      val request = FakeRequest(GET, whatIsTheirTelephoneNumberRoute)
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
 
-      val result = route(application, request).value
+      val result = route(application, getRequest).value
 
       status(result) mustEqual OK
 
       verify(mockRenderer, times(1)).render(templateCaptor.capture(), jsonCaptor.capture())(any())
 
+      val viewModel = DateInput.localDate(form("value"))
+
       val expectedJson = Json.obj(
         "form" -> form,
-        "mode" -> NormalMode
+        "mode" -> NormalMode,
+        "date" -> viewModel
       )
 
-      templateCaptor.getValue mustEqual "whatIsTheirTelephoneNumber.njk"
+      templateCaptor.getValue mustEqual "whatIsIdCardExpiryDate.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -80,26 +99,34 @@ class WhatIsTheirTelephoneNumberControllerSpec extends SpecBase with MockitoSuga
       when(mockRenderer.render(any(), any())(any()))
         .thenReturn(Future.successful(Html("")))
 
-      val userAnswers = UserAnswers(userAnswersId).set(WhatIsTheirTelephoneNumberPage, "answer").success.value
+      val userAnswers = UserAnswers(userAnswersId).set(WhatIsIdCardExpiryDatePage, validAnswer).success.value
       val application = applicationBuilder(userAnswers = Some(userAnswers)).build()
-      val request = FakeRequest(GET, whatIsTheirTelephoneNumberRoute)
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
 
-      val result = route(application, request).value
+      val result = route(application, getRequest).value
 
       status(result) mustEqual OK
 
       verify(mockRenderer, times(1)).render(templateCaptor.capture(), jsonCaptor.capture())(any())
 
-      val filledForm = form.bind(Map("value" -> "answer"))
+      val filledForm = form.bind(
+        Map(
+          "value.day"   -> validAnswer.getDayOfMonth.toString,
+          "value.month" -> validAnswer.getMonthValue.toString,
+          "value.year"  -> validAnswer.getYear.toString
+        )
+      )
+
+      val viewModel = DateInput.localDate(filledForm("value"))
 
       val expectedJson = Json.obj(
         "form" -> filledForm,
-        "mode" -> NormalMode
+        "mode" -> NormalMode,
+        "date" -> viewModel
       )
 
-      templateCaptor.getValue mustEqual "whatIsTheirTelephoneNumber.njk"
+      templateCaptor.getValue mustEqual "whatIsIdCardExpiryDate.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -119,13 +146,10 @@ class WhatIsTheirTelephoneNumberControllerSpec extends SpecBase with MockitoSuga
           )
           .build()
 
-      val request =
-        FakeRequest(POST, whatIsTheirTelephoneNumberRoute)
-          .withFormUrlEncodedBody(("value", "answer"))
-
-      val result = route(application, request).value
+      val result = route(application, postRequest).value
 
       status(result) mustEqual SEE_OTHER
+
       redirectLocation(result).value mustEqual onwardRoute.url
 
       application.stop()
@@ -137,8 +161,8 @@ class WhatIsTheirTelephoneNumberControllerSpec extends SpecBase with MockitoSuga
         .thenReturn(Future.successful(Html("")))
 
       val application = applicationBuilder(userAnswers = Some(emptyUserAnswers)).build()
-      val request = FakeRequest(POST, whatIsTheirTelephoneNumberRoute).withFormUrlEncodedBody(("value", ""))
-      val boundForm = form.bind(Map("value" -> ""))
+      val request = FakeRequest(POST, whatIsIdCardExpiryDateRoute).withFormUrlEncodedBody(("value", "invalid value"))
+      val boundForm = form.bind(Map("value" -> "invalid value"))
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
 
@@ -148,12 +172,15 @@ class WhatIsTheirTelephoneNumberControllerSpec extends SpecBase with MockitoSuga
 
       verify(mockRenderer, times(1)).render(templateCaptor.capture(), jsonCaptor.capture())(any())
 
+      val viewModel = DateInput.localDate(boundForm("value"))
+
       val expectedJson = Json.obj(
         "form" -> boundForm,
-        "mode" -> NormalMode
+        "mode" -> NormalMode,
+        "date" -> viewModel
       )
 
-      templateCaptor.getValue mustEqual "whatIsTheirTelephoneNumber.njk"
+      templateCaptor.getValue mustEqual "whatIsIdCardExpiryDate.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -163,13 +190,10 @@ class WhatIsTheirTelephoneNumberControllerSpec extends SpecBase with MockitoSuga
 
       val application = applicationBuilder(userAnswers = None).build()
 
-      val request = FakeRequest(GET, whatIsTheirTelephoneNumberRoute)
-
-      val result = route(application, request).value
+      val result = route(application, getRequest).value
 
       status(result) mustEqual SEE_OTHER
-
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }
@@ -178,15 +202,11 @@ class WhatIsTheirTelephoneNumberControllerSpec extends SpecBase with MockitoSuga
 
       val application = applicationBuilder(userAnswers = None).build()
 
-      val request =
-        FakeRequest(POST, whatIsTheirTelephoneNumberRoute)
-          .withFormUrlEncodedBody(("value", "answer"))
-
-      val result = route(application, request).value
+      val result = route(application, postRequest).value
 
       status(result) mustEqual SEE_OTHER
 
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }

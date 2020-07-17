@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package controllers
+package controllers.individual.lead
 
 import base.SpecBase
-import forms.IsTheirResidenceInTheUkFormProvider
+import forms.DoTheyHaveANationalInsuranceNumberFormProvider
 import matchers.JsonMatchers
 import models.{NormalMode, UserAnswers}
 import navigation.{FakeNavigator, Navigator}
@@ -25,7 +25,7 @@ import org.mockito.ArgumentCaptor
 import org.mockito.Matchers.any
 import org.mockito.Mockito.{times, verify, when}
 import org.scalatestplus.mockito.MockitoSugar
-import pages.IsTheirResidenceInTheUkPage
+import pages.DoTheyHaveANationalInsuranceNumberPage
 import play.api.inject.bind
 import play.api.libs.json.{JsObject, Json}
 import play.api.mvc.Call
@@ -37,16 +37,16 @@ import uk.gov.hmrc.viewmodels.{NunjucksSupport, Radios}
 
 import scala.concurrent.Future
 
-class IsTheirResidenceInTheUkControllerSpec extends SpecBase with MockitoSugar with NunjucksSupport with JsonMatchers {
+class DoTheyHaveANationalInsuranceNumberControllerSpec extends SpecBase with MockitoSugar with NunjucksSupport with JsonMatchers {
 
   def onwardRoute = Call("GET", "/foo")
 
-  val formProvider = new IsTheirResidenceInTheUkFormProvider()
+  val formProvider = new DoTheyHaveANationalInsuranceNumberFormProvider()
   val form = formProvider()
 
-  lazy val isTheirResidenceInTheUkRoute = routes.IsTheirResidenceInTheUkController.onPageLoad(NormalMode).url
+  lazy val doTheyHaveANationalInsuranceNumberRoute = routes.DoTheyHaveANationalInsuranceNumberController.onPageLoad(NormalMode).url
 
-  "IsTheirResidenceInTheUk Controller" - {
+  "DoTheyHaveANationalInsuranceNumber Controller" - {
 
     "must return OK and the correct view for a GET" in {
 
@@ -54,7 +54,7 @@ class IsTheirResidenceInTheUkControllerSpec extends SpecBase with MockitoSugar w
         .thenReturn(Future.successful(Html("")))
 
       val application = applicationBuilder(userAnswers = Some(emptyUserAnswers)).build()
-      val request = FakeRequest(GET, isTheirResidenceInTheUkRoute)
+      val request = FakeRequest(GET, doTheyHaveANationalInsuranceNumberRoute)
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
 
@@ -70,7 +70,7 @@ class IsTheirResidenceInTheUkControllerSpec extends SpecBase with MockitoSugar w
         "radios" -> Radios.yesNo(form("value"))
       )
 
-      templateCaptor.getValue mustEqual "isTheirResidenceInTheUk.njk"
+      templateCaptor.getValue mustEqual "doTheyHaveANationalInsuranceNumber.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -81,9 +81,9 @@ class IsTheirResidenceInTheUkControllerSpec extends SpecBase with MockitoSugar w
       when(mockRenderer.render(any(), any())(any()))
         .thenReturn(Future.successful(Html("")))
 
-      val userAnswers = UserAnswers(userAnswersId).set(IsTheirResidenceInTheUkPage, true).success.value
+      val userAnswers = UserAnswers(userAnswersId).set(DoTheyHaveANationalInsuranceNumberPage, true).success.value
       val application = applicationBuilder(userAnswers = Some(userAnswers)).build()
-      val request = FakeRequest(GET, isTheirResidenceInTheUkRoute)
+      val request = FakeRequest(GET, doTheyHaveANationalInsuranceNumberRoute)
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
 
@@ -101,7 +101,7 @@ class IsTheirResidenceInTheUkControllerSpec extends SpecBase with MockitoSugar w
         "radios" -> Radios.yesNo(filledForm("value"))
       )
 
-      templateCaptor.getValue mustEqual "isTheirResidenceInTheUk.njk"
+      templateCaptor.getValue mustEqual "doTheyHaveANationalInsuranceNumber.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -122,7 +122,7 @@ class IsTheirResidenceInTheUkControllerSpec extends SpecBase with MockitoSugar w
           .build()
 
       val request =
-        FakeRequest(POST, isTheirResidenceInTheUkRoute)
+        FakeRequest(POST, doTheyHaveANationalInsuranceNumberRoute)
           .withFormUrlEncodedBody(("value", "true"))
 
       val result = route(application, request).value
@@ -140,7 +140,7 @@ class IsTheirResidenceInTheUkControllerSpec extends SpecBase with MockitoSugar w
         .thenReturn(Future.successful(Html("")))
 
       val application = applicationBuilder(userAnswers = Some(emptyUserAnswers)).build()
-      val request = FakeRequest(POST, isTheirResidenceInTheUkRoute).withFormUrlEncodedBody(("value", ""))
+      val request = FakeRequest(POST, doTheyHaveANationalInsuranceNumberRoute).withFormUrlEncodedBody(("value", ""))
       val boundForm = form.bind(Map("value" -> ""))
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
@@ -157,7 +157,7 @@ class IsTheirResidenceInTheUkControllerSpec extends SpecBase with MockitoSugar w
         "radios" -> Radios.yesNo(boundForm("value"))
       )
 
-      templateCaptor.getValue mustEqual "isTheirResidenceInTheUk.njk"
+      templateCaptor.getValue mustEqual "doTheyHaveANationalInsuranceNumber.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -167,13 +167,13 @@ class IsTheirResidenceInTheUkControllerSpec extends SpecBase with MockitoSugar w
 
       val application = applicationBuilder(userAnswers = None).build()
 
-      val request = FakeRequest(GET, isTheirResidenceInTheUkRoute)
+      val request = FakeRequest(GET, doTheyHaveANationalInsuranceNumberRoute)
 
       val result = route(application, request).value
 
       status(result) mustEqual SEE_OTHER
 
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }
@@ -183,14 +183,14 @@ class IsTheirResidenceInTheUkControllerSpec extends SpecBase with MockitoSugar w
       val application = applicationBuilder(userAnswers = None).build()
 
       val request =
-        FakeRequest(POST, isTheirResidenceInTheUkRoute)
+        FakeRequest(POST, doTheyHaveANationalInsuranceNumberRoute)
           .withFormUrlEncodedBody(("value", "true"))
 
       val result = route(application, request).value
 
       status(result) mustEqual SEE_OTHER
 
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }

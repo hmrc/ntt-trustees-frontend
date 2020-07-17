@@ -22,10 +22,10 @@ class WhichDetailsCanYouProvidePageSpec extends PageBehaviours {
 
   "WhichDetailsCanYouProvidePage" - {
 
-    beRetrievable[Boolean](WhichDetailsCanYouProvidePage)
+    beRetrievable[String](WhichDetailsCanYouProvidePage)
 
-    beSettable[Boolean](WhichDetailsCanYouProvidePage)
+    beSettable[String](WhichDetailsCanYouProvidePage)
 
-    beRemovable[Boolean](WhichDetailsCanYouProvidePage)
+    beRemovable[String](WhichDetailsCanYouProvidePage)
   }
 }

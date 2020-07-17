@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package controllers
+package controllers.individual.lead
 
 import base.SpecBase
-import forms.DoYouKnowTheirEmailAddressFormProvider
+import forms.WhichDetailsCanYouProvideFormProvider
 import matchers.JsonMatchers
 import models.{NormalMode, UserAnswers}
 import navigation.{FakeNavigator, Navigator}
@@ -25,7 +25,7 @@ import org.mockito.ArgumentCaptor
 import org.mockito.Matchers.any
 import org.mockito.Mockito.{times, verify, when}
 import org.scalatestplus.mockito.MockitoSugar
-import pages.DoYouKnowTheirEmailAddressPage
+import pages.WhichDetailsCanYouProvidePage
 import play.api.inject.bind
 import play.api.libs.json.{JsObject, Json}
 import play.api.mvc.Call
@@ -37,16 +37,16 @@ import uk.gov.hmrc.viewmodels.{NunjucksSupport, Radios}
 
 import scala.concurrent.Future
 
-class DoYouKnowTheirEmailAddressControllerSpec extends SpecBase with MockitoSugar with NunjucksSupport with JsonMatchers {
+class WhichDetailsCanYouProvideControllerSpec extends SpecBase with MockitoSugar with NunjucksSupport with JsonMatchers {
 
   def onwardRoute = Call("GET", "/foo")
 
-  val formProvider = new DoYouKnowTheirEmailAddressFormProvider()
+  val formProvider = new WhichDetailsCanYouProvideFormProvider()
   val form = formProvider()
 
-  lazy val doYouKnowTheirEmailAddressRoute = routes.DoYouKnowTheirEmailAddressController.onPageLoad(NormalMode).url
+  lazy val whichDetailsCanYouProvideRoute = routes.WhichDetailsCanYouProvideController.onPageLoad(NormalMode).url
 
-  "DoYouKnowTheirEmailAddress Controller" - {
+  "WhichDetailsCanYouProvide Controller" - {
 
     "must return OK and the correct view for a GET" in {
 
@@ -54,7 +54,7 @@ class DoYouKnowTheirEmailAddressControllerSpec extends SpecBase with MockitoSuga
         .thenReturn(Future.successful(Html("")))
 
       val application = applicationBuilder(userAnswers = Some(emptyUserAnswers)).build()
-      val request = FakeRequest(GET, doYouKnowTheirEmailAddressRoute)
+      val request = FakeRequest(GET, whichDetailsCanYouProvideRoute)
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
 
@@ -70,7 +70,7 @@ class DoYouKnowTheirEmailAddressControllerSpec extends SpecBase with MockitoSuga
         "radios" -> Radios.yesNo(form("value"))
       )
 
-      templateCaptor.getValue mustEqual "doYouKnowTheirEmailAddress.njk"
+      templateCaptor.getValue mustEqual "whichDetailsCanYouProvide.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -81,9 +81,9 @@ class DoYouKnowTheirEmailAddressControllerSpec extends SpecBase with MockitoSuga
       when(mockRenderer.render(any(), any())(any()))
         .thenReturn(Future.successful(Html("")))
 
-      val userAnswers = UserAnswers(userAnswersId).set(DoYouKnowTheirEmailAddressPage, true).success.value
+      val userAnswers = UserAnswers(userAnswersId).set(WhichDetailsCanYouProvidePage, "passport").success.value
       val application = applicationBuilder(userAnswers = Some(userAnswers)).build()
-      val request = FakeRequest(GET, doYouKnowTheirEmailAddressRoute)
+      val request = FakeRequest(GET, whichDetailsCanYouProvideRoute)
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
 
@@ -101,7 +101,7 @@ class DoYouKnowTheirEmailAddressControllerSpec extends SpecBase with MockitoSuga
         "radios" -> Radios.yesNo(filledForm("value"))
       )
 
-      templateCaptor.getValue mustEqual "doYouKnowTheirEmailAddress.njk"
+      templateCaptor.getValue mustEqual "whichDetailsCanYouProvide.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -122,7 +122,7 @@ class DoYouKnowTheirEmailAddressControllerSpec extends SpecBase with MockitoSuga
           .build()
 
       val request =
-        FakeRequest(POST, doYouKnowTheirEmailAddressRoute)
+        FakeRequest(POST, whichDetailsCanYouProvideRoute)
           .withFormUrlEncodedBody(("value", "true"))
 
       val result = route(application, request).value
@@ -140,7 +140,7 @@ class DoYouKnowTheirEmailAddressControllerSpec extends SpecBase with MockitoSuga
         .thenReturn(Future.successful(Html("")))
 
       val application = applicationBuilder(userAnswers = Some(emptyUserAnswers)).build()
-      val request = FakeRequest(POST, doYouKnowTheirEmailAddressRoute).withFormUrlEncodedBody(("value", ""))
+      val request = FakeRequest(POST, whichDetailsCanYouProvideRoute).withFormUrlEncodedBody(("value", ""))
       val boundForm = form.bind(Map("value" -> ""))
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
@@ -157,7 +157,7 @@ class DoYouKnowTheirEmailAddressControllerSpec extends SpecBase with MockitoSuga
         "radios" -> Radios.yesNo(boundForm("value"))
       )
 
-      templateCaptor.getValue mustEqual "doYouKnowTheirEmailAddress.njk"
+      templateCaptor.getValue mustEqual "whichDetailsCanYouProvide.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -167,13 +167,13 @@ class DoYouKnowTheirEmailAddressControllerSpec extends SpecBase with MockitoSuga
 
       val application = applicationBuilder(userAnswers = None).build()
 
-      val request = FakeRequest(GET, doYouKnowTheirEmailAddressRoute)
+      val request = FakeRequest(GET, whichDetailsCanYouProvideRoute)
 
       val result = route(application, request).value
 
       status(result) mustEqual SEE_OTHER
 
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }
@@ -183,14 +183,14 @@ class DoYouKnowTheirEmailAddressControllerSpec extends SpecBase with MockitoSuga
       val application = applicationBuilder(userAnswers = None).build()
 
       val request =
-        FakeRequest(POST, doYouKnowTheirEmailAddressRoute)
+        FakeRequest(POST, whichDetailsCanYouProvideRoute)
           .withFormUrlEncodedBody(("value", "true"))
 
       val result = route(application, request).value
 
       status(result) mustEqual SEE_OTHER
 
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }

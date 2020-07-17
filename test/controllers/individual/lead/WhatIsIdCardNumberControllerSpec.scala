@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package controllers
+package controllers.individual.lead
 
 import base.SpecBase
-import forms.WhichDetailsCanYouProvideFormProvider
+import forms.WhatIsIdCardNumberFormProvider
 import matchers.JsonMatchers
 import models.{NormalMode, UserAnswers}
 import navigation.{FakeNavigator, Navigator}
@@ -25,7 +25,7 @@ import org.mockito.ArgumentCaptor
 import org.mockito.Matchers.any
 import org.mockito.Mockito.{times, verify, when}
 import org.scalatestplus.mockito.MockitoSugar
-import pages.WhichDetailsCanYouProvidePage
+import pages.WhatIsIdCardNumberPage
 import play.api.inject.bind
 import play.api.libs.json.{JsObject, Json}
 import play.api.mvc.Call
@@ -33,20 +33,20 @@ import play.api.test.FakeRequest
 import play.api.test.Helpers._
 import play.twirl.api.Html
 import repositories.SessionRepository
-import uk.gov.hmrc.viewmodels.{NunjucksSupport, Radios}
+import uk.gov.hmrc.viewmodels.NunjucksSupport
 
 import scala.concurrent.Future
 
-class WhichDetailsCanYouProvideControllerSpec extends SpecBase with MockitoSugar with NunjucksSupport with JsonMatchers {
+class WhatIsIdCardNumberControllerSpec extends SpecBase with MockitoSugar with NunjucksSupport with JsonMatchers {
 
   def onwardRoute = Call("GET", "/foo")
 
-  val formProvider = new WhichDetailsCanYouProvideFormProvider()
+  val formProvider = new WhatIsIdCardNumberFormProvider()
   val form = formProvider()
 
-  lazy val whichDetailsCanYouProvideRoute = routes.WhichDetailsCanYouProvideController.onPageLoad(NormalMode).url
+  lazy val whatIsIdCardNumberRoute = routes.WhatIsIdCardNumberController.onPageLoad(NormalMode).url
 
-  "WhichDetailsCanYouProvide Controller" - {
+  "WhatIsIdCardNumber Controller" - {
 
     "must return OK and the correct view for a GET" in {
 
@@ -54,7 +54,7 @@ class WhichDetailsCanYouProvideControllerSpec extends SpecBase with MockitoSugar
         .thenReturn(Future.successful(Html("")))
 
       val application = applicationBuilder(userAnswers = Some(emptyUserAnswers)).build()
-      val request = FakeRequest(GET, whichDetailsCanYouProvideRoute)
+      val request = FakeRequest(GET, whatIsIdCardNumberRoute)
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
 
@@ -65,12 +65,11 @@ class WhichDetailsCanYouProvideControllerSpec extends SpecBase with MockitoSugar
       verify(mockRenderer, times(1)).render(templateCaptor.capture(), jsonCaptor.capture())(any())
 
       val expectedJson = Json.obj(
-        "form"   -> form,
-        "mode"   -> NormalMode,
-        "radios" -> Radios.yesNo(form("value"))
+        "form" -> form,
+        "mode" -> NormalMode
       )
 
-      templateCaptor.getValue mustEqual "whichDetailsCanYouProvide.njk"
+      templateCaptor.getValue mustEqual "whatIsIdCardNumber.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -81,9 +80,9 @@ class WhichDetailsCanYouProvideControllerSpec extends SpecBase with MockitoSugar
       when(mockRenderer.render(any(), any())(any()))
         .thenReturn(Future.successful(Html("")))
 
-      val userAnswers = UserAnswers(userAnswersId).set(WhichDetailsCanYouProvidePage, true).success.value
+      val userAnswers = UserAnswers(userAnswersId).set(WhatIsIdCardNumberPage, "answer").success.value
       val application = applicationBuilder(userAnswers = Some(userAnswers)).build()
-      val request = FakeRequest(GET, whichDetailsCanYouProvideRoute)
+      val request = FakeRequest(GET, whatIsIdCardNumberRoute)
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
 
@@ -93,15 +92,14 @@ class WhichDetailsCanYouProvideControllerSpec extends SpecBase with MockitoSugar
 
       verify(mockRenderer, times(1)).render(templateCaptor.capture(), jsonCaptor.capture())(any())
 
-      val filledForm = form.bind(Map("value" -> "true"))
+      val filledForm = form.bind(Map("value" -> "answer"))
 
       val expectedJson = Json.obj(
-        "form"   -> filledForm,
-        "mode"   -> NormalMode,
-        "radios" -> Radios.yesNo(filledForm("value"))
+        "form" -> filledForm,
+        "mode" -> NormalMode
       )
 
-      templateCaptor.getValue mustEqual "whichDetailsCanYouProvide.njk"
+      templateCaptor.getValue mustEqual "whatIsIdCardNumber.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -122,13 +120,12 @@ class WhichDetailsCanYouProvideControllerSpec extends SpecBase with MockitoSugar
           .build()
 
       val request =
-        FakeRequest(POST, whichDetailsCanYouProvideRoute)
-          .withFormUrlEncodedBody(("value", "true"))
+        FakeRequest(POST, whatIsIdCardNumberRoute)
+          .withFormUrlEncodedBody(("value", "answer"))
 
       val result = route(application, request).value
 
       status(result) mustEqual SEE_OTHER
-
       redirectLocation(result).value mustEqual onwardRoute.url
 
       application.stop()
@@ -140,7 +137,7 @@ class WhichDetailsCanYouProvideControllerSpec extends SpecBase with MockitoSugar
         .thenReturn(Future.successful(Html("")))
 
       val application = applicationBuilder(userAnswers = Some(emptyUserAnswers)).build()
-      val request = FakeRequest(POST, whichDetailsCanYouProvideRoute).withFormUrlEncodedBody(("value", ""))
+      val request = FakeRequest(POST, whatIsIdCardNumberRoute).withFormUrlEncodedBody(("value", ""))
       val boundForm = form.bind(Map("value" -> ""))
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
@@ -152,12 +149,11 @@ class WhichDetailsCanYouProvideControllerSpec extends SpecBase with MockitoSugar
       verify(mockRenderer, times(1)).render(templateCaptor.capture(), jsonCaptor.capture())(any())
 
       val expectedJson = Json.obj(
-        "form"   -> boundForm,
-        "mode"   -> NormalMode,
-        "radios" -> Radios.yesNo(boundForm("value"))
+        "form" -> boundForm,
+        "mode" -> NormalMode
       )
 
-      templateCaptor.getValue mustEqual "whichDetailsCanYouProvide.njk"
+      templateCaptor.getValue mustEqual "whatIsIdCardNumber.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -167,13 +163,13 @@ class WhichDetailsCanYouProvideControllerSpec extends SpecBase with MockitoSugar
 
       val application = applicationBuilder(userAnswers = None).build()
 
-      val request = FakeRequest(GET, whichDetailsCanYouProvideRoute)
+      val request = FakeRequest(GET, whatIsIdCardNumberRoute)
 
       val result = route(application, request).value
 
       status(result) mustEqual SEE_OTHER
 
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }
@@ -183,14 +179,14 @@ class WhichDetailsCanYouProvideControllerSpec extends SpecBase with MockitoSugar
       val application = applicationBuilder(userAnswers = None).build()
 
       val request =
-        FakeRequest(POST, whichDetailsCanYouProvideRoute)
-          .withFormUrlEncodedBody(("value", "true"))
+        FakeRequest(POST, whatIsIdCardNumberRoute)
+          .withFormUrlEncodedBody(("value", "answer"))
 
       val result = route(application, request).value
 
       status(result) mustEqual SEE_OTHER
 
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }

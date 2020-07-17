@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package controllers
+package controllers.individual.lead
 
 import base.SpecBase
-import forms.WhatIsTheirNationalInsuranceNumberFormProvider
+import forms.WhatIsTheirAddressUkFormProvider
 import matchers.JsonMatchers
-import models.{NormalMode, UserAnswers}
+import models.{Address, NormalMode, UserAnswers}
 import navigation.{FakeNavigator, Navigator}
 import org.mockito.ArgumentCaptor
 import org.mockito.Matchers.any
 import org.mockito.Mockito.{times, verify, when}
 import org.scalatestplus.mockito.MockitoSugar
-import pages.WhatIsTheirNationalInsuranceNumberPage
+import pages.WhatIsTheirAddressUkPage
 import play.api.inject.bind
-import play.api.libs.json.{JsObject, JsString, Json}
+import play.api.libs.json.{JsObject, Json}
 import play.api.mvc.Call
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
@@ -37,16 +37,16 @@ import uk.gov.hmrc.viewmodels.NunjucksSupport
 
 import scala.concurrent.Future
 
-class WhatIsTheirNationalInsuranceNumberControllerSpec extends SpecBase with MockitoSugar with NunjucksSupport with JsonMatchers {
+class WhatIsTheirAddressUkControllerSpec extends SpecBase with MockitoSugar with NunjucksSupport with JsonMatchers {
 
   def onwardRoute = Call("GET", "/foo")
 
-  val formProvider = new WhatIsTheirNationalInsuranceNumberFormProvider()
+  val formProvider = new WhatIsTheirAddressUkFormProvider()
   val form = formProvider()
 
-  lazy val whatIsTheirNationalInsuranceNumberRoute = routes.WhatIsTheirNationalInsuranceNumberController.onPageLoad(NormalMode).url
+  lazy val whatIsTheirAddressUkRoute = routes.WhatIsTheirAddressUkController.onPageLoad(NormalMode).url
 
-  "WhatIsTheirNationalInsuranceNumber Controller" - {
+  "WhatIsTheirAddressUk Controller" - {
 
     "must return OK and the correct view for a GET" in {
 
@@ -54,7 +54,7 @@ class WhatIsTheirNationalInsuranceNumberControllerSpec extends SpecBase with Moc
         .thenReturn(Future.successful(Html("")))
 
       val application = applicationBuilder(userAnswers = Some(emptyUserAnswers)).build()
-      val request = FakeRequest(GET, whatIsTheirNationalInsuranceNumberRoute)
+      val request = FakeRequest(GET, whatIsTheirAddressUkRoute)
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
 
@@ -69,7 +69,7 @@ class WhatIsTheirNationalInsuranceNumberControllerSpec extends SpecBase with Moc
         "mode" -> NormalMode
       )
 
-      templateCaptor.getValue mustEqual "whatIsTheirNationalInsuranceNumber.njk"
+      templateCaptor.getValue mustEqual "whatIsTheirAddressUk.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -80,9 +80,17 @@ class WhatIsTheirNationalInsuranceNumberControllerSpec extends SpecBase with Moc
       when(mockRenderer.render(any(), any())(any()))
         .thenReturn(Future.successful(Html("")))
 
-      val userAnswers = UserAnswers(userAnswersId).set(WhatIsTheirNationalInsuranceNumberPage, "answer").success.value
+      val answer = Address(
+        "firstLine",
+        "secondLine",
+        Some("thirdLine"),
+        None,
+        "GB",
+        Some("NE11NE"))
+
+      val userAnswers = UserAnswers(userAnswersId).set(WhatIsTheirAddressUkPage, answer).success.value
       val application = applicationBuilder(userAnswers = Some(userAnswers)).build()
-      val request = FakeRequest(GET, whatIsTheirNationalInsuranceNumberRoute)
+      val request = FakeRequest(GET, whatIsTheirAddressUkRoute)
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
 
@@ -99,7 +107,7 @@ class WhatIsTheirNationalInsuranceNumberControllerSpec extends SpecBase with Moc
         "mode" -> NormalMode
       )
 
-      templateCaptor.getValue mustEqual "whatIsTheirNationalInsuranceNumber.njk"
+      templateCaptor.getValue mustEqual "whatIsTheirAddressUk.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -120,7 +128,7 @@ class WhatIsTheirNationalInsuranceNumberControllerSpec extends SpecBase with Moc
           .build()
 
       val request =
-        FakeRequest(POST, whatIsTheirNationalInsuranceNumberRoute)
+        FakeRequest(POST, whatIsTheirAddressUkRoute)
           .withFormUrlEncodedBody(("value", "answer"))
 
       val result = route(application, request).value
@@ -137,7 +145,7 @@ class WhatIsTheirNationalInsuranceNumberControllerSpec extends SpecBase with Moc
         .thenReturn(Future.successful(Html("")))
 
       val application = applicationBuilder(userAnswers = Some(emptyUserAnswers)).build()
-      val request = FakeRequest(POST, whatIsTheirNationalInsuranceNumberRoute).withFormUrlEncodedBody(("value", ""))
+      val request = FakeRequest(POST, whatIsTheirAddressUkRoute).withFormUrlEncodedBody(("value", ""))
       val boundForm = form.bind(Map("value" -> ""))
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
@@ -153,7 +161,7 @@ class WhatIsTheirNationalInsuranceNumberControllerSpec extends SpecBase with Moc
         "mode" -> NormalMode
       )
 
-      templateCaptor.getValue mustEqual "whatIsTheirNationalInsuranceNumber.njk"
+      templateCaptor.getValue mustEqual "whatIsTheirAddressUk.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -163,13 +171,13 @@ class WhatIsTheirNationalInsuranceNumberControllerSpec extends SpecBase with Moc
 
       val application = applicationBuilder(userAnswers = None).build()
 
-      val request = FakeRequest(GET, whatIsTheirNationalInsuranceNumberRoute)
+      val request = FakeRequest(GET, whatIsTheirAddressUkRoute)
 
       val result = route(application, request).value
 
       status(result) mustEqual SEE_OTHER
 
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }
@@ -179,14 +187,14 @@ class WhatIsTheirNationalInsuranceNumberControllerSpec extends SpecBase with Moc
       val application = applicationBuilder(userAnswers = None).build()
 
       val request =
-        FakeRequest(POST, whatIsTheirNationalInsuranceNumberRoute)
+        FakeRequest(POST, whatIsTheirAddressUkRoute)
           .withFormUrlEncodedBody(("value", "answer"))
 
       val result = route(application, request).value
 
       status(result) mustEqual SEE_OTHER
 
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }

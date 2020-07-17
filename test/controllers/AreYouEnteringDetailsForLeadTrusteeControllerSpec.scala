@@ -81,7 +81,7 @@ class AreYouEnteringDetailsForLeadTrusteeControllerSpec extends SpecBase with Mo
       when(mockRenderer.render(any(), any())(any()))
         .thenReturn(Future.successful(Html("")))
 
-      val userAnswers = UserAnswers(userAnswersId).set(AreYouEnteringDetailsForLeadTrusteePage, true).success.value
+      val userAnswers = UserAnswers(userAnswersId).set(AreYouEnteringDetailsForLeadTrusteePage, "leadtrustee").success.value
       val application = applicationBuilder(userAnswers = Some(userAnswers)).build()
       val request = FakeRequest(GET, areYouEnteringDetailsForLeadTrusteeRoute)
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
@@ -173,7 +173,7 @@ class AreYouEnteringDetailsForLeadTrusteeControllerSpec extends SpecBase with Mo
 
       status(result) mustEqual SEE_OTHER
 
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }
@@ -190,7 +190,7 @@ class AreYouEnteringDetailsForLeadTrusteeControllerSpec extends SpecBase with Mo
 
       status(result) mustEqual SEE_OTHER
 
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }

@@ -1,9 +1,25 @@
-package controllers
+/*
+ * Copyright 2020 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package controllers.individual.lead
 
 import java.time.{LocalDate, ZoneOffset}
 
 import base.SpecBase
-import forms.WhatIsIdCardExpiryDateFormProvider
+import forms.WhatIsTheirDateOfBirthFormProvider
 import matchers.JsonMatchers
 import models.{NormalMode, UserAnswers}
 import navigation.{FakeNavigator, Navigator}
@@ -11,7 +27,7 @@ import org.mockito.ArgumentCaptor
 import org.mockito.Matchers.any
 import org.mockito.Mockito.{times, verify, when}
 import org.scalatestplus.mockito.MockitoSugar
-import pages.WhatIsIdCardExpiryDatePage
+import pages.WhatIsTheirDateOfBirthPage
 import play.api.inject.bind
 import play.api.libs.json.{JsObject, Json}
 import play.api.mvc.{AnyContentAsEmpty, AnyContentAsFormUrlEncoded, Call}
@@ -23,31 +39,31 @@ import uk.gov.hmrc.viewmodels.{DateInput, NunjucksSupport}
 
 import scala.concurrent.Future
 
-class WhatIsIdCardExpiryDateControllerSpec extends SpecBase with MockitoSugar with NunjucksSupport with JsonMatchers {
+class WhatIsTheirDateOfBirthControllerSpec extends SpecBase with MockitoSugar with NunjucksSupport with JsonMatchers {
 
-  val formProvider = new WhatIsIdCardExpiryDateFormProvider()
+  val formProvider = new WhatIsTheirDateOfBirthFormProvider()
   private def form = formProvider()
 
   def onwardRoute = Call("GET", "/foo")
 
   val validAnswer = LocalDate.now(ZoneOffset.UTC)
 
-  lazy val whatIsIdCardExpiryDateRoute = routes.WhatIsIdCardExpiryDateController.onPageLoad(NormalMode).url
+  lazy val whatIsTheirDateOfBirthRoute = routes.WhatIsTheirDateOfBirthController.onPageLoad(NormalMode).url
 
   override val emptyUserAnswers = UserAnswers(userAnswersId)
 
   def getRequest(): FakeRequest[AnyContentAsEmpty.type] =
-    FakeRequest(GET, whatIsIdCardExpiryDateRoute)
+    FakeRequest(GET, whatIsTheirDateOfBirthRoute)
 
   def postRequest(): FakeRequest[AnyContentAsFormUrlEncoded] =
-    FakeRequest(POST, whatIsIdCardExpiryDateRoute)
+    FakeRequest(POST, whatIsTheirDateOfBirthRoute)
       .withFormUrlEncodedBody(
         "value.day"   -> validAnswer.getDayOfMonth.toString,
         "value.month" -> validAnswer.getMonthValue.toString,
         "value.year"  -> validAnswer.getYear.toString
       )
 
-  "WhatIsIdCardExpiryDate Controller" - {
+  "WhatIsTheirDateOfBirth Controller" - {
 
     "must return OK and the correct view for a GET" in {
 
@@ -72,7 +88,7 @@ class WhatIsIdCardExpiryDateControllerSpec extends SpecBase with MockitoSugar wi
         "date" -> viewModel
       )
 
-      templateCaptor.getValue mustEqual "whatIsIdCardExpiryDate.njk"
+      templateCaptor.getValue mustEqual "whatIsTheirDateOfBirth.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -83,7 +99,7 @@ class WhatIsIdCardExpiryDateControllerSpec extends SpecBase with MockitoSugar wi
       when(mockRenderer.render(any(), any())(any()))
         .thenReturn(Future.successful(Html("")))
 
-      val userAnswers = UserAnswers(userAnswersId).set(WhatIsIdCardExpiryDatePage, validAnswer).success.value
+      val userAnswers = UserAnswers(userAnswersId).set(WhatIsTheirDateOfBirthPage, validAnswer).success.value
       val application = applicationBuilder(userAnswers = Some(userAnswers)).build()
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
@@ -110,7 +126,7 @@ class WhatIsIdCardExpiryDateControllerSpec extends SpecBase with MockitoSugar wi
         "date" -> viewModel
       )
 
-      templateCaptor.getValue mustEqual "whatIsIdCardExpiryDate.njk"
+      templateCaptor.getValue mustEqual "whatIsTheirDateOfBirth.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -145,7 +161,7 @@ class WhatIsIdCardExpiryDateControllerSpec extends SpecBase with MockitoSugar wi
         .thenReturn(Future.successful(Html("")))
 
       val application = applicationBuilder(userAnswers = Some(emptyUserAnswers)).build()
-      val request = FakeRequest(POST, whatIsIdCardExpiryDateRoute).withFormUrlEncodedBody(("value", "invalid value"))
+      val request = FakeRequest(POST, whatIsTheirDateOfBirthRoute).withFormUrlEncodedBody(("value", "invalid value"))
       val boundForm = form.bind(Map("value" -> "invalid value"))
       val templateCaptor = ArgumentCaptor.forClass(classOf[String])
       val jsonCaptor = ArgumentCaptor.forClass(classOf[JsObject])
@@ -164,7 +180,7 @@ class WhatIsIdCardExpiryDateControllerSpec extends SpecBase with MockitoSugar wi
         "date" -> viewModel
       )
 
-      templateCaptor.getValue mustEqual "whatIsIdCardExpiryDate.njk"
+      templateCaptor.getValue mustEqual "whatIsTheirDateOfBirth.njk"
       jsonCaptor.getValue must containJson(expectedJson)
 
       application.stop()
@@ -177,7 +193,7 @@ class WhatIsIdCardExpiryDateControllerSpec extends SpecBase with MockitoSugar wi
       val result = route(application, getRequest).value
 
       status(result) mustEqual SEE_OTHER
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }
@@ -190,7 +206,7 @@ class WhatIsIdCardExpiryDateControllerSpec extends SpecBase with MockitoSugar wi
 
       status(result) mustEqual SEE_OTHER
 
-      redirectLocation(result).value mustEqual routes.SessionExpiredController.onPageLoad().url
+      redirectLocation(result).value mustEqual controllers.routes.SessionExpiredController.onPageLoad().url
 
       application.stop()
     }

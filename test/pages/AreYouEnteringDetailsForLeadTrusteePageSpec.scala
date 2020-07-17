@@ -22,10 +22,10 @@ class AreYouEnteringDetailsForLeadTrusteePageSpec extends PageBehaviours {
 
   "AreYouEnteringDetailsForLeadTrusteePage" - {
 
-    beRetrievable[Boolean](AreYouEnteringDetailsForLeadTrusteePage)
+    beRetrievable[String](AreYouEnteringDetailsForLeadTrusteePage)
 
-    beSettable[Boolean](AreYouEnteringDetailsForLeadTrusteePage)
+    beSettable[String](AreYouEnteringDetailsForLeadTrusteePage)
 
-    beRemovable[Boolean](AreYouEnteringDetailsForLeadTrusteePage)
+    beRemovable[String](AreYouEnteringDetailsForLeadTrusteePage)
   }
 }
