@@ -26,7 +26,7 @@ import generators.Generators
 import models._
 import org.scalacheck.Arbitrary.arbitrary
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
-import pages.{AreYouEnteringDetailsForLeadTrusteePage, CheckYourAnswersPage, DoTheyHaveANationalInsuranceNumberPage, DoYouKnowCountryOfNationalityPage, DoYouKnowCountryOfResidencyPage, DoYouKnowHeadOfficeCountryPage, IsHeadOfficeInUkPage, IsTheirResidenceInTheUkPage, IsTrusteeAUkRegisteredBusinessPage, Page, WhatIsExpiryDatePage, WhatIsHeadOfficeAddressNonUkPage, WhatIsHeadOfficeAddressUkPage, WhatIsIdCardCountryOfIssuePage, WhatIsIdCardExpiryDatePage, WhatIsIdCardNumberPage, WhatIsPassportCountryOfIssuePage, WhatIsPassportNumberPage, WhatIsTheBusinessNamePage, WhatIsTheLeadTrusteesRegisteredNamePage, WhatIsTheUtrPage, WhatIsTheirAddressNonUkPage, WhatIsTheirAddressUkPage, WhatIsTheirDateOfBirthPage, WhatIsTheirEmailAddressPage, WhatIsTheirNamePage, WhatIsTheirNationalInsuranceNumberPage, WhatIsTheirNationalityPage, WhatIsTheirTelephoneNumberPage, WhichDetailsCanYouProvidePage, WhoManagesTheTrustPage}
+import pages.{AreYouEnteringDetailsForLeadTrusteePage, CheckYourAnswersPage, DoTheyHaveANationalInsuranceNumberPage, DoYouKnowCountryOfNationalityPage, DoYouKnowCountryOfResidencyPage, DoYouKnowHeadOfficeCountryPage, DoYouKnowTheirEmailAddressPage, IsHeadOfficeInUkPage, IsTheirResidenceInTheUkPage, IsTrusteeAUkRegisteredBusinessPage, Page, WhatIsExpiryDatePage, WhatIsHeadOfficeAddressNonUkPage, WhatIsHeadOfficeAddressUkPage, WhatIsIdCardCountryOfIssuePage, WhatIsIdCardExpiryDatePage, WhatIsIdCardNumberPage, WhatIsPassportCountryOfIssuePage, WhatIsPassportNumberPage, WhatIsTheBusinessNamePage, WhatIsTheLeadTrusteesRegisteredNamePage, WhatIsTheUtrPage, WhatIsTheirAddressNonUkPage, WhatIsTheirAddressUkPage, WhatIsTheirDateOfBirthPage, WhatIsTheirEmailAddressPage, WhatIsTheirNamePage, WhatIsTheirNationalInsuranceNumberPage, WhatIsTheirNationalityPage, WhatIsTheirTelephoneNumberPage, WhichDetailsCanYouProvidePage, WhoManagesTheTrustPage}
 import play.api.mvc.Call
 
 class NavigatorSpec extends SpecBase with ScalaCheckPropertyChecks with Generators {
@@ -185,10 +185,18 @@ class NavigatorSpec extends SpecBase with ScalaCheckPropertyChecks with Generato
         }
       }
 
-      s"must go from ${WhatIsTheirAddressNonUkPage} to ${WhatIsTheirEmailAddressPage}" in {
+      s"must go from ${WhatIsTheirAddressNonUkPage} to ${DoYouKnowTheirEmailAddressPage}" in {
         forAll(arbitrary[UserAnswers]) {
           answers =>
             navigator.nextPage(WhatIsTheirAddressNonUkPage, NormalMode, answers)
+              .mustBe(indLeadRoutes.DoYouKnowTheirEmailAddressController.onPageLoad(NormalMode))
+        }
+      }
+
+      s"must go from ${DoYouKnowTheirEmailAddressPage} to ${WhatIsTheirEmailAddressPage}" in {
+        forAll(arbitrary[UserAnswers]) {
+          answers =>
+            navigator.nextPage(DoYouKnowTheirEmailAddressPage, NormalMode, answers)
               .mustBe(indLeadRoutes.WhatIsTheirEmailAddressController.onPageLoad(NormalMode))
         }
       }

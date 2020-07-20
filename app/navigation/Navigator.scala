@@ -50,7 +50,8 @@ class Navigator @Inject()() {
     case WhatIsIdCardExpiryDatePage               => _ => indLeadRoutes.IsTheirResidenceInTheUkController.onPageLoad(NormalMode)
     case IsTheirResidenceInTheUkPage              => _ => indLeadRoutes.WhatIsTheirAddressUkController.onPageLoad(NormalMode)
     case WhatIsTheirAddressUkPage                 => _ => indLeadRoutes.WhatIsTheirAddressNonUkController.onPageLoad(NormalMode)
-    case WhatIsTheirAddressNonUkPage              => _ => indLeadRoutes.WhatIsTheirEmailAddressController.onPageLoad(NormalMode)
+    case WhatIsTheirAddressNonUkPage              => _ => indLeadRoutes.DoYouKnowTheirEmailAddressController.onPageLoad(NormalMode)
+    case DoYouKnowTheirEmailAddressPage           => _ => indLeadRoutes.WhatIsTheirEmailAddressController.onPageLoad(NormalMode)
     case WhatIsTheirEmailAddressPage              => _ => indLeadRoutes.WhatIsTheirTelephoneNumberController.onPageLoad(NormalMode)
 
     case WhatIsTheirTelephoneNumberPage           => _ => companyLeadRoutes.IsTrusteeAUkRegisteredBusinessController.onPageLoad(NormalMode)

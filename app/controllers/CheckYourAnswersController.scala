@@ -67,6 +67,7 @@ class CheckYourAnswersController @Inject()(
         helper.isTheirResidenceInTheUk,
         helper.whatIsTheirAddressUk,
         helper.whatIsTheirAddressNonUk,
+        helper.doYouKnowTheirEmailAddress,
         helper.whatIsTheirEmailAddress,
         helper.whatIsTheirTelephoneNumber,
         helper.isTrusteeAUkRegisteredBusiness,
