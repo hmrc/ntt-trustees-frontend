@@ -33,6 +33,7 @@ import play.api.test.FakeRequest
 import play.api.test.Helpers._
 import play.twirl.api.Html
 import repositories.SessionRepository
+import uk.gov.hmrc.viewmodels.Text.Message
 import uk.gov.hmrc.viewmodels.{NunjucksSupport, Radios}
 
 import scala.concurrent.Future
@@ -64,10 +65,15 @@ class AreYouEnteringDetailsForLeadTrusteeControllerSpec extends SpecBase with Mo
 
       verify(mockRenderer, times(1)).render(templateCaptor.capture(), jsonCaptor.capture())(any())
 
+      val filledForm = form.bind(Map("value" -> "leadtrustee"))
+
       val expectedJson = Json.obj(
         "form"   -> form,
         "mode"   -> NormalMode,
-        "radios" -> Radios.yesNo(form("value"))
+        "radios" -> Radios(form("value"), Seq(
+          Radios.Radio(Message("areYouEnteringDetailsForLeadTrustee.leadtrustee"), "leadtrustee"),
+          Radios.Radio(Message("areYouEnteringDetailsForLeadTrustee.trustee"), "trustee"))
+        )
       )
 
       templateCaptor.getValue mustEqual "areYouEnteringDetailsForLeadTrustee.njk"
@@ -93,12 +99,15 @@ class AreYouEnteringDetailsForLeadTrusteeControllerSpec extends SpecBase with Mo
 
       verify(mockRenderer, times(1)).render(templateCaptor.capture(), jsonCaptor.capture())(any())
 
-      val filledForm = form.bind(Map("value" -> "true"))
+      val filledForm = form.bind(Map("value" -> "leadtrustee"))
 
       val expectedJson = Json.obj(
         "form"   -> filledForm,
         "mode"   -> NormalMode,
-        "radios" -> Radios.yesNo(filledForm("value"))
+        "radios" -> Radios(filledForm("value"), Seq(
+          Radios.Radio(Message("areYouEnteringDetailsForLeadTrustee.leadtrustee"), "leadtrustee"),
+          Radios.Radio(Message("areYouEnteringDetailsForLeadTrustee.trustee"), "trustee"))
+        )
       )
 
       templateCaptor.getValue mustEqual "areYouEnteringDetailsForLeadTrustee.njk"
@@ -123,7 +132,7 @@ class AreYouEnteringDetailsForLeadTrusteeControllerSpec extends SpecBase with Mo
 
       val request =
         FakeRequest(POST, areYouEnteringDetailsForLeadTrusteeRoute)
-          .withFormUrlEncodedBody(("value", "true"))
+          .withFormUrlEncodedBody(("value", "leadtrustee"))
 
       val result = route(application, request).value
 
@@ -154,7 +163,10 @@ class AreYouEnteringDetailsForLeadTrusteeControllerSpec extends SpecBase with Mo
       val expectedJson = Json.obj(
         "form"   -> boundForm,
         "mode"   -> NormalMode,
-        "radios" -> Radios.yesNo(boundForm("value"))
+        "radios" -> Radios(boundForm("value"), Seq(
+          Radios.Radio(Message("areYouEnteringDetailsForLeadTrustee.leadtrustee"), "leadtrustee"),
+          Radios.Radio(Message("areYouEnteringDetailsForLeadTrustee.trustee"), "trustee"))
+        )
       )
 
       templateCaptor.getValue mustEqual "areYouEnteringDetailsForLeadTrustee.njk"

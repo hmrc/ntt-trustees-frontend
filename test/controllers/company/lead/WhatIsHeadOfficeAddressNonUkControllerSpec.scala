@@ -100,7 +100,12 @@ class WhatIsHeadOfficeAddressNonUkControllerSpec extends SpecBase with MockitoSu
 
       verify(mockRenderer, times(1)).render(templateCaptor.capture(), jsonCaptor.capture())(any())
 
-      val filledForm = form.bind(Map("value" -> "answer"))
+      val filledForm = form.bind(Map(
+        "addressLine1" -> "firstLine",
+        "addressLine2" -> "secondLine",
+        "addressLine3" -> "thirdLine",
+        "country" -> "FR"
+      ))
 
       val expectedJson = Json.obj(
         "form" -> filledForm,
@@ -129,7 +134,12 @@ class WhatIsHeadOfficeAddressNonUkControllerSpec extends SpecBase with MockitoSu
 
       val request =
         FakeRequest(POST, whatIsHeadOfficeAddressNonUkRoute)
-          .withFormUrlEncodedBody(("value", "answer"))
+          .withFormUrlEncodedBody(
+            ("addressLine1", "firstLine"),
+            ("addressLine2", "secondLine"),
+            ("addressLine3", "thirdLine"),
+            ("country", "FR")
+          )
 
       val result = route(application, request).value
 

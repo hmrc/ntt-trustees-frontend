@@ -24,16 +24,18 @@ class AreYouEnteringDetailsForLeadTrusteeFormProviderSpec extends BooleanFieldBe
   val requiredKey = "areYouEnteringDetailsForLeadTrustee.error.required"
   val invalidKey = "error.boolean"
 
+  val maxLength = 100
+
   val form = new AreYouEnteringDetailsForLeadTrusteeFormProvider()()
 
   ".value" - {
 
     val fieldName = "value"
 
-    behave like booleanField(
+    behave like fieldThatBindsValidData(
       form,
       fieldName,
-      invalidError = FormError(fieldName, invalidKey)
+      stringsWithMaxLength(maxLength)
     )
 
     behave like mandatoryField(

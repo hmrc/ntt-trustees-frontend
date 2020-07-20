@@ -28,14 +28,14 @@ class WhatIsHeadOfficeAddressNonUkFormProvider @Inject() extends Mappings {
   def apply(): Form[Address] =
     Form(
       mapping(
-        "addressLine1" -> text("whatIsTheirAddressNonUk.error.line1.required")
-          .verifying(maxLength(100, "whatIsTheirAddressNonUk.error.line1.length")),
-        "addressLine2" -> text("whatIsTheirAddressNonUk.error.line2.required")
-          .verifying(maxLength(100, "whatIsTheirAddressNonUk.error.line2.length")),
+        "addressLine1" -> text("whatIsHeadOfficeAddressNonUk.error.line1.required")
+          .verifying(maxLength(100, "whatIsHeadOfficeAddressNonUk.error.line1.length")),
+        "addressLine2" -> text("whatIsHeadOfficeAddressNonUk.error.line2.required")
+          .verifying(maxLength(100, "whatIsHeadOfficeAddressNonUk.error.line2.length")),
         "addressLine3" -> optionalText()
-          .verifying(optMaxLength(100, "whatIsTheirAddressNonUk.error.line3.length")),
+          .verifying(optMaxLength(100, "whatIsHeadOfficeAddressNonUk.error.line3.length")),
         "addressLine4" -> ignored(Option.empty[String]),
-        "country" -> text("whatIsTheirAddressNonUk.error.line5.required"),
+        "country" -> text("whatIsHeadOfficeAddressNonUk.error.line5.required"),
         "postcode" -> ignored(Option.empty[String])
       )(Address.apply)(Address.unapply)
     )

@@ -22,7 +22,9 @@ import play.api.data.FormError
 class WhichDetailsCanYouProvideFormProviderSpec extends BooleanFieldBehaviours {
 
   val requiredKey = "whichDetailsCanYouProvide.error.required"
-  val invalidKey = "error.boolean"
+  val invalidKey = "error.string"
+
+  val maxLength = 100
 
   val form = new WhichDetailsCanYouProvideFormProvider()()
 
@@ -30,10 +32,10 @@ class WhichDetailsCanYouProvideFormProviderSpec extends BooleanFieldBehaviours {
 
     val fieldName = "value"
 
-    behave like booleanField(
+    behave like fieldThatBindsValidData(
       form,
       fieldName,
-      invalidError = FormError(fieldName, invalidKey)
+      stringsWithMaxLength(maxLength)
     )
 
     behave like mandatoryField(

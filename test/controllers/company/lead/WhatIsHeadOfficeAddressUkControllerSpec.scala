@@ -84,9 +84,9 @@ class WhatIsHeadOfficeAddressUkControllerSpec extends SpecBase with MockitoSugar
         "firstLine",
         "secondLine",
         Some("thirdLine"),
-        None,
+        Some("fourthLine"),
         "GB",
-        Some("NE11NE"))
+        Some("postcode"))
 
       val userAnswers = UserAnswers(userAnswersId).set(WhatIsHeadOfficeAddressUkPage, answer).success.value
       val application = applicationBuilder(userAnswers = Some(userAnswers)).build()
@@ -100,7 +100,13 @@ class WhatIsHeadOfficeAddressUkControllerSpec extends SpecBase with MockitoSugar
 
       verify(mockRenderer, times(1)).render(templateCaptor.capture(), jsonCaptor.capture())(any())
 
-      val filledForm = form.bind(Map("value" -> "answer"))
+      val filledForm = form.bind(Map(
+        "addressLine1" -> "firstLine",
+        "addressLine2" -> "secondLine",
+        "addressLine3" -> "thirdLine",
+        "addressLine4" -> "fourthLine",
+        "postcode" -> "postcode"
+      ))
 
       val expectedJson = Json.obj(
         "form" -> filledForm,
@@ -129,7 +135,13 @@ class WhatIsHeadOfficeAddressUkControllerSpec extends SpecBase with MockitoSugar
 
       val request =
         FakeRequest(POST, whatIsHeadOfficeAddressUkRoute)
-          .withFormUrlEncodedBody(("value", "answer"))
+          .withFormUrlEncodedBody(
+            ("addressLine1", "firstLine"),
+            ("addressLine2", "secondLine"),
+            ("addressLine3", "thirdLine"),
+            ("addressLine4", "fourthLine"),
+            ("postcode", "postcode")
+          )
 
       val result = route(application, request).value
 

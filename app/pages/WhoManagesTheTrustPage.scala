@@ -20,5 +20,5 @@ import play.api.libs.json.JsPath
 
 case object WhoManagesTheTrustPage extends Page {
 
-  override def toString: String = "whoManagesTheTrustees"
+  override def toString: String = "whoManagesTheTrust"
 }

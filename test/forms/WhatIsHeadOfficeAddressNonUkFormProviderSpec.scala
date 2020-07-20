@@ -21,15 +21,16 @@ import play.api.data.FormError
 
 class WhatIsHeadOfficeAddressNonUkFormProviderSpec extends StringFieldBehaviours {
 
-  val requiredKey = "whatIsHeadOfficeAddressNonUk.error.required"
-  val lengthKey = "whatIsHeadOfficeAddressNonUk.error.length"
+  def requiredKey(line:String) = s"whatIsHeadOfficeAddressNonUk.error.${line}.required"
+  def lengthKey(line:String) = s"whatIsHeadOfficeAddressNonUk.error.${line}.length"
+
   val maxLength = 100
 
   val form = new WhatIsHeadOfficeAddressNonUkFormProvider()()
 
-  ".value" - {
+  ".addressLine1" - {
 
-    val fieldName = "value"
+    val fieldName = "addressLine1"
 
     behave like fieldThatBindsValidData(
       form,
@@ -41,13 +42,73 @@ class WhatIsHeadOfficeAddressNonUkFormProviderSpec extends StringFieldBehaviours
       form,
       fieldName,
       maxLength = maxLength,
-      lengthError = FormError(fieldName, lengthKey, Seq(maxLength))
+      lengthError = FormError(fieldName, lengthKey("line1"), Seq(maxLength))
     )
 
     behave like mandatoryField(
       form,
       fieldName,
-      requiredError = FormError(fieldName, requiredKey)
+      requiredError = FormError(fieldName, requiredKey("line1"))
+    )
+  }
+
+  ".addressLine2" - {
+
+    val fieldName = "addressLine2"
+
+    behave like fieldThatBindsValidData(
+      form,
+      fieldName,
+      stringsWithMaxLength(maxLength)
+    )
+
+    behave like fieldWithMaxLength(
+      form,
+      fieldName,
+      maxLength = maxLength,
+      lengthError = FormError(fieldName, lengthKey("line2"), Seq(maxLength))
+    )
+
+    behave like mandatoryField(
+      form,
+      fieldName,
+      requiredError = FormError(fieldName, requiredKey("line2"))
+    )
+  }
+
+  ".addressLine3" - {
+
+    val fieldName = "addressLine3"
+
+    behave like fieldThatBindsValidData(
+      form,
+      fieldName,
+      stringsWithMaxLength(maxLength)
+    )
+
+    behave like fieldWithMaxLength(
+      form,
+      fieldName,
+      maxLength = maxLength,
+      lengthError = FormError(fieldName, lengthKey("line3"), Seq(maxLength))
+    )
+  }
+
+
+  ".country" - {
+
+    val fieldName = "country"
+
+    behave like fieldThatBindsValidData(
+      form,
+      fieldName,
+      stringsWithMaxLength(maxLength)
+    )
+
+    behave like mandatoryField(
+      form,
+      fieldName,
+      requiredError = FormError(fieldName, requiredKey("line5"))
     )
   }
 }

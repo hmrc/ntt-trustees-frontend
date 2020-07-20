@@ -21,15 +21,15 @@ import play.api.data.FormError
 
 class WhatIsHeadOfficeAddressUkFormProviderSpec extends StringFieldBehaviours {
 
-  val requiredKey = "whatIsHeadOfficeAddressUk.error.required"
-  val lengthKey = "whatIsHeadOfficeAddressUk.error.length"
+  def requiredKey(line:String) = s"whatIsHeadOfficeAddressUk.error.${line}.required"
+  def lengthKey(line:String) = s"whatIsHeadOfficeAddressUk.error.${line}.length"
   val maxLength = 100
 
   val form = new WhatIsHeadOfficeAddressUkFormProvider()()
 
-  ".value" - {
+  ".addressLine1" - {
 
-    val fieldName = "value"
+    val fieldName = "addressLine1"
 
     behave like fieldThatBindsValidData(
       form,
@@ -41,13 +41,97 @@ class WhatIsHeadOfficeAddressUkFormProviderSpec extends StringFieldBehaviours {
       form,
       fieldName,
       maxLength = maxLength,
-      lengthError = FormError(fieldName, lengthKey, Seq(maxLength))
+      lengthError = FormError(fieldName, lengthKey("line1"), Seq(maxLength))
     )
 
     behave like mandatoryField(
       form,
       fieldName,
-      requiredError = FormError(fieldName, requiredKey)
+      requiredError = FormError(fieldName, requiredKey("line1"))
+    )
+  }
+
+  ".addressLine2" - {
+
+    val fieldName = "addressLine2"
+
+    behave like fieldThatBindsValidData(
+      form,
+      fieldName,
+      stringsWithMaxLength(maxLength)
+    )
+
+    behave like fieldWithMaxLength(
+      form,
+      fieldName,
+      maxLength = maxLength,
+      lengthError = FormError(fieldName, lengthKey("line2"), Seq(maxLength))
+    )
+
+    behave like mandatoryField(
+      form,
+      fieldName,
+      requiredError = FormError(fieldName, requiredKey("line2"))
+    )
+  }
+
+  ".addressLine3" - {
+
+    val fieldName = "addressLine3"
+
+    behave like fieldThatBindsValidData(
+      form,
+      fieldName,
+      stringsWithMaxLength(maxLength)
+    )
+
+    behave like fieldWithMaxLength(
+      form,
+      fieldName,
+      maxLength = maxLength,
+      lengthError = FormError(fieldName, lengthKey("line3"), Seq(maxLength))
+    )
+  }
+
+  ".addressLine4" - {
+
+    val fieldName = "addressLine4"
+
+    behave like fieldThatBindsValidData(
+      form,
+      fieldName,
+      stringsWithMaxLength(maxLength)
+    )
+
+    behave like fieldWithMaxLength(
+      form,
+      fieldName,
+      maxLength = maxLength,
+      lengthError = FormError(fieldName, lengthKey("line4"), Seq(maxLength))
+    )
+  }
+
+  ".postcode" - {
+
+    val fieldName = "postcode"
+
+    behave like fieldThatBindsValidData(
+      form,
+      fieldName,
+      stringsWithMaxLength(maxLength)
+    )
+
+    behave like fieldWithMaxLength(
+      form,
+      fieldName,
+      maxLength = maxLength,
+      lengthError = FormError(fieldName, lengthKey("line5"), Seq(10))
+    )
+
+    behave like mandatoryField(
+      form,
+      fieldName,
+      requiredError = FormError(fieldName, requiredKey("line5"))
     )
   }
 }
