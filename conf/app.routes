@@ -1,15 +1,32 @@
 # microservice specific routes
 
-GET        /                                            controllers.IndexController.onPageLoad
+->         /individual                                                  individual.Routes
+->         /individual-lead                                             individuallead.Routes
+->         /company                                                     company.Routes
+->         /company-lead                                                companylead.Routes
 
-GET        /assets/*file                                controllers.Assets.versioned(path="/public", file: Asset)
+GET        /                                                            controllers.IndexController.onPageLoad
+POST       /                                                            controllers.IndexController.onSubmit
 
-GET        /language/:lang                              controllers.LanguageSwitchController.switchToLanguage(lang: String)
+GET        /assets/*file                                                controllers.Assets.versioned(path="/public", file: Asset)
 
-GET        /this-service-has-been-reset                 controllers.SessionExpiredController.onPageLoad
+GET        /language/:lang                                              controllers.LanguageSwitchController.switchToLanguage(lang: String)
 
-GET        /check-your-answers                          controllers.CheckYourAnswersController.onPageLoad
+GET        /this-service-has-been-reset                                 controllers.SessionExpiredController.onPageLoad
 
-GET        /unauthorised                                controllers.UnauthorisedController.onPageLoad
+GET        /check-your-answers                                          controllers.CheckYourAnswersController.onPageLoad
+POST       /check-your-answers                                          controllers.CheckYourAnswersController.onSubmit
 
-GET        /accessibility-statement                     controllers.AccessibilityController.onPageLoad
+GET        /unauthorised                                                controllers.UnauthorisedController.onPageLoad
+
+GET        /accessibility-statement                                     controllers.AccessibilityController.onPageLoad
+
+GET        /addATrusteee                                                controllers.AddATrusteeeController.onPageLoad
+
+GET        /whoManagesTheTrust                                          controllers.WhoManagesTheTrustController.onPageLoad()
+POST       /whoManagesTheTrust                                          controllers.WhoManagesTheTrustController.onSubmit()
+
+GET        /areYouEnteringDetailsForLeadTrustee                         controllers.AreYouEnteringDetailsForLeadTrusteeController.onPageLoad(mode: Mode = NormalMode)
+POST       /areYouEnteringDetailsForLeadTrustee                         controllers.AreYouEnteringDetailsForLeadTrusteeController.onSubmit(mode: Mode = NormalMode)
+GET        /changeAreYouEnteringDetailsForLeadTrustee                   controllers.AreYouEnteringDetailsForLeadTrusteeController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeAreYouEnteringDetailsForLeadTrustee                   controllers.AreYouEnteringDetailsForLeadTrusteeController.onSubmit(mode: Mode = CheckMode)

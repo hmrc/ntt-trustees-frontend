@@ -18,35 +18,79 @@ package controllers
 
 import com.google.inject.Inject
 import controllers.actions.{DataRequiredAction, DataRetrievalAction, IdentifierAction}
+import models.{NormalMode, UserAnswers}
+import navigation.Navigator
+import pages.CheckYourAnswersPage
 import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import renderer.Renderer
+import repositories.SessionRepository
+import services.CountryService
 import uk.gov.hmrc.play.bootstrap.controller.FrontendBaseController
 import uk.gov.hmrc.viewmodels.{NunjucksSupport, SummaryList}
 import utils.CheckYourAnswersHelper
 
-import scala.concurrent.ExecutionContext
+import scala.concurrent.{ExecutionContext, Future}
 
 class CheckYourAnswersController @Inject()(
-    override val messagesApi: MessagesApi,
-    identify: IdentifierAction,
-    getData: DataRetrievalAction,
-    requireData: DataRequiredAction,
-    val controllerComponents: MessagesControllerComponents,
-    renderer: Renderer
+                                            override val messagesApi: MessagesApi,
+                                            navigator: Navigator,
+                                            identify: IdentifierAction,
+                                            getData: DataRetrievalAction,
+                                            requireData: DataRequiredAction,
+                                            countryService: CountryService,
+                                            sessionRepository: SessionRepository,
+                                            val controllerComponents: MessagesControllerComponents,
+                                            renderer: Renderer
 )(implicit ec: ExecutionContext) extends FrontendBaseController with I18nSupport with NunjucksSupport {
 
   def onPageLoad(): Action[AnyContent] = (identify andThen getData andThen requireData).async {
     implicit request =>
 
-      val helper = new CheckYourAnswersHelper(request.userAnswers)
+      val helper = new CheckYourAnswersHelper(request.userAnswers, countryService)
 
-      val answers: Seq[SummaryList.Row] = Seq()
+      val answers: Seq[SummaryList.Row] = Seq(
+        helper.areYouEnteringDetailsForLeadTrustee,
+        helper.whatIsTheirName,
+        helper.whatIsTheirDateOfBirth,
+        helper.doTheyHaveANationalInsuranceNumber,
+        helper.whatIsTheirNationalInsuranceNumber,
+        helper.whatIsTheirNationality,
+        helper.whichDetailsCanYouProvide,
+        helper.whatIsPassportCountryOfIssue,
+        helper.whatIsPassportNumber,
+        helper.whatIsExpiryDate,
+        helper.whatIsIdCardCountryOfIssue,
+        helper.whatIsIdCardNumber,
+        helper.whatIsIdCardExpiryDate,
+        helper.isTheirResidenceInTheUk,
+        helper.whatIsTheirAddressUk,
+        helper.whatIsTheirAddressNonUk,
+        helper.doYouKnowTheirEmailAddress,
+        helper.whatIsTheirEmailAddress,
+        helper.whatIsTheirTelephoneNumber,
+        helper.isTrusteeAUkRegisteredBusiness,
+        helper.whatIsTheLeadTrusteesRegisteredName,
+        helper.whatIsTheBusinessName,
+        helper.whatIsTheUtr,
+        helper.isHeadOfficeInUk,
+        helper.whatIsHeadOfficeAddressUk,
+        helper.whatIsHeadOfficeAddressNonUk,
+        helper.doYouKnowCountryOfNationality,
+        helper.doYouKnowCountryOfResidency,
+        helper.doYouKnowHeadOfficeCountry
+      ).filter(row => row.isDefined)
+        .map(row => row.get)
 
       renderer.render(
         "check-your-answers.njk",
         Json.obj("list" -> answers)
       ).map(Ok(_))
+  }
+
+  def onSubmit: Action[AnyContent] = (identify andThen getData andThen requireData).async {
+    implicit request =>
+      Future.successful(Redirect(navigator.nextPage(CheckYourAnswersPage, NormalMode, request.userAnswers)))
   }
 }

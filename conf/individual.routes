@@ -1,0 +1,9 @@
+GET        /doYouKnowCountryOfNationality                           controllers.individual.DoYouKnowCountryOfNationalityController.onPageLoad(mode: Mode = NormalMode)
+POST       /doYouKnowCountryOfNationality                           controllers.individual.DoYouKnowCountryOfNationalityController.onSubmit(mode: Mode = NormalMode)
+GET        /changeDoYouKnowCountryOfNationality                     controllers.individual.DoYouKnowCountryOfNationalityController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeDoYouKnowCountryOfNationality                     controllers.individual.DoYouKnowCountryOfNationalityController.onSubmit(mode: Mode = CheckMode)
+
+GET        /doYouKnowCountryOfResidency                             controllers.individual.DoYouKnowCountryOfResidencyController.onPageLoad(mode: Mode = NormalMode)
+POST       /doYouKnowCountryOfResidency                             controllers.individual.DoYouKnowCountryOfResidencyController.onSubmit(mode: Mode = NormalMode)
+GET        /changeDoYouKnowCountryOfResidency                       controllers.individual.DoYouKnowCountryOfResidencyController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeDoYouKnowCountryOfResidency                       controllers.individual.DoYouKnowCountryOfResidencyController.onSubmit(mode: Mode = CheckMode)

@@ -1,0 +1,67 @@
+{% extends "includes/layout.njk" %}
+
+{% from "govuk/components/back-link/macro.njk"     import govukBackLink %}
+{% from "govuk/components/input/macro.njk"         import govukInput %}
+{% from "govuk/components/button/macro.njk"        import govukButton %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "macros/title.njk"                         import title %}
+
+{% block pageTitle %}
+  {{ title(messages("whatIsTheirNationalInsuranceNumber.title"), form.errors) }}
+{% endblock %}
+
+{% block mainContent %}
+
+  {{ govukBackLink({
+    text: messages("site.back")
+  }) }}
+
+  <div class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% if form.errors.length > 0 %}
+          {{ govukErrorSummary({
+            "titleText": messages("error.summary.title"),
+            "errorList": form.errors
+          }) }}
+        {% endif %}
+
+        <form action="{{ routes.controllers.individual.lead.WhatIsTheirNationalInsuranceNumberController.onSubmit(mode).url }}" method="post">
+
+          {{ csrf() | safe }}
+
+          <!-- TODO: Replace this with modified, accessible component -->
+
+          <h1 class="govuk-label--xl">
+            {{ messages('whatIsTheirNationalInsuranceNumber.title') }}
+          </h1>
+
+          <p class="govuk-label--s">
+              {{ messages('whatIsTheirNationalInsuranceNumber.info') }}
+          </p>
+
+          {{ govukInput({
+            id: "value",
+            name: "value",
+            hint: {
+                text: messages('whatIsTheirNationalInsuranceNumber.hint')
+            },
+            attributes: {
+                spellcheck: "false"
+            },
+            value: form.value.value,
+            errorMessage: form.value.error
+          }) }}
+
+          {{ govukButton({
+            text: messages("site.continue")
+          }) }}
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

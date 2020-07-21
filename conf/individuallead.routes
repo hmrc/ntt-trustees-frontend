@@ -1,0 +1,90 @@
+
+GET        /doTheyHaveANationalInsuranceNumber                          controllers.individual.lead.DoTheyHaveANationalInsuranceNumberController.onPageLoad(mode: Mode = NormalMode)
+POST       /doTheyHaveANationalInsuranceNumber                          controllers.individual.lead.DoTheyHaveANationalInsuranceNumberController.onSubmit(mode: Mode = NormalMode)
+GET        /changeDoTheyHaveANationalInsuranceNumber                    controllers.individual.lead.DoTheyHaveANationalInsuranceNumberController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeDoTheyHaveANationalInsuranceNumber                    controllers.individual.lead.DoTheyHaveANationalInsuranceNumberController.onSubmit(mode: Mode = CheckMode)
+
+GET        /doYouKnowTheirEmailAddress                                  controllers.individual.lead.DoYouKnowTheirEmailAddressController.onPageLoad(mode: Mode = NormalMode)
+POST       /doYouKnowTheirEmailAddress                                  controllers.individual.lead.DoYouKnowTheirEmailAddressController.onSubmit(mode: Mode = NormalMode)
+GET        /changeDoYouKnowTheirEmailAddress                            controllers.individual.lead.DoYouKnowTheirEmailAddressController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeDoYouKnowTheirEmailAddress                            controllers.individual.lead.DoYouKnowTheirEmailAddressController.onSubmit(mode: Mode = CheckMode)
+
+GET        /isTheirResidenceInTheUk                                     controllers.individual.lead.IsTheirResidenceInTheUkController.onPageLoad(mode: Mode = NormalMode)
+POST       /isTheirResidenceInTheUk                                     controllers.individual.lead.IsTheirResidenceInTheUkController.onSubmit(mode: Mode = NormalMode)
+GET        /changeIsTheirResidenceInTheUk                               controllers.individual.lead.IsTheirResidenceInTheUkController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeIsTheirResidenceInTheUk                               controllers.individual.lead.IsTheirResidenceInTheUkController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheirAddressNonUk                                     controllers.individual.lead.WhatIsTheirAddressNonUkController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheirAddressNonUk                                     controllers.individual.lead.WhatIsTheirAddressNonUkController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheirAddressNonUk                               controllers.individual.lead.WhatIsTheirAddressNonUkController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheirAddressNonUk                               controllers.individual.lead.WhatIsTheirAddressNonUkController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheirAddressUk                                        controllers.individual.lead.WhatIsTheirAddressUkController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheirAddressUk                                        controllers.individual.lead.WhatIsTheirAddressUkController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheirAddressUk                                  controllers.individual.lead.WhatIsTheirAddressUkController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheirAddressUk                                  controllers.individual.lead.WhatIsTheirAddressUkController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheirDateOfBirth                                      controllers.individual.lead.WhatIsTheirDateOfBirthController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheirDateOfBirth                                      controllers.individual.lead.WhatIsTheirDateOfBirthController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheirDateOfBirth                                controllers.individual.lead.WhatIsTheirDateOfBirthController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheirDateOfBirth                                controllers.individual.lead.WhatIsTheirDateOfBirthController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheirEmailAddress                                     controllers.individual.lead.WhatIsTheirEmailAddressController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheirEmailAddress                                     controllers.individual.lead.WhatIsTheirEmailAddressController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheirEmailAddress                               controllers.individual.lead.WhatIsTheirEmailAddressController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheirEmailAddress                               controllers.individual.lead.WhatIsTheirEmailAddressController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheirNationalInsuranceNumber                          controllers.individual.lead.WhatIsTheirNationalInsuranceNumberController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheirNationalInsuranceNumber                          controllers.individual.lead.WhatIsTheirNationalInsuranceNumberController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheirNationalInsuranceNumber                    controllers.individual.lead.WhatIsTheirNationalInsuranceNumberController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheirNationalInsuranceNumber                    controllers.individual.lead.WhatIsTheirNationalInsuranceNumberController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheirTelephoneNumber                                  controllers.individual.lead.WhatIsTheirTelephoneNumberController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheirTelephoneNumber                                  controllers.individual.lead.WhatIsTheirTelephoneNumberController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheirTelephoneNumber                            controllers.individual.lead.WhatIsTheirTelephoneNumberController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheirTelephoneNumber                            controllers.individual.lead.WhatIsTheirTelephoneNumberController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whichDetailsCanYouProvide                                   controllers.individual.lead.WhichDetailsCanYouProvideController.onPageLoad(mode: Mode = NormalMode)
+POST       /whichDetailsCanYouProvide                                   controllers.individual.lead.WhichDetailsCanYouProvideController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhichDetailsCanYouProvide                             controllers.individual.lead.WhichDetailsCanYouProvideController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhichDetailsCanYouProvide                             controllers.individual.lead.WhichDetailsCanYouProvideController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheirName                                             controllers.individual.lead.WhatIsTheirNameController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheirName                                             controllers.individual.lead.WhatIsTheirNameController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheirName                                       controllers.individual.lead.WhatIsTheirNameController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheirName                                       controllers.individual.lead.WhatIsTheirNameController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheirNationality                                      controllers.individual.lead.WhatIsTheirNationalityController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheirNationality                                      controllers.individual.lead.WhatIsTheirNationalityController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheirNationality                                controllers.individual.lead.WhatIsTheirNationalityController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheirNationality                                controllers.individual.lead.WhatIsTheirNationalityController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsExpiryDate                                            controllers.individual.lead.WhatIsExpiryDateController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsExpiryDate                                            controllers.individual.lead.WhatIsExpiryDateController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsExpiryDate                                      controllers.individual.lead.WhatIsExpiryDateController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsExpiryDate                                      controllers.individual.lead.WhatIsExpiryDateController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsIdCardCountryOfIssue                                  controllers.individual.lead.WhatIsIdCardCountryOfIssueController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsIdCardCountryOfIssue                                  controllers.individual.lead.WhatIsIdCardCountryOfIssueController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsIdCardCountryOfIssue                            controllers.individual.lead.WhatIsIdCardCountryOfIssueController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsIdCardCountryOfIssue                            controllers.individual.lead.WhatIsIdCardCountryOfIssueController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsIdCardExpiryDate                                      controllers.individual.lead.WhatIsIdCardExpiryDateController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsIdCardExpiryDate                                      controllers.individual.lead.WhatIsIdCardExpiryDateController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsIdCardExpiryDate                                controllers.individual.lead.WhatIsIdCardExpiryDateController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsIdCardExpiryDate                                controllers.individual.lead.WhatIsIdCardExpiryDateController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsIdCardNumber                                          controllers.individual.lead.WhatIsIdCardNumberController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsIdCardNumber                                          controllers.individual.lead.WhatIsIdCardNumberController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsIdCardNumber                                    controllers.individual.lead.WhatIsIdCardNumberController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsIdCardNumber                                    controllers.individual.lead.WhatIsIdCardNumberController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsPassportCountryOfIssue                                controllers.individual.lead.WhatIsPassportCountryOfIssueController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsPassportCountryOfIssue                                controllers.individual.lead.WhatIsPassportCountryOfIssueController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsPassportCountryOfIssue                          controllers.individual.lead.WhatIsPassportCountryOfIssueController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsPassportCountryOfIssue                          controllers.individual.lead.WhatIsPassportCountryOfIssueController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsPassportNumber                                        controllers.individual.lead.WhatIsPassportNumberController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsPassportNumber                                        controllers.individual.lead.WhatIsPassportNumberController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsPassportNumber                                  controllers.individual.lead.WhatIsPassportNumberController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsPassportNumber                                  controllers.individual.lead.WhatIsPassportNumberController.onSubmit(mode: Mode = CheckMode)

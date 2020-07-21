@@ -1,0 +1,34 @@
+GET        /isHeadOfficeInUk                                            controllers.company.lead.IsHeadOfficeInUkController.onPageLoad(mode: Mode = NormalMode)
+POST       /isHeadOfficeInUk                                            controllers.company.lead.IsHeadOfficeInUkController.onSubmit(mode: Mode = NormalMode)
+GET        /changeIsHeadOfficeInUk                                      controllers.company.lead.IsHeadOfficeInUkController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeIsHeadOfficeInUk                                      controllers.company.lead.IsHeadOfficeInUkController.onSubmit(mode: Mode = CheckMode)
+
+GET        /isTrusteeAUkRegisteredBusiness                              controllers.company.lead.IsTrusteeAUkRegisteredBusinessController.onPageLoad(mode: Mode = NormalMode)
+POST       /isTrusteeAUkRegisteredBusiness                              controllers.company.lead.IsTrusteeAUkRegisteredBusinessController.onSubmit(mode: Mode = NormalMode)
+GET        /changeIsTrusteeAUkRegisteredBusiness                        controllers.company.lead.IsTrusteeAUkRegisteredBusinessController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeIsTrusteeAUkRegisteredBusiness                        controllers.company.lead.IsTrusteeAUkRegisteredBusinessController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsHeadOfficeAddressNonUk                                controllers.company.lead.WhatIsHeadOfficeAddressNonUkController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsHeadOfficeAddressNonUk                                controllers.company.lead.WhatIsHeadOfficeAddressNonUkController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsHeadOfficeAddressNonUk                          controllers.company.lead.WhatIsHeadOfficeAddressNonUkController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsHeadOfficeAddressNonUk                          controllers.company.lead.WhatIsHeadOfficeAddressNonUkController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsHeadOfficeAddressUk                                   controllers.company.lead.WhatIsHeadOfficeAddressUkController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsHeadOfficeAddressUk                                   controllers.company.lead.WhatIsHeadOfficeAddressUkController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsHeadOfficeAddressUk                             controllers.company.lead.WhatIsHeadOfficeAddressUkController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsHeadOfficeAddressUk                             controllers.company.lead.WhatIsHeadOfficeAddressUkController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheBusinessName                                       controllers.company.lead.WhatIsTheBusinessNameController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheBusinessName                                       controllers.company.lead.WhatIsTheBusinessNameController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheBusinessName                                 controllers.company.lead.WhatIsTheBusinessNameController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheBusinessName                                 controllers.company.lead.WhatIsTheBusinessNameController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheLeadTrusteesRegisteredName                         controllers.company.lead.WhatIsTheLeadTrusteesRegisteredNameController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheLeadTrusteesRegisteredName                         controllers.company.lead.WhatIsTheLeadTrusteesRegisteredNameController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheLeadTrusteesRegisteredName                   controllers.company.lead.WhatIsTheLeadTrusteesRegisteredNameController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheLeadTrusteesRegisteredName                   controllers.company.lead.WhatIsTheLeadTrusteesRegisteredNameController.onSubmit(mode: Mode = CheckMode)
+
+GET        /whatIsTheUtr                                                controllers.company.lead.WhatIsTheUtrController.onPageLoad(mode: Mode = NormalMode)
+POST       /whatIsTheUtr                                                controllers.company.lead.WhatIsTheUtrController.onSubmit(mode: Mode = NormalMode)
+GET        /changeWhatIsTheUtr                                          controllers.company.lead.WhatIsTheUtrController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeWhatIsTheUtr                                          controllers.company.lead.WhatIsTheUtrController.onSubmit(mode: Mode = CheckMode)

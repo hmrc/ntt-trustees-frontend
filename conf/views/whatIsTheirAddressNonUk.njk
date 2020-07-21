@@ -1,0 +1,99 @@
+{% extends "includes/layout.njk" %}
+
+{% from "govuk/components/back-link/macro.njk"     import govukBackLink %}
+{% from "govuk/components/input/macro.njk"         import govukInput %}
+{% from "govuk/components/button/macro.njk"        import govukButton %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/fieldset/macro.njk"      import govukFieldset %}
+{% from "govuk/components/select/macro.njk"        import govukSelect %}
+{% from "macros/title.njk"                         import title %}
+
+{% block pageTitle %}
+  {{ title(messages("whatIsTheirAddressNonUk.title"), form.errors) }}
+{% endblock %}
+
+{% block mainContent %}
+
+  {{ govukBackLink({
+    text: messages("site.back")
+  }) }}
+
+  <div class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% if form.errors.length > 0 %}
+          {{ govukErrorSummary({
+            "titleText": messages("error.summary.title"),
+            "errorList": form.errors
+          }) }}
+        {% endif %}
+
+        <form action="{{ routes.controllers.individual.lead.WhatIsTheirAddressNonUkController.onSubmit(mode).url }}" method="post">
+
+          {{ csrf() | safe }}
+
+          {% call govukFieldset({
+              legend: {
+                text: messages('whatIsTheirAddressNonUk.title'),
+                classes: "govuk-label--xl",
+                isPageHeading: true
+              }
+            }) %}
+
+          {{ govukInput({
+             label: {
+               text: messages('whatIsTheirAddressNonUk.line1')
+             },
+             id: "addressLine1",
+             name: "addressLine1",
+             value: form.addressLine1.value,
+             errorMessage: form.addressLine1.error
+           }) }}
+
+         {{ govukInput({
+            label: {
+              text: messages('whatIsTheirAddressNonUk.line2')
+            },
+            id: "addressLine2",
+            name: "addressLine2",
+            value: form.addressLine2.value,
+            errorMessage: form.addressLine2.error
+          }) }}
+
+         {{ govukInput({
+           label: {
+             text: messages('whatIsTheirAddressNonUk.line3')
+           },
+           id: "addressLine3",
+           name: "addressLine3",
+           value: form.addressLine3.value,
+           errorMessage: form.addressLine3.error
+         }) }}
+
+        {{ govukSelect({
+            label: {
+              text: messages('whatIsTheirAddressNonUk.line5')
+            },
+            id: "country-autocomplete",
+            name: "country",
+            value: form.country.value,
+            errorMessage: form.country.error,
+            items: countries
+        }) }}
+
+        {% endcall %}
+
+        {{ govukButton({
+            text: messages("site.continue")
+        }) }}
+
+
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
